@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="UTF-8">
+        <link href="../assets/css/bootstrap.css" rel="stylesheet">
+        <script>
+            function downloadUUID() {
+                var pom = document.createElement('a')
+                pom.setAttribute('href', "data:text/plain;charset=UTF-8" + encodeURIComponent("test"))
+                pom.setAttribute('download', "UUID.uid")
+
+                if (document.createEvent) {
+                    var event = document.createEvent("MouseEvents")
+                    event.initEvent('click', true, true)
+                    pom.dispatchEvent(event)
+                }
+                else {
+                    pom.click()
+                }
+            }
+        </script>
+
+        <title>UUID.uid Download</title>
+  </head>
+  <body>
+        <button class="btn btn-primary btn-lg" onclick="downloadUUID()">Download!</button>
+  </body>
+</html>
