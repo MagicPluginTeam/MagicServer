@@ -1,53 +1,29 @@
-const bodyParser = require("body-parser")
+//REQUIRES
+const bodyparser = require("body-parser")
 const express = require("express")
-const {Client} = require("pg");
-const crypto = require("crypto")
-const fs = require("fs")
-// const nodemailer = require("nodemailer")
+const logger = require("morgan")
+const main_r = require("./routes/main.js")
+const test_r = require("./routes/test.js")
 
+const port = 5050
 const app = express()
-const port = app.listen(5050)
-const client = new Client({
-    user: 'yejunho10',
-    host: 'localhost',
-    database: 'license',
-    password: '6033',
-    port: 5432
-})
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(express.static(__dirname + "/web"))
-client.connect()
 
-app.post("/postTest", function(req) {
-    console.log(req.body.p1)
-})
+//SETUP
+app
+    .use(bodyparser.json())
+    .use(bodyparser.urlencoded({extended:true}))
+    .use(express.static(__dirname))
+    .set("view engine", "ejs")
+    .use(logger("dev"))
 
-app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/web/main/index.html")
-})
+    .use("/main", main_r)
+    .use("/test", test_r)
 
-app.get("/downloadUUID", function(req, res) {
-    var uuid = crypto.randomUUID()
-    var filename = uuid + ".uid"
-    var filepath = __dirname + "/tmp/" + filename
-    var stream = fs.createWriteStream(filepath)
+    .use(function(req, res) { res.status(404).render("404") })
 
-    stream.once('open', function() {
-        stream.write(uuid)
-        stream.end()
+    .get("/", function(req, res) { res.redirect("/main") })
 
-        res.download(filepath, "UUID.uid", function(err) {
-            if (err) console.log(err)
-
-            fs.unlinkSync(filepath)
-            console.log("successfully deleted tmp file..")
-        })
-        console.log("successfully sent file to client..")
-    })
-})
-
-app.listen(port, function() {
-    console.log("LicenseServer Started!")
+app.listen(port, () => {
+    console.log("Server Started!")
 })

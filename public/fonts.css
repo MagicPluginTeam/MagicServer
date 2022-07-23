@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ROKAFSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LeferiPoint-WhiteObliqueA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: '양진체';
+    src: url('https://cdn.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TmonMonsori';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquareair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.Cafe24SsurroundAir {
+    font-family: 'Cafe24SsurroundAir', sans-serif;
+}
+
+.ROKAFSansBold {
+    font-family: 'ROKAFSansBold', sans-serif;
+}
+
+.GangwonEduPowerExtraBoldA {
+    font-family: 'GangwonEduPowerExtraBoldA', sans-serif;
+}
+
+.LeferiPoint-WhiteObliqueA {
+    font-family: 'LeferiPoint-WhiteObliqueA', sans-serif;
+}
+
+.IBMPlexSansKR-Regular {
+    font-family: 'IBMPlexSansKR-Regular', sans-serif;
+}
+
+.GmarketSansBold {
+    font-family: 'GmarketSansBold', sans-serif;
+}
+
+.양진체 {
+    font-family: '양진체', sans-serif;
+}
+
+.TmonMonsori {
+    font-family: 'TmonMonsori', sans-serif;
+}
+
+.CookieRun-Regular {
+    font-family: 'CookieRun-Regular', sans-serif;
+}
+
+.KOTRA_BOLD-Bold {
+    font-family: 'KOTRA_BOLD-Bold', sans-serif;
+}
+
+.Cafe24Ohsquareair {
+    font-family: 'Cafe24Ohsquareair', sans-serif;
+}
+
+.font-box {
+    padding: 40px;
+    text-align: center;
+}
+
+.logo {
+    border-radius: 50%;
+}
+
+.cent {
+    text-align: center;
+}
+
+p {
+    font-size: 140%;
+}

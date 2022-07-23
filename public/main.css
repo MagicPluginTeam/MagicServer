@@ -59,3 +59,12 @@
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
 }
+
+.cent {
+    align-items: center;
+    text-align: center;
+}
+
+img {
+    border-radius: 50%;
+}
