@@ -19,10 +19,9 @@ app
 
     .use("/main", main_r)
     .use("/test", test_r)
+    .get("/", function(req, res) { res.redirect("/main") })
 
     .use(function(req, res) { res.status(404).render("404") })
-
-    .get("/", function(req, res) { res.redirect("/main") })
 
 app.listen(port, () => {
     console.log("Server Started!")

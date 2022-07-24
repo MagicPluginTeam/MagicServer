@@ -74,6 +74,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .Cafe24SsurroundAir {
     font-family: 'Cafe24SsurroundAir', sans-serif;
 }
@@ -118,6 +125,10 @@
     font-family: 'Cafe24Ohsquareair', sans-serif;
 }
 
+.GmarketSansMedium {
+    font-family: "GmarketSansMedium", sans-serif;
+}
+
 .font-box {
     padding: 40px;
     text-align: center;
@@ -129,8 +140,4 @@
 
 .cent {
     text-align: center;
-}
-
-p {
-    font-size: 140%;
 }
