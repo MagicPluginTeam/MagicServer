@@ -1,0 +1,146 @@
+.page-content {
+    width: 100%;
+    min-height: 100vh;
+    background: #343A40;
+}
+
+.auth-card {
+    background-color: white;
+    box-shadow: 0 3px 12px rgb(0 0 0 / 0.3);
+    border-radius: 20px;
+    padding: 10px 10%;
+    width: 570px;
+    margin: auto;
+}
+
+.auth-title {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    text-align: center;
+    color: rgb(46, 46, 46);
+}
+
+.service-btn {
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    border-style: outset;
+    width: 100%;
+    height: 40px;
+    box-shadow: none !important;
+}
+
+.service-btn:hover {
+    border: 1px solid rgb(50, 50, 50);
+}
+
+.service-icon {
+    margin-right: 10px;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.separator {
+    width: 100%;
+    color: rgb(30, 30, 30);
+}
+
+.auth-input {
+    background: white;
+    height: 45px;
+    border: 1px solid rgb(220, 220, 220);
+    color: rgb(50, 50, 50);
+    box-shadow: none !important;
+}
+
+.auth-input:focus {
+    color: rgb(50, 50, 50);
+    border: 1px solid rgb(50, 50, 50);
+}
+
+.auth-btn {
+    border: 1px solid rgba(0, 0, 0, .15);
+    color: #343A40;
+    width: 100%;
+    height: 40px;
+    box-shadow: none !important;
+}
+
+.code {
+    width: 50px;
+    height: 60px;
+    margin: 2px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.dupe-user {
+    width: 77.5%;
+    display: block;
+    min-height: calc(1.5em + 1rem + 5px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-top-left-radius: .375rem;
+    border-bottom-left-radius: .375rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.dupe-but {
+    width: 22.5%;
+    min-height: calc(1.5em + 1rem + 5px);
+    display: block;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-top-right-radius: .375rem;
+    border-bottom-right-radius: .375rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.category {
+    float: left;
+    display: block;
+}
+
+#category_1 {
+    margin-left: 20px;
+    /* or space you want..*/
+}
+
+.auth-btn:hover {
+    border: 1px solid rgb(50, 50, 50);
+}
+
+.text {
+    text-align: start;
+}
