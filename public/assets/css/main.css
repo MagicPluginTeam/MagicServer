@@ -7,6 +7,11 @@
 
 * {
     font-family: 'GmarketSansMedium', sans-serif;
+    color: #FFFFFF;
+}
+
+html, body {
+    background-color: #343A40;
 }
 
 .bd-placeholder-img {
