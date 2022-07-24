@@ -9,8 +9,6 @@ router
     .post("/postTest", (req) => {
     console.log(req.body)
 })
-
-router
     .get("/mailTest/:email", (req, res) => {
     const mailOptions = {
         from: "magicplugin.noreply@gmail.com",
@@ -28,8 +26,6 @@ router
     console.log(info)
     res.send(info)
 })
-
-router
     .get("/uuidTest", (req, res) => {
     var uuid = crypto.randomUUID()
     var filename = uuid + ".uid"
