@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LicenseServer.iml" filepath="$PROJECT_DIR$/.idea/LicenseServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MagicServer.iml" filepath="$PROJECT_DIR$/.idea/MagicServer.iml" />
     </modules>
   </component>
 </project>

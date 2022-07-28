@@ -70,6 +70,47 @@ html, body {
     text-align: center;
 }
 
+.back {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.bubbles {
+    position: relative;
+}
+
+.bubbles span {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: #0dcaf0;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #343A40,
+    0 0 50px #0dcaf0,
+    0 0 100px #0dcaf0;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(125s / var(--i));
+}
+
+.bubbles span:nth-child(even) {
+    background: #ba68c8;
+    box-shadow: 0 0 0 10px #ff2d7544,
+    0 0 50px #ba68c8,
+    0 0 100px #ba68c8;
+}
+
 img {
     border-radius: 50%;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(100vh) scale(0);
+    }
+    100% {
+        transform: translateY(-10vh) scale(1);
+    }
 }

@@ -1,18 +1,7 @@
 html, body {
     height: 100%;
-}
-
-.back {
-    place-items: center;
+    background-color: #343a40;
     text-align: center;
-    height: 80%;
-    padding: 20px;
-    margin: 5%;
-    outline: #343a40 solid thin;
-}
-
-.err {
-    color: #3c3c47;
 }
 
 .err-code{
@@ -21,7 +10,7 @@ html, body {
     display: inline-block;
     animation: bounce .3s ease infinite alternate;
     font-size: 1500%;
-    color: #D6F7D2;
+    color: #b02a37;
     text-shadow: 0 1px 0 #CCC,
     0 2px 0 #CCC,
     0 3px 0 #CCC,
@@ -36,6 +25,16 @@ html, body {
 
 err-code:nth-child(2) { animation-delay: .1s; }
 err-code:nth-child(3) { animation-delay: .2s; }
+
+.err {
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.hyper {
+    text-align: center;
+    color: #FFFFFF;
+}
 
 @keyframes bounce {
     100% {

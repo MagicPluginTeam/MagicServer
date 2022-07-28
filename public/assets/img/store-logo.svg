@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <rect
+       x="533.09039"
+       y="443.00799"
+       width="199.9089"
+       height="236.92906"
+       id="rect922" />
+    <rect
+       x="378.8397"
+       y="276.41724"
+       width="50.594227"
+       height="78.976355"
+       id="rect912" />
+    <rect
+       x="266.5452"
+       y="191.27086"
+       width="645.3849"
+       height="1262.3877"
+       id="rect852" />
+    <rect
+       x="266.5452"
+       y="191.27086"
+       width="645.38489"
+       height="1262.3877"
+       id="rect852-7" />
+  </defs>
+  <g
+     id="layer2">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-26.446281,-23.507806)"
+       id="text850"
+       style="font-size:500px;word-spacing:0px;white-space:pre;shape-inside:url(#rect852);fill:#000000"><tspan
+         x="266.54492"
+         y="647.43664"
+         id="tspan1028"><tspan
+           style="font-weight:bold;font-size:200px;font-family:Unispace;-inkscape-font-specification:'Unispace Bold'"
+           id="tspan1026">Magic</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-27.399413,108.43679)"
+       id="text850-7"
+       style="font-size:200px;word-spacing:0px;white-space:pre;shape-inside:url(#rect852-7);fill:#000000"><tspan
+         x="266.54492"
+         y="373.73755"
+         id="tspan1032"><tspan
+           style="font-family:Unispace;-inkscape-font-specification:Unispace"
+           id="tspan1030">Store</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text920"
+       style="fill:#000000;-inkscape-font-specification:TeamViewer15;font-family:TeamViewer15;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;white-space:pre;shape-inside:url(#rect922)" />
+  </g>
+  <g
+     id="layer1">
+    <g
+       id="g514"
+       style="fill:#000000">
+      <path
+         id="path526"
+         style="fill:#e9e9ff;fill-rule:evenodd;stroke:none;stroke-width:0.896449;stroke-linejoin:round"
+         d="M 20.001234,81.436854 42.313329,56.547331 V 241.54802 L 20.001234,212.7366 Z"/>
+      <path
+         id="path516"
+         style="fill:#353564;fill-rule:evenodd;stroke:none;stroke-width:0.896449;stroke-linejoin:round"
+         d="M 5.3133296,75.586107 V 219.50926 L 20.001234,212.7366 V 81.436854 Z"/>
+      <path
+         id="path524"
+         style="fill:#afafde;fill-rule:evenodd;stroke:none;stroke-width:0.896449;stroke-linejoin:round"
+         d="M 5.3133296,219.50926 23.917257,255.54391 42.313329,241.54802 20.001234,212.7366 Z"/>
+      <path
+         id="path518"
+         style="fill:#4d4d9f;fill-rule:evenodd;stroke:none;stroke-width:0.896449;stroke-linejoin:round"
+         d="M 5.3133296,75.586107 23.917257,44.45661 42.313329,56.547331 20.001234,81.436854 Z"/>
+      <path
+         id="path522"
+         style="fill:#d7d7ff;fill-rule:evenodd;stroke:none;stroke-width:0.896449;stroke-linejoin:round"
+         d="m 23.917257,44.45661 v 211.0873 L 42.313329,241.54802 V 56.547331 Z"/>
+      <path
+         id="path520"
+         style="fill:#8686bf;fill-rule:evenodd;stroke:none;stroke-width:0.896449;stroke-linejoin:round"
+         d="M 5.3133296,75.586107 23.917257,44.45661 v 211.0873 L 5.3133296,219.50926 Z"/>
+    </g>
+    <g
+       id="g514-6"
+       style="fill:#000000">
+      <path
+         id="path520-9"
+         style="fill:#8686bf;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         d="M 42.270154,75.572161 23.666227,44.442666 V 255.52996 l 18.603927,-36.03464 z"/>
+      <path
+         id="path522-1"
+         style="fill:#d7d7ff;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         d="M 23.666227,44.442666 V 255.52996 L 5.2701541,241.53408 V 56.533386 Z"/>
+      <path
+         id="path518-3"
+         style="fill:#4d4d9f;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         d="M 42.270154,75.572161 23.666227,44.442666 5.2701541,56.533386 27.58225,81.422908 Z"/>
+      <path
+         id="path526-2"
+         style="fill:#e9e9ff;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         d="M 27.58225,81.422908 5.2701541,56.533386 V 241.53408 L 27.58225,212.72265 Z"/>
+      <path
+         id="path516-4"
+         style="fill:#353564;fill-rule:evenodd;stroke:none;stroke-width:0.965794;stroke-linejoin:round"
+         d="M 42.270154,75.572161 V 219.49532 L 27.58225,212.72265 V 81.422908 Z"/>
+      <path
+         id="path524-2"
+         style="fill:#afafde;fill-rule:evenodd;stroke:none;stroke-width:0.865785;stroke-linejoin:round"
+         d="M 42.270154,219.49532 23.666227,255.52996 5.2701541,241.53408 27.58225,212.72265 Z"/>
+    </g>
+  </g>
+</svg>

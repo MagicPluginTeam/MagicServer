@@ -1,32 +1,31 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="MagicPluginTeam Main">
+<head>
+  <meta charset="utf-8">
+  <meta property="og:title" content="MagicPlugin Main"/>
+  <meta property="og:image" content="/public/assets/img/logo_transparent.png"/>
 
-    <title>Main · Magic Plugin</title>
+  <title>Main · Magic Plugin</title>
 
-    <link href="../../public/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../public/assets/css/main.css" rel="stylesheet">
-    <link href="../../public/assets/img/logo_transparent.png" rel="shortcut icon">
-  </head>
-  <body>
-    
+  <link href="../../public/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../public/assets/css/main.css" rel="stylesheet">
+  <link href="../../public/assets/img/logo-transparent.png" rel="shortcut icon">
+
+  <script src="../../public/assets/js/includeHTML.js"></script>
+</head>
+<body>
 <main>
-  <div class="container py-4">
-    <header class="pb-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <img width="70" height="70" class="me-2" viewBox="0 0 118 94" src="../../public/assets/img/logo_transparent.png">
-        <span class="fs-3">MagicPluginTeam&trade;</span>
-      </a>
-    </header>
+  <div class="container mt-2">
+    <header include-html="../../public/assets/header.html"></header>
+  </div>
 
+  <div class="container py-4">
     <div class="row align-items-md-stretch">
       <div class="container-fluid py-5 cent">
         <div class="h-100 p-5 text-bg-dark rounded-3">
-          <h1>Store</h1>
-          <p>Visit our store now!</p>
-          <a href="../../views/store"><button class="btn btn-outline-light" type="button">GO!</button></a>
+          <h1>DevTeam</h1>
+          <p>Introduce magical dev team, they made this website!</p>
+          <a href="../../devteam"><button class="btn btn-outline-light" type="button">GO!</button></a>
         </div>
       </div>
     </div>
@@ -34,9 +33,29 @@
     <div class="row align-items-md-stretch">
       <div class="container-fluid py-5 cent">
         <div class="h-100 p-5 text-bg-dark rounded-3">
-          <h1>Developers</h1>
-          <p>Introduce our magical developers!</p>
-          <a href="../../views/developers"><button class="btn btn-outline-light" type="button">GO!</button></a>
+          <h1>Store</h1>
+          <p>Visit our store!</p>
+          <a href="../../store"><button class="btn btn-outline-light" type="button">GO!</button></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+      <div class="container-fluid py-5 cent">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+          <h1>C/S</h1>
+          <p>Best Customer Service!</p>
+          <a href="../../cs"><button class="btn btn-outline-light" type="button">GO!</button></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+      <div class="container-fluid py-5 cent">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+          <h1>Dashboard</h1>
+          <p>Manage your licenses.</p>
+          <a href="../../dashboard"><button class="btn btn-outline-light" type="button">GO!</button></a>
         </div>
       </div>
     </div>
@@ -46,5 +65,10 @@
     </footer>
   </div>
 </main>
-  </body>
+
+<script>
+  includeHTML()
+</script>
+
+</body>
 </html>

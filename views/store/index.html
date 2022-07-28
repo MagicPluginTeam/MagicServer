@@ -2,26 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="MagicPluginTeam Store">
+    <meta property="og:title" content="MagicStore"/>
+    <meta property="og:image" content="/public/assets/img/logo_transparent.png"/>
 
-    <title>Store · Magic Plugin</title>
+    <title>Main · MagicStore</title>
 
     <link href="../../public/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../public/assets/css/store.css" rel="stylesheet">
-    <link href="../../public/assets/img/logo_transparent.png" rel="shortcut icon">
+    <link href="../../public/assets/css/fonts.css" rel="stylesheet">
+    <link href="../../public/assets/img/logo-transparent.png" rel="shortcut icon">
+
+    <script src="../../public/assets/js/includeHTML.js"></script>
 </head>
 <body>
-    <div class="container py-4">
-        <header class="pb-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-                <img width="70" height="70" class="me-2 round-img" src="../../public/assets/img/logo_transparent.png">
-                <span class="fs-3">MagicPluginTeam&trade;</span>
-            </a>
-        </header>
+    <div class="container">
+        <header include-html="../../public/assets/header.html"></header>
     </div>
 
     <div class="container py-4">
         <p>We're not ready yet!</p>
     </div>
 </body>
+
+<script>
+    includeHTML()
+</script>
 </html>

@@ -14,6 +14,7 @@ app
     .use(bodyparser.json())
     .use(bodyparser.urlencoded({extended:true}))
     .use(express.static(__dirname))
+    .use(express.static(__dirname + "/views"))
     .set("view engine", "ejs")
     .use(logger("dev"))
 
@@ -22,6 +23,7 @@ app
     .get("/", function(req, res) { res.redirect("/main") })
 
     .use(function(req, res) { res.status(404).render("404") })
+    .use(function(req, res) { res.status(403).render("403") })
 
 app.listen(port, () => {
     console.log("Server Started!")

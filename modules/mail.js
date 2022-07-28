@@ -12,6 +12,4 @@ function sendMail(mailOptions) {
     transporter.sendMail(mailOptions)
 }
 
-module.exports = {
-    sendMail
-}
+module.exports = sendMail
