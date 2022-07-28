@@ -14,26 +14,22 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="../../public/assets/js/includeHTML.js"></script>
-    <script src="../../public/assets/js/payment.js"></script>
 </head>
 <body>
     <div class="container mt-2">
-        <header include-html="../../public/assets/header.html"></header>
+        <header include-html="../../public/assets/header-store.html"></header>
     </div>
 
-    <div class="container py-4">
+    <div class="container py-4 text-center">
         <br>
-        <input type="radio" id="r1" name="rr" class="creditcard" />
-        <label for="r1"><span></span>CreditCard</label>
-        <input type="radio" id="r2" name="rr" class="paypal" />
-        <label for="r2"><span></span>Paypal</label>
-
-        <div class="payment-creditcard">
-            <h1>Payment Information - CreditCard</h1>
-        </div>
-        <div class="payment-paypal">
-            <h1>Payment Information - Paypal</h1>
-        </div>
+        <form>
+            <input type="radio" id="r1" name="rr" class="toss" />
+            <label for="r1"><span></span>TossPayment</label>
+            <input type="radio" id="r2" name="rr" class="paypal" required />
+            <label for="r2"><span></span>Paypal</label>
+            <br><br>
+            <input type="submit" class="btn btn-primary pay" value="Pay now" style="width: 25%;">
+        </form>
     </div>
 </body>
 
