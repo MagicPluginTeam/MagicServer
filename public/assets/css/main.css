@@ -24,6 +24,14 @@ html, body {
     color: #FDFDFD;
     padding: 1rem;
     margin: 3rem;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.items {
+    display: compact;
+    justify-content: flex-start;
 }
 
 .article h1 {

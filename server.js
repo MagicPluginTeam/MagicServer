@@ -1,6 +1,7 @@
 //REQUIRES
 const bodyparser = require("body-parser")
 const express = require("express")
+const http = require("http")
 const logger = require("morgan")
 
 //ROUTES
@@ -29,7 +30,6 @@ app
 
     .use(function(req, res) { res.status(404).render("404") })
 
-
-app.listen(httpPort, () => {
+const server = http.createServer(app).listen(httpPort, () => {
     console.log("Server Started! HTTP Listening on port: " + httpPort)
 })
