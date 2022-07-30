@@ -13,13 +13,13 @@ router
     const mailOptions = {
         from: "magicplugin.noreply@gmail.com",
         to: req.params.email,
-        subject: "Verification Mail",
-        html: `<h1>Verification Mail.</h1>
-                Click below button for verification.`,
-        text: "인증 메일입니다."
+        subject: "Test Mail",
+        html: `<h1>Test Mail.</h1>`,
+        text: "테스트 메일입니다."
     }
 
     mail.sendMail(mailOptions)
+    mail.sendVerifyCode(req.params.email, "http://feather-s.kr/verifymail?token=" + req.params.email)
 
     const info = "Mail Sent to " + mailOptions.to
 

@@ -1,5 +1,38 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.Cafe24SsurroundAir {
+    font-family: 'Cafe24SsurroundAir', sans-serif;
+}
+
+.KOTRA_BOLD-Bold {
+    font-family: 'KOTRA_BOLD-Bold', sans-serif;
+}
+
+.GmarketSansMedium {
+    font-family: "GmarketSansMedium", sans-serif;
+}
+
 .text-center {
     text-align: center;
 }

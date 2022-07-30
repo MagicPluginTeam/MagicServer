@@ -1,6 +1,7 @@
 //REQUIRES
 const bodyparser = require("body-parser")
 const express = require("express")
+const session = require("express-session")
 const http = require("http")
 const logger = require("morgan")
 
@@ -17,6 +18,15 @@ const app = express()
 app
     .use(bodyparser.json())
     .use(bodyparser.urlencoded({extended:true}))
+    .use(session({
+        secret: "MagicSecretKey",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            secure: true,
+            maxAge: 1000*60*60 //세션 유효기간 (ms)
+        }
+    }))
 
     .use(express.static(__dirname))
     .use(express.static(__dirname + "/views"))
