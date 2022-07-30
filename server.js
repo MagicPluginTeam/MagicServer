@@ -1,20 +1,18 @@
 //REQUIRES
 const bodyparser = require("body-parser")
 const express = require("express")
-const https = require("https")
-
 const logger = require("morgan")
 
+//ROUTES
 const index_r = require("./routes")
 const test_r = require("./routes/test.js")
 
-const httpPort = 5050
-const httpsPort = 5051
-const app = express()
-const options = require("./config/pem_config").options
-
+//SETTINGS
+const httpPort = 80
 
 //SETUP
+const app = express()
+
 app
     .use(bodyparser.json())
     .use(bodyparser.urlencoded({extended:true}))
@@ -34,8 +32,4 @@ app
 
 app.listen(httpPort, () => {
     console.log("Server Started! HTTP Listening on port: " + httpPort)
-})
-
-https.createServer(options, app).listen(httpsPort, () => {
-    console.log("Server Started! HTTPS Listening on port: " + httpsPort)
 })

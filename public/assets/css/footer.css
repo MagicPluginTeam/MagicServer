@@ -1,0 +1,16 @@
+.border-top {
+    border-top: 1px solid lightgray;
+}
+
+.container {
+    width: 100%;
+}
+
+.foot {
+    background: #F7F7F7;
+    color: #000;
+}
+
+.foot_article {
+    margin: 0.6rem 2rem;
+}
