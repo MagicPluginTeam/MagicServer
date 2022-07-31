@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <link href="../public/assets/css/style.css" rel="stylesheet">
+        <link href="../public/assets/css/err.css" rel="stylesheet">
+        <link href="../public/assets/img/logo-transparent.png" rel="shortcut icon">
+
+        <title><%= code %> ERROR</title>
+
+        <script>
+            console.log("Error Code: <%= code %>");
+
+            let errmsg;
+            switch("<%= code %>") {
+                case "400": { errmsg = "Bad Request"; break }
+                case "401": { errmsg = "Unauthorized"; break }
+                case "402": { errmsg = "Payment Required"; break }
+                case "403": { errmsg = "Forbidden"; break }
+                case "404": { errmsg = "Not Found"; break }
+                case "405": { errmsg = "Method Not Allowed"; break }
+                case "406": { errmsg = "Not Acceptable"; break }
+                case "407": { errmsg = "Proxy Authentication Required"; break }
+                case "408": { errmsg = "Request Timeout"; break }
+                case "409": { errmsg = "Conflict"; break }
+                case "410": { errmsg = "Gone"; break }
+                case "411": { errmsg = "Length Required"; break }
+                case "412": { errmsg = "Precondition Failed"; break }
+                case "413": { errmsg = "Payload Too Large"; break }
+                case "414": { errmsg = "URI Too Long"; break }
+                case "415": { errmsg = "Unsupported Media Type"; break }
+                case "416": { errmsg = "Range Not Satisfiable"; break }
+                case "417": { errmsg = "Expectation Failed"; break }
+                case "418": { errmsg = "I'm a teapot"; break }
+                case "421": { errmsg = "Misdirected Request"; break }
+                case "422": { errmsg = "Unprocessable Entity"; break }
+                case "423": { errmsg = "Locked"; break }
+                case "424": { errmsg = "Failed Dependency"; break }
+                case "425": { errmsg = "Too Early"; break }
+                case "426": { errmsg = "Upgrade Required"; break }
+                case "428": { errmsg = "Precondition Required"; break }
+                case "429": { errmsg = "Too Many Requests"; break }
+                case "431": { errmsg = "Request Header Fields Too Large"; break }
+                case "451": { errmsg = "Unavailable For Legal Reasons"; break }
+                case "500": { errmsg = "Internal Server Error"; break }
+                case "501": { errmsg = "Not Implemented"; break }
+                case "502": { errmsg = "Bad Gateway"; break }
+                case "503": { errmsg = "Service Unavailable"; break }
+                case "504": { errmsg = "Gateway Timeout"; break }
+                case "505": { errmsg = "HTTP Version Not Supported"; break }
+                case "506": { errmsg = "Variant Also Negotiates"; break }
+                case "507": { errmsg = "Insufficient Storage"; break }
+                case "508": { errmsg = "Loop Detected"; break }
+                case "510": { errmsg = "Not Extended"; break }
+                case "511": { errmsg = "Network Authentication Required"; break }
+                default: { errmsg = "Something Went Wrong"; break }
+            }
+
+            console.log(errmsg)
+        </script>
+    </head>
+    <body>
+        <article>
+            <h1 class="err-code GmarketSansMedium">
+                <span><%= code %></span>
+                <span>!</span>
+            </h1>
+
+            <h1 class="Cafe24SsurroundAir err"><%= "Something Went Wrong" %> :(</h1>
+            <a href="/"><p class="hyper btn btn-outline-primary Cafe24SsurroundAir">Go back to main page</p></a>
+        </article>
+    </body>
+</html>

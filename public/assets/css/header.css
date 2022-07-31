@@ -27,6 +27,7 @@ a {
         color: #000;
         padding: 8px 12px;
         border-bottom: 1px solid lightgray;
+        z-index: 1;
     }
 
     .navbar_logo{
@@ -86,6 +87,7 @@ a {
         color: #000;
         padding: 8px 12px;
         border-bottom: 1px solid lightgray;
+        z-index: 1;
     }
 
     .navbar_logo{
@@ -142,6 +144,14 @@ a {
 
     ul, li {
         padding: 8px 12px;
+    }
+
+    ul, li {
         list-style: none;
+    }
+
+    .navbar_account ul {
+        margin-top: -1.5rem;
+        padding-right: 0;
     }
 }

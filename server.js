@@ -8,6 +8,7 @@ const logger = require("morgan")
 //ROUTES
 const index_r = require("./routes")
 const test_r = require("./routes/test.js")
+const store_r = require("./routes/store.js")
 
 //SETTINGS
 const httpPort = 80
@@ -37,8 +38,11 @@ app
 
     .use("/", index_r)
     .use("/test", test_r)
+    .use("/store", store_r)
 
-    .use(function(req, res) { res.status(404).render("404") })
+    .use((req, res) => {
+        res.status(404).redirect("/err/404")
+    })
 
 const server = http.createServer(app).listen(httpPort, () => {
     console.log("Server Started! HTTP Listening on port: " + httpPort)
