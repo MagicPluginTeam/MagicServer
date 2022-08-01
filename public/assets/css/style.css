@@ -775,3 +775,118 @@
     --bs-btn-disabled-border-color: #212529;
     --bs-gradient: none;
 }
+
+.btn-group,
+.btn-group-vertical {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+}
+.btn-group > .btn,
+.btn-group-vertical > .btn {
+    position: relative;
+    flex: 1 1 auto;
+}
+.btn-group > .btn-check:checked + .btn,
+.btn-group > .btn-check:focus + .btn,
+.btn-group > .btn:hover,
+.btn-group > .btn:focus,
+.btn-group > .btn:active,
+.btn-group > .btn.active,
+.btn-group-vertical > .btn-check:checked + .btn,
+.btn-group-vertical > .btn-check:focus + .btn,
+.btn-group-vertical > .btn:hover,
+.btn-group-vertical > .btn:focus,
+.btn-group-vertical > .btn:active,
+.btn-group-vertical > .btn.active {
+    z-index: 1;
+}
+
+.btn-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.btn-toolbar .input-group {
+    width: auto;
+}
+
+.btn-group > .btn:not(:first-child),
+.btn-group > .btn-group:not(:first-child) {
+    margin-left: -1px;
+}
+
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-group:not(:last-child) > .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-group > .btn:nth-child(n+3),
+.btn-group > :not(.btn-check) + .btn,
+.btn-group > .btn-group:not(:first-child) > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.bg-primary {
+    background-color: #0d6efd !important;
+}
+
+.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+.bg-success {
+    background-color: #198754 !important;
+}
+
+.bg-info {
+    background-color: #0dcaf0 !important;
+}
+
+.bg-warning {
+    background-color: #ffc107 !important;
+}
+
+.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.bg-dark {
+    background-color: #212529 !important;
+}
+
+.bg-body {
+    background-color: #fff !important;
+}
+
+.bg-white {
+    background-color: #fff !important;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+.bg-gradient {
+    background-image: var(--bs-gradient) !important;
+}

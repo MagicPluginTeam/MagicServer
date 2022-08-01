@@ -18,7 +18,7 @@ a {
     transition: color 0.3s ease-in-out, 0.3s ease-in-out;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
     .navbar {
         display: flex;
         justify-content: space-between;
@@ -80,7 +80,7 @@ a {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
     .navbar {
         align-items: center;
         background-color: #F7F7F7;

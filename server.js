@@ -25,7 +25,7 @@ app
         saveUninitialized: false,
         cookie: {
             secure: true,
-            maxAge: 1000*60*60 //세션 유효기간 (ms)
+            maxAge: 1000*60*60
         }
     }))
 
