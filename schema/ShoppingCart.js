@@ -6,7 +6,7 @@ const ShoppingCartSchema = new mongoose.Schema({
         {
             productId: { type: String, required: true, unique: true },
             count: { type: Number, required: true, default: 1 },
-            addedDate: { type: Date, required: true, default: Date.now }
+            addedAt: { type: Date, required: true, default: Date.now }
         }
     ]
 })

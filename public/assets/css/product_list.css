@@ -1,0 +1,34 @@
+body {
+    display: compact;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    padding: 0.8rem;
+    width: 18rem;
+    font-family: "GmarketSansMedium", sans-serif;
+    margin-bottom: 1.2rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.card-img {
+    max-width: 18rem;
+    max-height: 18rem;
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}

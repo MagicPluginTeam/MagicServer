@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true, lowercase: true },
     passwordHash: { type: String, required: true },
-    lastLoginDate: { type: Date, required: true, default: Date.now },
-    registeredDate: { type: Date, required: true, default: Date.now },
+    lastLoginAt: { type: Date, required: true, default: Date.now },
+    registeredAt: { type: Date, required: true, default: Date.now },
     isAdmin: { type: Boolean, required: true, default: false }
 })
 

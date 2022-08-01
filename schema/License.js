@@ -19,7 +19,8 @@ const LicenseSchema = new mongoose.Schema({
                 }
             ],
             maxIpSlotSize: { type: Number, required: true, min: 1, default: 1 },
-            isUuidLocked: { type: Boolean, required: true, default: false }
+            isUuidLocked: { type: Boolean, required: true, default: false },
+            buyedAt: { type: Date, required: true, default: Date.now }
         }
     ]
 })
