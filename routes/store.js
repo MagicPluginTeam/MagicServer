@@ -52,5 +52,10 @@ router
         })
         */
     })
+    .get("/buy", (req, res) => {
+        const id = req.query.id
+
+        res.send(id + " -> buy page!") //for test
+    })
 
 module.exports = router

@@ -31,8 +31,12 @@
                         </p>
                         <div class="card-info">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">장바구니 담기</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">주문하기</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    <a href="#">장바구니 담기</a>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    <a href="buy?id=<%= products[i].product_id %>">주문하기</a>
+                                </button>
                             </div>
                             <small class="text-dark"><%= products[i].price %></small>
                         </div>

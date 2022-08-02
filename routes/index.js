@@ -10,5 +10,12 @@ router
     .get("/err/:code", (req, res) => {
         res.render("err.ejs", { code: req.params.code })
     })
+    .get("/signin", (req, res) => {
+        res.render("signin.ejs")
+    })
+    .get("/signup", (req, res) => {
+        res.render("signup.ejs")
+    })
+
 
 module.exports = router
