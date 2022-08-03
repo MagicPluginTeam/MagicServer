@@ -18,8 +18,7 @@ router
 
         res.render("store/product_list.ejs", context, (err, html) => {
             if (err) {
-                res.status(404).redirect("/err/" + res.statusCode)
-                res.status(500).redirect("/err/" + res.statusCode)
+                res.redirect("/err/" + res.statusCode)
             }
 
             res.send(html)
@@ -44,8 +43,7 @@ router
         /*
         res.render("store/product_detail.ejs", context, (err, html) => {
             if (err) {
-                res.status(404).redirect("/err/" + res.statusCode)
-                res.status(500).redirect("/err/" + res.statusCode)
+                res.redirect("/err/" + res.statusCode)
             }
 
             res.send(html)

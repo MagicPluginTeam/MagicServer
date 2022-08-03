@@ -30,6 +30,10 @@ app
     .use("/test", test_r)
     .use("/store", store_r)
 
+    .get("/robots.txt", (req, res) => {
+        res.send(`User-agent: *<br>Disallow: /`)
+    })
+
     .use((req, res) => {
         res.status(404).redirect("/err/404")
     })
