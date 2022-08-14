@@ -121,8 +121,10 @@ a {
 
     .navbar_account {
         margin-right: 5rem;
-        float: right;
-        transform: translateY(-4rem) translateX(3rem);
+        float: top;
+        width: 95%;
+        text-align: right;
+        margin-bottom: 0;
     }
 
     nav ul ul {

@@ -1,6 +1,7 @@
 //REQUIRES
 const bodyparser = require("body-parser")
 const express = require("express")
+const session = require("express-session");
 const http = require("http")
 const logger = require("morgan")
 
@@ -19,20 +20,22 @@ app
     .use(bodyparser.json())
     .use(bodyparser.urlencoded({extended:true}))
 
+    .use(session({
+        secret: "SuperSecretKey-MagicPluginTeam",
+        resave: false,
+        saveUninitialized: true
+    }))
+
     .use(express.static(__dirname))
     .use(express.static(__dirname + "/views"))
 
-    .use(logger("dev"))
+    .use(logger(":method :url :status - (:response-time ms | :remote-addr)"))
 
     .set("view engine", "ejs")
 
     .use("/", index_r)
     .use("/test", test_r)
     .use("/store", store_r)
-
-    .get("/robots.txt", (req, res) => {
-        res.send(`User-agent: *<br>Disallow: /`)
-    })
 
     .use((req, res, err) => {
         if (err) { res.redirect("/err/" + res.status) }

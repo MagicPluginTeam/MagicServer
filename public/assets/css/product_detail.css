@@ -1,48 +1,108 @@
 .product {
     display: flex;
-
-    width: 100%;
-
-    float: left;
+    width: auto;
     justify-content: center;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.175);
+    padding: 2rem;
+}
 
-    background-color: #f1ff;
-    border-radius: 10px;
+.product-card-container {
+    width: auto;
+    justify-content: center;
+    padding: 2rem;
 }
 
 .product-image-box {
-    width: 30rem;
-    height: 30rem;
+    width: 35rem;
+    height: 35rem;
     padding: 3rem 0.8rem 0.8rem;
 }
 
+.dummy-for-image {
+    margin-top: 2.5%;
+}
+
 .product-image {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
     width: 100%;
-    height: 100%;
 }
 
 .mid-bar {
-    padding: 0 1.5rem;
+    border-right: 1px solid #dee2e6;
+    margin-left: 1.5rem;
     margin-right: 1.5rem;
     width: 0;
-    height: 35rem;
-    border-right: 1px solid lightgray;
+    height: auto;
 }
 
 .product-data {
+    display: flex;
+    flex-direction: column;
     width: auto;
-    text-align: left;
+    text-align: center;
+    justify-content: space-between;
 }
 
 .product-title {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 0.15rem;
+}
+
+.product-info {
+    padding-top: 0.5rem;
+}
+
+.product-short-description {
+    padding-top: 0.5rem;
 }
 
 .product-long-description {
-    padding: 2rem;
     display: inline-block;
-    width: 90%;
-    word-wrap: anywhere;
+    width: auto;
+    word-wrap: break-word;
+    justify-content: center;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.175);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.product-long-description-container {
+    width: auto;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.price-container-box {
+    display: flex;
+    width: 100%;
+}
+
+.price-container1 {
+    width: auto;
+    padding: 1rem;
+}
+
+.price-container2 {
+    width: 70%;
+    padding: 1rem;
+    text-align: right;
+}
+
+.product-btn-group {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.horizontal-line {
+    width: 100%;
+    height: 0.1rem;
+    background-color: #dee2e6;
 }

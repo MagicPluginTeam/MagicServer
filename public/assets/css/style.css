@@ -82,6 +82,27 @@
     z-index: 3;
 }
 
+.card {
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    width: 18rem;
+    font-family: "GmarketSansMedium", sans-serif;
+}
+
+.card-img {
+    max-width: 18rem;
+    max-height: 18rem;
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
 .container {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
