@@ -19,7 +19,7 @@
 
     <main class="m-5">
         <div class="row GmarketSansMedium">
-            <% for(let i = 0; i < product_count; i++) { %>
+            <% for(let i = 0; i < products.length; i++) { %>
                 <div class="card" style="width: 18rem;">
                     <a href="detail?id=<%= products[i].product_id %>">
                         <img src="<%= products[i].thumbnail_path %>" class="card-img" alt="...">

@@ -34,8 +34,8 @@ app
         res.send(`User-agent: *<br>Disallow: /`)
     })
 
-    .use((req, res) => {
-        res.status(404).redirect("/err/404")
+    .use((req, res, err) => {
+        if (err) { res.redirect("/err/" + res.status) }
     })
 
 const server = http.createServer(app)
