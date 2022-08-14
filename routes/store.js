@@ -29,7 +29,7 @@ router
             product_title: "1", //TODO: delete test product data.
             tag: "2",
             short_description: "3",
-            description: "ASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDF",
+            description: "ASDFASDFASDFASDFASDFASSDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDF",
             price: "4",
             img_1_path: "../../public/assets/img/logo-transparent.png"
         } //TODO: get product detail data from database.

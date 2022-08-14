@@ -1,4 +1,48 @@
 .product {
     display: flex;
+
+    width: 100%;
+
     float: left;
+    justify-content: center;
+
+    background-color: #f1ff;
+    border-radius: 10px;
+}
+
+.product-image-box {
+    width: 30rem;
+    height: 30rem;
+    padding: 3rem 0.8rem 0.8rem;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+}
+
+.mid-bar {
+    padding: 0 1.5rem;
+    margin-right: 1.5rem;
+    width: 0;
+    height: 35rem;
+    border-right: 1px solid lightgray;
+}
+
+.product-data {
+    width: auto;
+    text-align: left;
+}
+
+.product-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.product-long-description {
+    padding: 2rem;
+    display: inline-block;
+    width: 90%;
+    word-wrap: anywhere;
 }
