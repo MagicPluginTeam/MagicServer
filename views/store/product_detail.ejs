@@ -19,20 +19,23 @@
 
 <main class="mt-5">
     <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <img src="<%= img_1_path %>" class="d-block" style="width: 30rem;" alt="img1">
-            </div>
-            <div class="col-md-7">
-                <div class="card shadow-sm">
-                    <div class="card-body">
+        <div class="product">
+            <img id="image1" src="<%= img_1_path %>" alt="img1" style="width: 20rem; height: 20rem;"/>
+
+            <div class="mid-bar"></div>
+
+            <div class="product-data">
                         <h3 class="card-title"><%= product_title %></h3>
+
                         <h5 class="card-title pt-3 pb-3 border-top">You can get the license file in few minutes.
+
                         <br>It'll send to your e-mail</h5>
                         <p class="card-text border-top pt-3">
                             <span class="badge bg-dark"><%= tag %></span>
                         </p>
+
                         <p class="card-text pb-3"><%= short_description %></p>
+
                         <div class="row pt-3 pb-3 border-top">
                             <div class="col-6">
                                 <h3>Price</h3>
@@ -41,21 +44,16 @@
                                 <h3><%= price %></h3>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="col-6 d-grid p-1">
-                                <button type="button" class="btn btn-lg btn-dark">Add to cart</button>
-                            </div>
-                            <div class="col-6 d-grid p-1">
-                                <button type="button" class="btn btn-lg btn-primary">Buy now</button>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="justify-content-center btn-group">
+                    <button type="button" class="btn btn-lg btn-outline-dark">Add to cart</button>
+                    <button type="button" class="btn btn-lg btn-outline-primary">Buy now</button>
                 </div>
             </div>
         </div>
         <div class="container card shadow-sm mt-4 mb-5 pt-3 pb-3">
             <div class="row">
-                <div class="col-md-12" style="border-bottom: 1px solid lightgray">
+                <div class="col-md-12" style="border-bottom: 1px solid lightgray; width: 100%; text-align: left; margin-bottom: 1rem;">
                     <h3>Description</h3>
                 </div>
                 <%= description %>

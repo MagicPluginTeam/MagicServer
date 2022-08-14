@@ -29,18 +29,12 @@ router
             product_title: "1", //TODO: delete test product data.
             tag: "2",
             short_description: "3",
+            description: "ASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDF",
             price: "4",
-            img_1_path: "../../public/assets/img/logo-transparent.png",
-            img_2_path: "../../public/assets/img/logo-transparent.png",
-            img_3_path: "../../public/assets/img/logo-transparent.png",
-            img_4_path: "../../public/assets/img/logo-transparent.png",
-            img_5_path: "../../public/assets/img/logo-transparent.png"
+            img_1_path: "../../public/assets/img/logo-transparent.png"
         } //TODO: get product detail data from database.
 
         res.render("store/product_detail.ejs", context, (err, html) => {
-            if (err) {
-                res.status(404).redirect("/err/" + res.statusCode)
-            }
 
             res.send(html)
         })

@@ -1,17 +1,17 @@
-.border-top {
-    border-top: 1px solid lightgray;
-}
-
-.container {
+.footer-container {
     width: 100%;
 }
 
-.foot {
+.footer-border-top {
+    border-top: 1px solid lightgray;
+}
+
+.footer-foot {
     background: #F7F7F7;
     color: #000;
 }
 
-.foot_article {
+.footer-foot-article {
     margin: 0.6rem 2rem;
     font-size: smaller;
 }
