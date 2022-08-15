@@ -7,4 +7,4 @@ const PublicBannedUserSchema = new mongoose.Schema({
     ipAddress: { type: String, required: true, unique: true },
 })
 
-module.exports = mongoose.model("PublicBannedUser", PublicBannedUserSchema);
+module.exports = PublicBannedUserSchema

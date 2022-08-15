@@ -15,14 +15,14 @@ router
         res.render("signin.ejs")
     })
     .post("/signin", (req, res) => {
-
+        //TODO
     })
 
     .get("/signup", (req, res) => {
         res.render("signup.ejs")
     })
     .post("/signup", (req, res) => {
-
+        //TODO
     })
 
 

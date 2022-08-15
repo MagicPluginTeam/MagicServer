@@ -25,4 +25,4 @@ const LicenseSchema = new mongoose.Schema({
     ]
 })
 
-module.exports = mongoose.model("License", LicenseSchema);
+module.exports = LicenseSchema

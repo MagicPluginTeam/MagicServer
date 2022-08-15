@@ -9,8 +9,8 @@ const productSchema = new mongoose.Schema({
     createdAt: { type: Date, required: true, default: Date.now },
     lastUpdatedAt: { type: Date, required: true, default: Date.now },
     isSoldOut: { type: Boolean, required: true, default: false },
-    thumbnailImage: { type: Image, required: true },
-    productImages: [{ type: Image, required: true }],
+    thumbnailImage: { type: String, required: true }, //TODO (IMAGE)
+    productImages: [{ type: String, required: true }], //TODO (IMAGE)
     qna: [
         {
             qnaId: { type: String, required: true, unique: true },
@@ -36,4 +36,4 @@ const productSchema = new mongoose.Schema({
     ]
 })
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = productSchema
