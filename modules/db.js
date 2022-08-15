@@ -30,9 +30,7 @@ async function connect() {
 }
 
 //FUNCTIONS
-function addLicense( ) {
-
-}
+//TODO - BRUCE0203 안만들기만 해보셈
 
 module.exports = {
     connect
