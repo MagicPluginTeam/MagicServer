@@ -1,30 +1,26 @@
 //REQUIRES
+require("dotenv").config()
 const bodyparser = require("body-parser")
 const express = require("express")
-const session = require("express-session");
 const http = require("http")
 const logger = require("morgan")
+const db = require("./modules/db.js")
 
 //ROUTES
-const index_r = require("./routes")
-const test_r = require("./routes/test.js")
+const index_r = require("./routes/index.js")
 const store_r = require("./routes/store.js")
+const test_r = require("./routes/test.js")
 
 //SETTINGS
-const httpPort = 80
+const httpPort = process.env.HTTP_PORT || 8083
 
 //SETUP
 const app = express()
+await db.connect()
 
 app
     .use(bodyparser.json())
     .use(bodyparser.urlencoded({extended:true}))
-
-    .use(session({
-        secret: "SuperSecretKey-MagicPluginTeam",
-        resave: false,
-        saveUninitialized: true
-    }))
 
     .use(express.static(__dirname))
     .use(express.static(__dirname + "/views"))
@@ -38,7 +34,7 @@ app
     .use("/store", store_r)
 
     .use((req, res, err) => {
-        if (err) { res.redirect("/err/" + res.status) }
+        if (err) { res.status(404).redirect("/err/404") }
     })
 
 const server = http.createServer(app)

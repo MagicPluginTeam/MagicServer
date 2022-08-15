@@ -16,30 +16,31 @@
 <div class="container">
     <div class="title">Sign Up</div>
     <div class="content">
-        <form action="#">
+        <form action="/signup" method="POST">
             <div class="user-details">
                 <div class="input-box">
-                    <span class="details">Username</span>
-                    <input type="text" placeholder="Enter your username" required>
+                    <label class="details" for="name">Name</label>
+                    <input type="text" placeholder="Enter your name" id="name" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Email</span>
-                    <input type="text" placeholder="Enter your email" required>
+                    <label class="details" for="username">Username</label>
+                    <input type="text" placeholder="Enter your username" id="username" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Password</span>
-                    <input type="password" placeholder="Enter your password" required>
+                    <label class="details" for="email">Email</label>
+                    <input type="text" placeholder="Enter your email" id="email" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Confirm Password</span>
-                    <input type="password" placeholder="Confirm your password" required>
+                    <label class="details" for="password">Password</label>
+                    <input type="password" placeholder="Enter your password" id="password" required>
                 </div>
             </div>
             <div class="button">
                 <input type="submit" value="Sign Up">
             </div>
         </form>
-        <p class="mt-5 mb-0 text-center">Already have an account? <a href="/signin">Sign In</a> or <a href="/">Go back</a></p>
+        <p class="mt-5 mb-0 text-center">Already have an account? <a href="/signin">Sign In</a> or <a href="/">Go
+                back</a></p>
     </div>
 </div>
 </body>

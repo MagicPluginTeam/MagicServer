@@ -17,7 +17,7 @@
 <div class="container">
     <div class="title">Sign In</div>
     <div class="content">
-        <form action="#">
+        <form action="/signin" method="POST">
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">E-mail</span>
@@ -32,15 +32,16 @@
                 <input class="mb-3" type="submit" value="Sign In">
             </div>
         </form>
-        <div class="text-center" style="width: 100%">
-            <button class="btn btn-primary third-party" style="width: 48%; margin-right: 1.5%;">
+        <div class="text-center" style="width: 100%; display: flex; justify-content: space-between;">
+            <button class="btn btn-primary third-party" style="width: auto; margin-right: 1.5%;">
                 <img src="../public/assets/img/bootstrap/facebook.svg"> Sign In via Facebook
             </button>
-            <button class="btn btn-primary third-party" style="width: 48%; margin-left: 1.5%;">
+            <button class="btn btn-primary third-party" style="width: auto; margin-left: 1.5%;">
                 <img src="../public/assets/img/bootstrap/github.svg"> Sign In via Github
             </button>
         </div>
-        <p class="mt-5 mb-0 text-center">Don't have account? <a href="/signup">Sign Up</a> or <a href="/">Go back</a></p>
+        <p class="mt-5 mb-0 text-center">Don't have account? <a href="/signup">Sign Up</a> or <a href="/">Go back</a>
+        </p>
     </div>
 </div>
 </body>
