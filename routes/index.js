@@ -1,4 +1,5 @@
 const express = require("express")
+const bcrypt = require("bcrypt")
 
 let router = express.Router()
 
@@ -21,7 +22,7 @@ router
     .get("/signup", (req, res) => {
         res.render("signup.ejs")
     })
-    .post("/signup", (req, res) => {
+    .post("/signup", async (req, res) => {
         //TODO
     })
 

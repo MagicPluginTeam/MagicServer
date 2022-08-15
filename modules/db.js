@@ -16,6 +16,7 @@ const publicBannedUserData = mongoose.model("publicBannedUser", publicBannedUser
 const shoppingCartData = mongoose.model("shoppingCarsData", shoppingCartSchema)
 const userData = mongoose.model("userData", userSchema)
 
+//SETUP FUNCTION
 async function connect() {
     const url = process.env.DB
 
@@ -26,6 +27,11 @@ async function connect() {
     } catch (err) {
         console.log(`Error on DB connection: ${err}`)
     }
+}
+
+//FUNCTIONS
+function addLicense() {
+
 }
 
 module.exports = {
