@@ -9,7 +9,7 @@ const publicBannedUserSchema = require("../schema/PublicBannedUser.js")
 const shoppingCartSchema = require("../schema/ShoppingCart.js")
 const userSchema = require("../schema/User.js")
 
-//MODELS
+//DATA-MODELS
 const licenseData = mongoose.model("licenseData", licenseSchema)
 const productData = mongoose.model("productData", productSchema)
 const publicBannedUserData = mongoose.model("publicBannedUser", publicBannedUserSchema)
@@ -30,7 +30,7 @@ async function connect() {
 }
 
 //FUNCTIONS
-function addLicense() {
+function addLicense( ) {
 
 }
 

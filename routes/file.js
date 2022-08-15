@@ -30,6 +30,24 @@ router
         }
     })
 
+    .get("/info/:filename", async (req, res) => {
+        try {
+            const file = await gfs.files.findOne({ filename: req.params.filename })
+            res.json({
+                success: "1",
+                fileName: file.filename,
+                contentType: file.contentType,
+                fileLength: file.length,
+                fileChunkSize: file.chunkSize,
+                fileUploadDate: file.uploadDate
+            })
+        } catch(err) {
+            res.status(404).json({
+                success: "0"
+            })
+        }
+    })
+
     .post("/upload", upload.single("file"), (req, res) => {
         if (req.file === undefined)
             return res.status(400).send("failed.")
