@@ -1,6 +1,6 @@
 //REQUIRES
 require("dotenv").config()
-const { mongoose, connect: connect1 } = require('mongoose')
+const {mongoose, connect: connect1} = require('mongoose')
 
 //SCHEMAS
 const licenseSchema = require("../schema/License.js")
@@ -12,7 +12,7 @@ const userSchema = require("../schema/User.js")
 //DATA-MODELS
 const licenseData = mongoose.model("licenseData", licenseSchema)
 const productData = mongoose.model("productData", productSchema)
-const publicBannedUserData = mongoose.model("publicBannedUser", publicBannedUserSchema)
+const publicBannedUserData = mongoose.model("publicBannedUserData", publicBannedUserSchema)
 const shoppingCartData = mongoose.model("shoppingCarsData", shoppingCartSchema)
 const userData = mongoose.model("userData", userSchema)
 
@@ -29,9 +29,155 @@ async function connect() {
     }
 }
 
-//FUNCTIONS
-//TODO - BRUCE0203 안만들기만 해보셈
+//FUNCTIONS - GENERATE
+function generateLicenseModel() {
+    //TODO
+}
+
+function generateProductModel() {
+    //TODO
+}
+
+function generatePublicBannedUserModel() {
+    //TODO
+}
+
+function generateShoppingCartModel() {
+    //TODO
+}
+
+function generateUserModel() {
+    //TODO
+}
+
+//FUNCTIONS - GET
+function getLicenseByOwnerUserId() {
+    //TODO
+}
+
+function getProductByproductId() {
+    //TODO
+}
+
+function getProductsByTitle() {
+    //TODO
+}
+
+function getPublicBannedUsers() {
+    //TODO
+}
+
+function getShoppingCartByUserId() {
+    //TODO
+}
+
+function getUserByUserId() {
+    //TODO
+}
+
+function getUserByUserName() {
+    //TODO
+}
+
+function getUserByEmail() {
+    //TODO
+}
+
+//FUNCTIONS - DELETE
+
+function deleteLicenseByOwnerUserId() {
+    //TODO
+}
+
+function deleteProductByProductId() {
+    //TODO
+}
+
+function deletePublicBannedUserByUserId() {
+    //TODO
+}
+
+function deletePublicBannedUserByIpAddress() {
+    //TODO
+}
+
+function deletePublicBannedUserByMacAddress() {
+    //TODO
+}
+
+function deleteShoppingCartByUserId() {
+    //TODO
+}
+
+function deleteUserByUserId() {
+    //TODO
+}
+
+//FUNCTIONS - UPDATE
+
+function updateLicenseByOwnerUserId() {
+    //TODO
+}
+
+function updateProductByProductId() {
+    //TODO
+}
+
+function updatePublicBannedUserByUserId() {
+    //TODO
+}
+
+function updatePublicBannedUserByIpAddress() {
+    //TODO
+}
+
+function updatePublicBannedUserByMacAddress() {
+    //TODO
+}
+
+function updateShoppingCartByUserId() {
+    //TODO
+}
+
+function updateUserByUserId() {
+    //TODO
+}
 
 module.exports = {
-    connect
+    connect,
+
+    //GENERATE
+    generateLicenseModel,
+    generateProductModel,
+    generatePublicBannedUserModel,
+    generateShoppingCartModel,
+    generateUserModel,
+
+    //GET
+    getLicenseByOwnerUserId,
+    getProductByproductId,
+    getProductsByTitle,
+    getPublicBannedUsers,
+    getShoppingCartByUserId,
+    getUserByUserId,
+    getUserByUserName,
+    getUserByEmail,
+
+    //DELETE
+    deleteLicenseByOwnerUserId,
+    deleteProductByProductId,
+    deletePublicBannedUserByUserId,
+    deletePublicBannedUserByIpAddress,
+    deletePublicBannedUserByMacAddress,
+    deleteShoppingCartByUserId,
+    deleteUserByUserId,
+
+    //UPDATE
+    updateLicenseByOwnerUserId,
+    updateProductByProductId,
+    updatePublicBannedUserByUserId,
+    updatePublicBannedUserByIpAddress,
+    updatePublicBannedUserByMacAddress,
+    updateShoppingCartByUserId,
+    updateUserByUserId
 }

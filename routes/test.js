@@ -2,6 +2,7 @@ const express = require("express")
 const crypto = require("crypto");
 const fs = require("fs");
 const mail = require("../modules/mail.js");
+const db = require("../modules/db.js");
 
 let router = express.Router()
 
@@ -34,6 +35,24 @@ router
                 fs.unlinkSync(filepath)
             })
         })
+    })
+    .get("/licenseCreationTest", async (req, res) => {
+        const ownerUserId = "test"
+        const productId = "test"
+        const licenseUuid = "test"
+        const allowedUser = [{ allow_ipAddress: "test", allow_macAddress: "test" }]
+        const blockedUser = [{ block_ipAddress: "test", block_macAddress: "test" }]
+        const maxIpSlotSize = 1
+        const isUuidLocked = false
+        const buyedAt = Date.now()
+        const items = [{ productId, licenseUuid, allowedUser, blockedUser, maxIpSlotSize, isUuidLocked, buyedAt }]
+
+        const data = await db.generateLicense(ownerUserId, [{
+                ownerUserId,
+                items
+            }]).save()
+
+        res.send(data)
     })
 
 module.exports = router

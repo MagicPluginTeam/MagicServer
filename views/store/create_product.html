@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="We're Not Ready Yet..."/>
-    <meta property="og:image" content="/public/assets/img/logo_transparent.png"/>
+    <meta property="og:title" content="Create Product"/>
+    <meta property="og:image" content="/public/assets/img/logo-transparent.png"/>
 
     <title>Create Product · MagicStore</title>
 
@@ -44,26 +44,52 @@
         <div class="mb-3 row">
             <label class="col-md-3 col-form-label">썸네일 이미지</label>
             <div class="col-md-9">
-                <input type="file" class="form-control" accept="image/png, image/jpeg">
                 <div class="alert alert-secondary mt-3" role="alert">
                     <ul>
                         <li>이미지 사이즈 : 1080*1080</li>
                         <li>파일 사이즈 : 15M 이하</li>
                         <li>파일 확장자 : png, jpg만 가능</li>
                     </ul>
+
+                    <input type="file" class="form-control" accept="image/png, image/jpeg">
                 </div>
             </div>
         </div>
         <div class="mb-3 row">
             <label class="col-md-3 col-form-label">상품 이미지</label>
             <div class="col-md-9">
-                <input type="file" class="form-control" accept="image/png, image/jpeg">
                 <div class="alert alert-secondary mt-3" role="alert">
                     <ul>
                         <li>이미지 사이즈 : 1080*1080</li>
                         <li>파일 사이즈 : 15M 이하</li>
                         <li>파일 확장자 : png, jpg만 가능</li>
                     </ul>
+
+                    <input type="file" class="form-control" accept="image/png, image/jpeg">
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-md-3 col-form-label">상품 한줄설명</label>
+            <div class="col-md-9">
+                <div class="alert alert-secondary mt-3" role="alert">
+                    <ul>
+                        <li>HTML <strong>미지원</strong></li>
+                    </ul>
+
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-md-3 col-form-label">상품 상세설명</label>
+            <div class="col-md-9">
+                <div class="alert alert-secondary mt-3" role="alert">
+                    <ul>
+                        <li>HTML <strong>지원</strong></li>
+                    </ul>
+
+                    <textarea class="form-control"></textarea>
                 </div>
             </div>
         </div>
@@ -76,7 +102,6 @@
     </div>
 </main>
 <footer include-html="../../public/assets/footer.html"></footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 
 <script>
