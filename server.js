@@ -4,7 +4,7 @@ const bodyparser = require("body-parser")
 const express = require("express")
 const logger = require("morgan")
 
-const db = require("./modules/db.js")
+const db = require("./modules/db.ts")
 
 //ROUTES
 const index_r = require("./routes/index.js")

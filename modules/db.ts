@@ -55,6 +55,10 @@ function getLicenseByOwnerUserId() {
     //TODO
 }
 
+function getLicenseByLicenseUuid() {
+    //TODO
+}
+
 function getProductByproductId() {
     //TODO
 }
@@ -89,6 +93,10 @@ function deleteLicenseByOwnerUserId() {
     //TODO
 }
 
+function deleteLicenseByLicenseUuid() {
+    //TODO
+}
+
 function deleteProductByProductId() {
     //TODO
 }
@@ -119,6 +127,10 @@ function updateLicenseByOwnerUserId() {
     //TODO
 }
 
+function updateLicenseByLicenseUuid() {
+    //TODO
+}
+
 function updateProductByProductId() {
     //TODO
 }
@@ -143,6 +155,9 @@ function updateUserByUserId() {
     //TODO
 }
 
+//ETC
+
+
 module.exports = {
     connect,
 
@@ -155,6 +170,7 @@ module.exports = {
 
     //GET
     getLicenseByOwnerUserId,
+    getLicenseByLicenseUuid,
     getProductByproductId,
     getProductsByTitle,
     getPublicBannedUsers,
@@ -165,6 +181,7 @@ module.exports = {
 
     //DELETE
     deleteLicenseByOwnerUserId,
+    deleteLicenseByLicenseUuid,
     deleteProductByProductId,
     deletePublicBannedUserByUserId,
     deletePublicBannedUserByIpAddress,
@@ -174,6 +191,7 @@ module.exports = {
 
     //UPDATE
     updateLicenseByOwnerUserId,
+    updateLicenseByLicenseUuid,
     updateProductByProductId,
     updatePublicBannedUserByUserId,
     updatePublicBannedUserByIpAddress,

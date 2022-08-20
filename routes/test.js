@@ -2,7 +2,7 @@ const express = require("express")
 const crypto = require("crypto");
 const fs = require("fs");
 const mail = require("../modules/mail.js");
-const db = require("../modules/db.js");
+const db = require("../modules/db.ts");
 
 let router = express.Router()
 
