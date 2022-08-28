@@ -9,29 +9,23 @@
     font-family: 'GmarketSansMedium', sans-serif;
 }
 
-html, body {
+html, body, main {
     background: #FDFDFD;
-}
-
-.body {
-    display: contents;
-    width: 100%;
 }
 
 .article {
     border-radius: 20px;
-    background-color: #343A40;
     color: #FDFDFD;
+    margin: 2rem;
     padding: 1rem;
-    margin: 3rem;
     text-align: center;
-    justify-items: center;
     align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 
 .items {
-    display: compact;
-    justify-content: flex-start;
+    width: 100%;
 }
 
 .article h1 {

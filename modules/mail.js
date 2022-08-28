@@ -1,3 +1,4 @@
+require("dotenv").config()
 const nodemailer = require("nodemailer")
 const ejs = require("ejs")
 const crypt = require("./crypt.js")
@@ -5,8 +6,8 @@ const crypt = require("./crypt.js")
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "magicplugin.noreply@gmail.com",
-        pass: "ivtduqyifmahtxmm"
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
     }
 })
 

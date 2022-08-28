@@ -24,6 +24,7 @@ app
 
     .use(express.static(__dirname))
     .use(express.static(__dirname + "/views"))
+    .use(express.static(__dirname + "/serverfile/web"))
 
     .use(logger(":method :url :status - (:response-time ms | :remote-addr)"))
 

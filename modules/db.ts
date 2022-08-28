@@ -23,9 +23,9 @@ async function connect() {
     try {
         await connect1(url)
 
-        console.log('Connected to DB')
+        console.log("Connected to DB")
     } catch (err) {
-        console.log(`Error on DB connection: ${err}`)
+        console.log("Error on DB connection: " + err)
     }
 }
 
@@ -156,7 +156,7 @@ function updateUserByUserId() {
 }
 
 //ETC
-
+//TODO
 
 module.exports = {
     connect,
