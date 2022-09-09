@@ -38,67 +38,58 @@ function generateProductModel() {
     //TODO
 }
 
-function generatePublicBannedUserModel() {
-    //TODO
+function generatePublicBannedUserModel(userId, addAt, macAddress, ipAddress) {
+    return new publicBannedUserData(userId, addAt, macAddress, ipAddress);
 }
 
 function generateShoppingCartModel() {
     //TODO
 }
 
-function generateUserModel() {
-    //TODO
+function generateUserModel(userId, username, email, passwordHash, lastLoginAt, registerAt, isAdmin) {
+    return new userData(userId, username, email, passwordHash, lastLoginAt, registerAt, isAdmin);
 }
 
 //FUNCTIONS - GET
-function getLicenseByOwnerUserId() {
-    //TODO
+async function getLicenseByOwnerUserId(ownerUserId) {
+    return await licenseData.findOne({ ownerUserId: ownerUserId }).exec();
 }
 
-function getLicenseByLicenseUuid() {
-    //TODO
+async function getProductByproductId(productId) {
+    return await productData.findOne({ productId: productId }).exec();
 }
 
-function getProductByproductId() {
-    //TODO
+async function getProductsByTitle(title) {
+    return await productData.fine({ title: title }).exec();
 }
 
-function getProductsByTitle() {
-    //TODO
+async function getPublicBannedUsers() {
+    return await publicBannedUserData.find({});
 }
 
-function getPublicBannedUsers() {
-    //TODO
+async function getShoppingCartByUserId(ownerUserId) {
+    return await shoppingCartData.find({ ownerUserId: ownerUserId });
 }
 
-function getShoppingCartByUserId() {
-    //TODO
+async function getUserByUserId(userId) {
+    return await userData.findOne({ userId: userId }).exec();
 }
 
-function getUserByUserId() {
-    //TODO
+async function getUserByUsername(username) {
+    return await userData.find({ username: username }).exec();
 }
 
-function getUserByUserName() {
-    //TODO
-}
-
-function getUserByEmail() {
-    //TODO
+async function getUserByEmail(email) {
+    return await userData.find({ email: email }).exec();
 }
 
 //FUNCTIONS - DELETE
-
-function deleteLicenseByOwnerUserId() {
-    //TODO
-}
-
-function deleteLicenseByLicenseUuid() {
-    //TODO
+function deleteLicenseByOwnerUserId(ownerUserId) {
+    licenseData.findOneAndDelete({ ownerUserId: ownerUserId });
 }
 
 function deleteProductByProductId() {
-    //TODO
+    
 }
 
 function deletePublicBannedUserByUserId() {
@@ -122,7 +113,6 @@ function deleteUserByUserId() {
 }
 
 //FUNCTIONS - UPDATE
-
 function updateLicenseByOwnerUserId() {
     //TODO
 }
@@ -155,9 +145,6 @@ function updateUserByUserId() {
     //TODO
 }
 
-//ETC
-//TODO
-
 module.exports = {
     connect,
 
@@ -170,18 +157,15 @@ module.exports = {
 
     //GET
     getLicenseByOwnerUserId,
-    getLicenseByLicenseUuid,
     getProductByproductId,
     getProductsByTitle,
     getPublicBannedUsers,
     getShoppingCartByUserId,
     getUserByUserId,
-    getUserByUserName,
     getUserByEmail,
 
     //DELETE
     deleteLicenseByOwnerUserId,
-    deleteLicenseByLicenseUuid,
     deleteProductByProductId,
     deletePublicBannedUserByUserId,
     deletePublicBannedUserByIpAddress,

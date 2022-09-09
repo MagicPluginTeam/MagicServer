@@ -4,7 +4,7 @@ const bodyparser = require("body-parser")
 const express = require("express")
 const logger = require("morgan")
 
-const db = require("./modules/db.ts")
+const db = require("./modules/db.js")
 
 //ROUTES
 const index_r = require("./routes/index.js")
@@ -35,16 +35,15 @@ app
     .use("/store", store_r)
     .use("/test", test_r)
 
+    .use((req, res) => {
+        res.status(404).redirect("/err/404")
+    })
     .use((req, res, next) => {
         if (req.secure) {
             next()
         } else {
             res.redirect(`https://${req.hostname}/${req.url}`)
         }
-    })
-
-    .use((req, res, err) => {
-        if (err) { res.status(404).redirect("/err/404") }
     })
 
 //START SERVER

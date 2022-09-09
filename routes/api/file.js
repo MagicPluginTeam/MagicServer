@@ -1,7 +1,7 @@
 const Grid = require("gridfs-stream")
 const { mongoose } = require("mongoose")
 const express = require("express")
-const upload = require("../middleware/upload");
+const upload = require("../../middleware/upload.js");
 let router = express.Router()
 
 const conn = mongoose.connection
@@ -18,6 +18,9 @@ conn.once("open", () => {
 
 
 router
+    .get("/", (req, res) => {
+        res.status(403).redirect("/err/403");
+    })
     .get("/:filename", async (req, res) => {
         try {
             const file = await gfs.files.findOne({ filename: req.params.filename })
