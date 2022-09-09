@@ -20,85 +20,87 @@
 <main class="mt-3">
     <div class="container">
         <h2 class="text-center">상품 등록</h2>
-        <div class="mb-3 row">
-            <label class="col-md-3 col-form-label">상품명</label>
-            <div class="col-md-9">
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-md-3 col-form-label">상품가격</label>
-            <div class="col-md-9">
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control">
-                    <span class="input-group-text">원</span>
-                </div>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-md-3 col-form-label">태그</label>
-            <div class="col-md-9">
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-md-3 col-form-label">썸네일 이미지</label>
-            <div class="col-md-9">
-                <div class="alert alert-secondary mt-3" role="alert">
-                    <ul>
-                        <li>이미지 사이즈 : 1080*1080</li>
-                        <li>파일 사이즈 : 15M 이하</li>
-                        <li>파일 확장자 : png, jpg만 가능</li>
-                    </ul>
-
-                    <input type="file" class="form-control" accept="image/png, image/jpeg">
-                </div>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-md-3 col-form-label">상품 이미지</label>
-            <div class="col-md-9">
-                <div class="alert alert-secondary mt-3" role="alert">
-                    <ul>
-                        <li>이미지 사이즈 : 1080*1080</li>
-                        <li>파일 사이즈 : 15M 이하</li>
-                        <li>파일 확장자 : png, jpg만 가능</li>
-                    </ul>
-
-                    <input type="file" class="form-control" accept="image/png, image/jpeg">
-                </div>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-md-3 col-form-label">상품 한줄설명</label>
-            <div class="col-md-9">
-                <div class="alert alert-secondary mt-3" role="alert">
-                    <ul>
-                        <li>HTML <strong>미지원</strong></li>
-                    </ul>
-
+        <form action="/api/product" method="POST">
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">상품명</label>
+                <div class="col-md-9">
                     <input type="text" class="form-control">
                 </div>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-md-3 col-form-label">상품 상세설명</label>
-            <div class="col-md-9">
-                <div class="alert alert-secondary mt-3" role="alert">
-                    <ul>
-                        <li>HTML <strong>지원</strong></li>
-                    </ul>
-
-                    <textarea class="form-control"></textarea>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">상품가격</label>
+                <div class="col-md-9">
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control">
+                        <span class="input-group-text">원</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <div class="btn-group">
-                <button type="button" class="btn btn-lg btn-outline-danger">취소하기</button>
-                <button type="button" class="btn btn-lg btn-outline-primary">저장하기</button>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">태그</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control">
+                </div>
             </div>
-        </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">썸네일 이미지</label>
+                <div class="col-md-9">
+                    <div class="alert alert-secondary mt-3" role="alert">
+                        <ul>
+                            <li>이미지 사이즈 : 1080*1080</li>
+                            <li>파일 사이즈 : 15M 이하</li>
+                            <li>파일 확장자 : png, jpg만 가능</li>
+                        </ul>
+    
+                        <input type="file" class="form-control" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">상품 이미지</label>
+                <div class="col-md-9">
+                    <div class="alert alert-secondary mt-3" role="alert">
+                        <ul>
+                            <li>이미지 사이즈 : 1080*1080</li>
+                            <li>파일 사이즈 : 15M 이하</li>
+                            <li>파일 확장자 : png, jpg만 가능</li>
+                        </ul>
+    
+                        <input type="file" class="form-control" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">상품 한줄설명</label>
+                <div class="col-md-9">
+                    <div class="alert alert-secondary mt-3" role="alert">
+                        <ul>
+                            <li>HTML <strong>미지원</strong></li>
+                        </ul>
+    
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">상품 상세설명</label>
+                <div class="col-md-9">
+                    <div class="alert alert-secondary mt-3" role="alert">
+                        <ul>
+                            <li>HTML <strong>지원</strong></li>
+                        </ul>
+    
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-lg btn-outline-danger">취소하기</button>
+                    <button type="button" class="btn btn-lg btn-outline-primary">저장하기</button>
+                </div>
+            </div>
+        </form>
     </div>
 </main>
 <footer include-html="../../public/assets/footer.html"></footer>

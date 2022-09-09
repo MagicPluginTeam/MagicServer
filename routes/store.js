@@ -1,6 +1,6 @@
 const express = require("express")
 
-router = express.Router()
+let router = express.Router()
 
 router
     .get("/", (req, res) => {
@@ -9,9 +9,7 @@ router
     .get("/list", (req, res) => {
         const context = {
             products: [
-                { product_id: "test1", title: "test1", thumbnail_path: "../../public/assets/img/logo-transparent.png", tag: "test1", price: "1" }, //TODO: delete test products.
-                { product_id: "test2", title: "test2", thumbnail_path: "../../public/assets/img/logo-transparent.png", tag: "test2", price: "2" },
-                { product_id: "test3", title: "test3", thumbnail_path: "../../public/assets/img/logo-transparent.png", tag: "test3", price: "3" }
+                { product_id: "test1", title: "test1", thumbnail_path: "../../public/assets/img/logo-transparent.png", tag: "test1", price: "1" } //TODO: delete test products.
             ]
         } //TODO: get products list from database.
 

@@ -8,7 +8,7 @@ const db = require("./modules/db.ts")
 
 //ROUTES
 const index_r = require("./routes/index.js")
-const file_r = require("./routes/file.js")
+const api_r = require("./routes/api.js")
 const store_r = require("./routes/store.js")
 const test_r = require("./routes/test.js")
 
@@ -31,7 +31,7 @@ app
     .set("view engine", "ejs")
 
     .use("/", index_r)
-    .use("/file", file_r)
+    .use("/api", api_r)
     .use("/store", store_r)
     .use("/test", test_r)
 
