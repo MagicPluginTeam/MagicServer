@@ -1,4 +1,8 @@
-const express = require("express")
+const express = require("express");
+const bcrypt = require("bcrypt");
+const userSchema = require("../../schema/User.js");
+
+const saltRounds = 10;
 
 let router = express.Router()
 

@@ -10,10 +10,10 @@ router
         res.render("err.ejs", { code: req.params.code })
     })
     .get("/signin", (req, res) => {
-        res.render("signin.ejs")
+        return res.sendFile("signin.html");
     })
     .get("/signup", (req, res) => {
-        res.render("signup.ejs")
+        res.sendFile("signup.html")
     })
 
 

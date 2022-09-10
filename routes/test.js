@@ -18,5 +18,22 @@ router
         console.log(info)
         res.send(info)
     })
+    .get("/uuidTest", (req, res) => {
+        const uuid = crypto.randomUUID();
+        const filename = uuid + ".uid";
+        const filepath = path.join(__dirname, "../../serverfile/tmp/", filename);
+        const stream = fs.createWriteStream(filepath);
+
+        stream.once('open', () => {
+            stream.write(uuid)
+            stream.end()
+
+            res.download(filepath, "UUID.uid", (err) => {
+                if (err) console.log(err)
+    
+                fs.unlinkSync(filepath)
+            })
+        });
+    })
 
 module.exports = router

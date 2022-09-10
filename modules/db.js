@@ -1,6 +1,6 @@
 //REQUIRES
 require("dotenv").config()
-const {mongoose, connect: connect1} = require('mongoose')
+const {mongoose, connect: connect1} = require("mongoose")
 
 //SCHEMAS
 const licenseSchema = require("../schema/License.js")
@@ -30,24 +30,24 @@ async function connect() {
 }
 
 //FUNCTIONS - GENERATE
-function generateLicenseModel() {
-    //TODO
+function generateLicenseModel(ownerUserId) {
+    return new licenseSchema(ownerUserId, null);
 }
 
-function generateProductModel() {
-    //TODO
+function generateProductModel(productId, title, description, tag, price, thumbnailImageURL, productImageURL) {
+    return new productSchema(productId, title, description, tag, price, Date.now(), Date.now(), false, thumbnailImageURL, productImageURL, 0);
 }
 
 function generatePublicBannedUserModel(userId, addAt, macAddress, ipAddress) {
-    return new publicBannedUserData(userId, addAt, macAddress, ipAddress);
+    return new publicBannedUserSchema(userId, addAt, macAddress, ipAddress);
 }
 
-function generateShoppingCartModel() {
-    //TODO
+function generateShoppingCartModel(ownerUserId) {
+    return new shoppingCartSchema(ownerUserId, null);
 }
 
 function generateUserModel(userId, username, email, passwordHash, lastLoginAt, registerAt, isAdmin) {
-    return new userData(userId, username, email, passwordHash, lastLoginAt, registerAt, isAdmin);
+    return new userSchema(userId, username, email, passwordHash, lastLoginAt, registerAt, isAdmin);
 }
 
 //FUNCTIONS - GET
@@ -67,7 +67,7 @@ async function getPublicBannedUsers() {
     return await publicBannedUserData.find({});
 }
 
-async function getShoppingCartByUserId(ownerUserId) {
+async function getShoppingCartByOwnerUserId(ownerUserId) {
     return await shoppingCartData.find({ ownerUserId: ownerUserId });
 }
 
@@ -88,28 +88,24 @@ function deleteLicenseByOwnerUserId(ownerUserId) {
     licenseData.findOneAndDelete({ ownerUserId: ownerUserId });
 }
 
-function deleteProductByProductId() {
-    
+function deleteProductByProductId(productId) {
+    productData.findOneAndDelete({ productId: productId });
 }
 
-function deletePublicBannedUserByUserId() {
-    //TODO
+function deletePublicBannedUserByIpAddress(ipAddress) {
+    publicBannedUserData.findOneAndDelete({ ipAddress: ipAddress });
 }
 
-function deletePublicBannedUserByIpAddress() {
-    //TODO
+function deletePublicBannedUserByMacAddress(macAddress) {
+    publicBannedUserData.findOneAndDelete({ macAddress: macAddress });
 }
 
-function deletePublicBannedUserByMacAddress() {
-    //TODO
+function deleteShoppingCartByOwnerUserId(ownerUserId) {
+    shoppingCartData.findOneAndDelete({ ownerUserId: ownerUserId });
 }
 
-function deleteShoppingCartByUserId() {
-    //TODO
-}
-
-function deleteUserByUserId() {
-    //TODO
+function deleteUserByUserId(userId) {
+    userData.findOneAndDelete({ userId: userId });
 }
 
 //FUNCTIONS - UPDATE
@@ -137,7 +133,7 @@ function updatePublicBannedUserByMacAddress() {
     //TODO
 }
 
-function updateShoppingCartByUserId() {
+function updateShoppingCartByOwnerUserId() {
     //TODO
 }
 
@@ -160,17 +156,17 @@ module.exports = {
     getProductByproductId,
     getProductsByTitle,
     getPublicBannedUsers,
-    getShoppingCartByUserId,
+    getShoppingCartByOwnerUserId,
     getUserByUserId,
+    getUserByUsername,
     getUserByEmail,
 
     //DELETE
     deleteLicenseByOwnerUserId,
     deleteProductByProductId,
-    deletePublicBannedUserByUserId,
     deletePublicBannedUserByIpAddress,
     deletePublicBannedUserByMacAddress,
-    deleteShoppingCartByUserId,
+    deleteShoppingCartByOwnerUserId,
     deleteUserByUserId,
 
     //UPDATE
@@ -180,6 +176,6 @@ module.exports = {
     updatePublicBannedUserByUserId,
     updatePublicBannedUserByIpAddress,
     updatePublicBannedUserByMacAddress,
-    updateShoppingCartByUserId,
+    updateShoppingCartByOwnerUserId,
     updateUserByUserId
 }
