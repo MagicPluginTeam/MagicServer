@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ShoppingCartSchema = new mongoose.Schema({
+const shoppingCartSchema = new mongoose.Schema({
     ownerUserId: { type: String, required: true, unique: true },
     items: [
         {
@@ -11,4 +11,4 @@ const ShoppingCartSchema = new mongoose.Schema({
     ]
 })
 
-module.exports = ShoppingCartSchema
+module.exports = shoppingCartSchema

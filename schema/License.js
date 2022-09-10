@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const LicenseSchema = new mongoose.Schema({
+const licenseSchema = new mongoose.Schema({
     ownerUserId: { type: String, required: true, unique: true },
     items: [
         {
@@ -25,4 +25,4 @@ const LicenseSchema = new mongoose.Schema({
     ]
 })
 
-module.exports = LicenseSchema
+module.exports = licenseSchema

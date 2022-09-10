@@ -1,53 +1,92 @@
 //REQUIRES
-require("dotenv").config()
-const {mongoose, connect: connect1} = require("mongoose")
+require("dotenv").config();
+const {mongoose, connect: connect1} = require("mongoose");
 
 //SCHEMAS
-const licenseSchema = require("../schema/License.js")
-const productSchema = require("../schema/Product.js")
-const publicBannedUserSchema = require("../schema/PublicBannedUser.js")
-const shoppingCartSchema = require("../schema/ShoppingCart.js")
-const userSchema = require("../schema/User.js")
+const licenseSchema = require("../schema/license.js");
+const productSchema = require("../schema/product.js");
+const publicBannedUserSchema = require("../schema/publicBannedUser.js");
+const shoppingCartSchema = require("../schema/shoppingCart.js");
+const userSchema = require("../schema/User.js");
+const redirectSchema = require("../schema/redirect.js");
 
 //DATA-MODELS
-const licenseData = mongoose.model("licenseData", licenseSchema)
-const productData = mongoose.model("productData", productSchema)
-const publicBannedUserData = mongoose.model("publicBannedUserData", publicBannedUserSchema)
-const shoppingCartData = mongoose.model("shoppingCarsData", shoppingCartSchema)
-const userData = mongoose.model("userData", userSchema)
+const licenseData = mongoose.model("licenseData", licenseSchema);
+const productData = mongoose.model("productData", productSchema);
+const publicBannedUserData = mongoose.model("publicBannedUserData", publicBannedUserSchema);
+const shoppingCartData = mongoose.model("shoppingCarsData", shoppingCartSchema);
+const userData = mongoose.model("userData", userSchema);
+const redirectData = mongoose.model("redirectData", redirectSchema);
 
 //SETUP FUNCTION
 async function connect() {
-    const url = process.env.DB
+    const url = process.env.DB;
 
     try {
-        await connect1(url)
+        await connect1(url);
 
-        console.log("Connected to DB")
+        console.log("Connected to DB");
     } catch (err) {
-        console.log("Error on DB connection: " + err)
+        console.log("Error on DB connection: " + err);
     }
 }
 
 //FUNCTIONS - GENERATE
 function generateLicenseModel(ownerUserId) {
-    return new licenseSchema(ownerUserId, null);
+    return new licenseData({
+        ownerUserId: ownerUserId,
+        items: null
+    });
 }
 
 function generateProductModel(productId, title, description, tag, price, thumbnailImageURL, productImageURL) {
-    return new productSchema(productId, title, description, tag, price, Date.now(), Date.now(), false, thumbnailImageURL, productImageURL, 0);
+    return new productData({
+        productId: productId,
+        title: title,
+        description: description,
+        tag: tag,
+        price: price,
+        createAt: Date.now(), 
+        lastUpdateAt: Date.now(),
+        thumbnailImage: thumbnailImageURL,
+        productImage: productImageURL,
+        buys: 0
+    });
 }
 
 function generatePublicBannedUserModel(userId, addAt, macAddress, ipAddress) {
-    return new publicBannedUserSchema(userId, addAt, macAddress, ipAddress);
+    return new publicBannedUserData({
+        userId: userId,
+        addAt: addAt,
+        macAddress: macAddress,
+        ipAddress: ipAddress
+    });
 }
 
 function generateShoppingCartModel(ownerUserId) {
-    return new shoppingCartSchema(ownerUserId, null);
+    return new shoppingCartData({
+        ownerUserId: ownerUserId,
+        items: null
+    });
 }
 
 function generateUserModel(userId, username, email, passwordHash, lastLoginAt, registerAt, isAdmin) {
-    return new userSchema(userId, username, email, passwordHash, lastLoginAt, registerAt, isAdmin);
+    return new userData({
+        userId: userId,
+        username: username,
+        email: email,
+        passwordHash: passwordHash,
+        lastLoginAt: lastLoginAt,
+        registerAt: registerAt,
+        isAdmin: isAdmin
+    });
+}
+
+function generateRedirectModel(directCode, url) {
+    return new redirectData({
+        directCode: directCode,
+        url: url
+    });
 }
 
 //FUNCTIONS - GET
@@ -83,29 +122,33 @@ async function getUserByEmail(email) {
     return await userData.find({ email: email }).exec();
 }
 
+async function getRedirectByDirectCode(directCode) {
+    return await redirectData.findOne({ directCode: directCode }).exec();
+}
+
 //FUNCTIONS - DELETE
-function deleteLicenseByOwnerUserId(ownerUserId) {
-    licenseData.findOneAndDelete({ ownerUserId: ownerUserId });
+async function deleteLicenseByOwnerUserId(ownerUserId) {
+    await licenseData.findOneAndDelete({ ownerUserId: ownerUserId });
 }
 
-function deleteProductByProductId(productId) {
-    productData.findOneAndDelete({ productId: productId });
+async function deleteProductByProductId(productId) {
+    await productData.findOneAndDelete({ productId: productId });
 }
 
-function deletePublicBannedUserByIpAddress(ipAddress) {
-    publicBannedUserData.findOneAndDelete({ ipAddress: ipAddress });
+async function deletePublicBannedUserByIpAddress(ipAddress) {
+    await publicBannedUserData.findOneAndDelete({ ipAddress: ipAddress });
 }
 
-function deletePublicBannedUserByMacAddress(macAddress) {
-    publicBannedUserData.findOneAndDelete({ macAddress: macAddress });
+async function deletePublicBannedUserByMacAddress(macAddress) {
+    await publicBannedUserData.findOneAndDelete({ macAddress: macAddress });
 }
 
-function deleteShoppingCartByOwnerUserId(ownerUserId) {
-    shoppingCartData.findOneAndDelete({ ownerUserId: ownerUserId });
+async function deleteShoppingCartByOwnerUserId(ownerUserId) {
+    await shoppingCartData.findOneAndDelete({ ownerUserId: ownerUserId });
 }
 
-function deleteUserByUserId(userId) {
-    userData.findOneAndDelete({ userId: userId });
+async function deleteUserByUserId(userId) {
+    await userData.findOneAndDelete({ userId: userId });
 }
 
 //FUNCTIONS - UPDATE
@@ -150,6 +193,7 @@ module.exports = {
     generatePublicBannedUserModel,
     generateShoppingCartModel,
     generateUserModel,
+    generateRedirectModel,
 
     //GET
     getLicenseByOwnerUserId,
@@ -160,6 +204,7 @@ module.exports = {
     getUserByUserId,
     getUserByUsername,
     getUserByEmail,
+    getRedirectByDirectCode,
 
     //DELETE
     deleteLicenseByOwnerUserId,
