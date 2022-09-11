@@ -19,7 +19,8 @@ routes
     .get("/:directCode", async (req, res) => {
         const data = await db.getRedirectByDirectCode(req.params.directCode);
 
-        res.redirect(JSON.parse(JSON.stringify(data))["url"]);
+        if (data == null) res.send("failed");
+        else res.redirect(JSON.parse(JSON.stringify(data))["url"]);
     })
 
 module.exports = routes;
