@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="MagicStore"/>
+    <meta property="og:title" content="MagicStore Product List"/>
     <meta property="og:image" content="/public/assets/img/logo-transparent.png"/>
 
     <title>ProductList · MagicStore</title>
@@ -11,18 +11,16 @@
     <link href="../../public/assets/css/style.css" rel="stylesheet">
     <link href="../../public/assets/css/product_list.css" rel="stylesheet">
     <link href="../../public/assets/img/logo-transparent.png" rel="shortcut icon">
-
-    <script src="../../public/assets/js/includeHTML.js"></script>
 </head>
 <body>
-    <header include-html="../../public/assets/header.html"></header>
+    <%- include("../include/header.html") %>
 
     <main class="m-5">
         <div class="row GmarketSansMedium">
             <% for(let i = 0; i < products.length; i++) { %>
                 <div class="card" style="width: 18rem;">
-                    <a href="detail?id=<%= products[i].product_id %>">
-                        <img src="<%= products[i].thumbnail_path %>" class="card-img" alt="...">
+                    <a href="detail/<%= products[i].title %>">
+                        <img src="<%= products[i].thumbnailImageURL %>" class="card-img" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><%= products[i].title %></h5>
@@ -38,7 +36,7 @@
                                     <a href="#">Buy now</a>
                                 </button>
                             </div>
-                            <small class="text-dark"><%= products[i].price %></small>
+                            <small class="text-dark"><%= products[i].price %>\</small>
                         </div>
                     </div>
                 </div>
@@ -46,10 +44,6 @@
         </div>
     </main>
 
-    <footer include-html="../../public/assets/footer.html"></footer>
+    <%- include("../include/footer.html") %>
 </body>
-
-<script>
-    includeHTML()
-</script>
 </html>

@@ -1,53 +1,18 @@
-const Grid = require("gridfs-stream")
-const { mongoose } = require("mongoose")
-const express = require("express")
-const upload = require("../../middleware/upload.js");
+const express = require("express");
+const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
+const upload = multer({ dest: "serverfile/images/" });
 let router = express.Router()
 
-const conn = mongoose.connection
-let gfs, gridfsBucket
-
-conn.once("open", () => {
-    gridfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
-        bucketName: "images"
-    })
-
-    gfs = Grid(conn.db, mongoose.mongo)
-    gfs.collection("images")
-})
-
-
 router
-    .get("/", (req, res) => {
-        res.status(403).redirect("/err/403");
+    .post("/", upload.single("file"), (req, res) => {
+        fs.rename(path.join(__dirname, "/../../serverfile/images/", req.file.filename), path.join(__dirname, "/../../serverfile/images/", req.file.filename + ".png"), () => {
+            res.send("https://magicplugin.net/images/" + req.file.filename + ".png");
+        })
     })
-    .get("/:filename", async (req, res) => {
-        try {
-            const file = await gfs.files.findOne({ filename: req.params.filename })
-            const readStream = gridfsBucket.openDownloadStream(file._id);
-
-            readStream.pipe(res)
-        } catch(err) {
-            res.status(404).json({success: false})
-        }
+    .delete("/:filename", (req, res) => {
+        fs.unlink(path.join(__dirname, "/../../serverfile/images/", req.params.filename));
     })
-
-    .post("/upload", upload.single("file"), (req, res) => {
-        if (req.file === undefined)
-            return res.status(400).json({success: false})
-        const imgUrl = `https://magicplugin.net/file/${req.file.filename}`
-
-        return res.json({success: true, img: imgUrl})
-    })
-
-    .delete("/:filename", async (req, res) => {
-        try {
-            await gfs.files.deleteOne({ filename: req.params.filename })
-
-            res.json({success: true})
-        } catch (err) {
-            res.status(404).json({success: false})
-        }
-})
 
 module.exports = router

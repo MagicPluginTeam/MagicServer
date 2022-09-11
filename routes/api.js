@@ -11,7 +11,7 @@ router
         res.status(403).redirect("/err/403");
     })
     .get("/status", (req, res) => {
-        res.json({ "status": true })
+        res.send("online");
     })
 
     .use("/file", file_r)

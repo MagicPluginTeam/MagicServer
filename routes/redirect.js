@@ -6,7 +6,7 @@ let routes = express.Router();
 
 routes
     .get("/admin", (req, res) => {
-        res.sendFile(path.join(__dirname + "/../views/redirect.html"));
+        res.render(path.join(__dirname + "/../views/redirect.ejs"));
     })
     .post("/admin", (req, res) => {
         db.generateRedirectModel(req.body.directCode, req.body.url).save().catch((err) => {

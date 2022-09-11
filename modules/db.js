@@ -3,12 +3,12 @@ require("dotenv").config();
 const {mongoose, connect: connect1} = require("mongoose");
 
 //SCHEMAS
-const licenseSchema = require("../schema/license.js");
-const productSchema = require("../schema/product.js");
-const publicBannedUserSchema = require("../schema/publicBannedUser.js");
-const shoppingCartSchema = require("../schema/shoppingCart.js");
-const userSchema = require("../schema/User.js");
-const redirectSchema = require("../schema/redirect.js");
+const licenseSchema = require("../schema/LicenseSchema.js");
+const productSchema = require("../schema/ProductSchema.js");
+const publicBannedUserSchema = require("../schema/PublicBannedUserSchema.js");
+const redirectSchema = require("../schema/RedirectSchema.js");
+const shoppingCartSchema = require("../schema/ShoppingCartSchema.js");
+const userSchema = require("../schema/UserSchema.js");
 
 //DATA-MODELS
 const licenseData = mongoose.model("licenseData", licenseSchema);
@@ -39,17 +39,18 @@ function generateLicenseModel(ownerUserId) {
     });
 }
 
-function generateProductModel(productId, title, description, tag, price, thumbnailImageURL, productImageURL) {
+function generateProductModel(productId, title, shortDescription, description, tag, price, thumbnailImageURL, productImageURL) {
     return new productData({
         productId: productId,
         title: title,
+        shortDescription: shortDescription,
         description: description,
         tag: tag,
         price: price,
         createAt: Date.now(), 
         lastUpdateAt: Date.now(),
-        thumbnailImage: thumbnailImageURL,
-        productImage: productImageURL,
+        thumbnailImageURL: thumbnailImageURL,
+        productImageURL: productImageURL,
         buys: 0
     });
 }
@@ -98,16 +99,20 @@ async function getProductByproductId(productId) {
     return await productData.findOne({ productId: productId }).exec();
 }
 
-async function getProductsByTitle(title) {
-    return await productData.fine({ title: title }).exec();
+async function getProductByTitle(title) {
+    return await productData.findOne({ title: title }).exec();
+}
+
+async function getProducts() {
+    return await productData.find({}).exec();
 }
 
 async function getPublicBannedUsers() {
-    return await publicBannedUserData.find({});
+    return await publicBannedUserData.find({}).exec();
 }
 
 async function getShoppingCartByOwnerUserId(ownerUserId) {
-    return await shoppingCartData.find({ ownerUserId: ownerUserId });
+    return await shoppingCartData.find({ ownerUserId: ownerUserId }).exec(); 
 }
 
 async function getUserByUserId(userId) {
@@ -128,27 +133,27 @@ async function getRedirectByDirectCode(directCode) {
 
 //FUNCTIONS - DELETE
 async function deleteLicenseByOwnerUserId(ownerUserId) {
-    await licenseData.findOneAndDelete({ ownerUserId: ownerUserId });
+    await licenseData.findOneAndDelete({ ownerUserId: ownerUserId }).exec();
 }
 
 async function deleteProductByProductId(productId) {
-    await productData.findOneAndDelete({ productId: productId });
+    await productData.findOneAndDelete({ productId: productId }).exec();
 }
 
 async function deletePublicBannedUserByIpAddress(ipAddress) {
-    await publicBannedUserData.findOneAndDelete({ ipAddress: ipAddress });
+    await publicBannedUserData.findOneAndDelete({ ipAddress: ipAddress }).exec();
 }
 
 async function deletePublicBannedUserByMacAddress(macAddress) {
-    await publicBannedUserData.findOneAndDelete({ macAddress: macAddress });
+    await publicBannedUserData.findOneAndDelete({ macAddress: macAddress }).exec();
 }
 
 async function deleteShoppingCartByOwnerUserId(ownerUserId) {
-    await shoppingCartData.findOneAndDelete({ ownerUserId: ownerUserId });
+    await shoppingCartData.findOneAndDelete({ ownerUserId: ownerUserId }).exec();
 }
 
 async function deleteUserByUserId(userId) {
-    await userData.findOneAndDelete({ userId: userId });
+    await userData.findOneAndDelete({ userId: userId }).exec();
 }
 
 //FUNCTIONS - UPDATE
@@ -198,7 +203,8 @@ module.exports = {
     //GET
     getLicenseByOwnerUserId,
     getProductByproductId,
-    getProductsByTitle,
+    getProductByTitle,
+    getProducts,
     getPublicBannedUsers,
     getShoppingCartByOwnerUserId,
     getUserByUserId,

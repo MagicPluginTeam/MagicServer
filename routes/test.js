@@ -1,6 +1,7 @@
 const express = require("express")
 const crypto = require("crypto");
 const fs = require("fs");
+const path = require("path");
 const mail = require("../modules/mail.js");
 
 let router = express.Router()
@@ -21,7 +22,7 @@ router
     .get("/uuidTest", (req, res) => {
         const uuid = crypto.randomUUID();
         const filename = uuid + ".uid";
-        const filepath = path.join(__dirname, "../../serverfile/tmp/", filename);
+        const filepath = path.join(__dirname, "/../serverfile/tmp/", filename);
         const stream = fs.createWriteStream(filepath);
 
         stream.once('open', () => {

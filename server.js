@@ -4,6 +4,7 @@ const bodyparser = require("body-parser");
 const express = require("express");
 const logger = require("morgan");
 
+//MODULES
 const db = require("./modules/db.js");
 
 //ROUTES
@@ -20,24 +21,34 @@ const httpPort = process.env.HTTP_PORT || 80
 const app = express()
 db.connect().then()
 app
+    //SET BODY-PARSER
     .use(bodyparser.json())
     .use(bodyparser.urlencoded({extended:true}))
-    .use(express.static(__dirname))
-    .use(express.static(__dirname + "/views"))
+
+    //SET STATIC PATH
+    .use("/images", express.static(__dirname + "/serverfile/images"))
+    .use("/public", express.static(__dirname + "/public"))
     .use(express.static(__dirname + "/serverfile/web"))
+
+    //SET LOGGER
     .use(logger(":method :url :status - (:response-time ms | :remote-addr)"))
 
+    //SET VIEW ENGINE
     .set("view engine", "ejs")
 
+    //SET ROUTES
     .use("/", index_r)
     .use("/api", api_r)
     .use("/store", store_r)
     .use("/test", test_r)
     .use("/r", redirect_r)
 
+    //SET ERROR PAGES
     .use((req, res) => {
         res.status(404).redirect("/err/404")
     })
+
+    //SET HTTPS PROTOCOL IS REQUIRED
     .use((req, res, next) => {
         if (req.secure) {
             next()
@@ -46,7 +57,7 @@ app
         }
     })
 
-//START SERVER
+//STARTING SERVER
 app.listen(httpPort, () => {
     console.log("HTTP Server Started! HTTP Listening On Port: " + httpPort)
 })

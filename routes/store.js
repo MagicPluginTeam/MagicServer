@@ -1,17 +1,19 @@
-const express = require("express")
+const express = require("express");
+const db = require("../modules/db.js");
+const admin_r = require("./store_admin.js");
 
 let router = express.Router()
 
 router
+    .use("/admin", admin_r)
+
     .get("/", (req, res) => {
         res.redirect("/store/list")
     })
-    .get("/list", (req, res) => {
+    .get("/list", async (req, res) => {
         const context = {
-            products: [
-                { product_id: "test1", title: "test1", thumbnail_path: "../../public/assets/img/logo-transparent.png", tag: "test1", price: "1" } //TODO: delete test products.
-            ]
-        } //TODO: get products list from database.
+            products: await db.getProducts()
+        }
 
         res.render("store/product_list.ejs", context, (err, html) => {
             if (err) {
@@ -21,19 +23,27 @@ router
             res.send(html)
         })
     })
-    .get("/detail", (req, res) => {
-        const id = req.query.id
+    .get("/detail/:title", async (req, res) => {
+        var title = req.params.title;
+        var data = await db.getProductByTitle(title);
+
+        if (data == null) {
+            res.send("failed");
+            return;
+        }
+
+        data = await JSON.parse(JSON.stringify(data));
+
         const context = {
-            product_title: "1", //TODO: delete test product data.
-            tag: "2",
-            short_description: "3",
-            description: "ASDFASDFASDFASDFAS DFASSDFASDFASDFASDFAS DFASDFASDFASDFASDFASDFA SDFASDF DFASDFASDFASDFASDFASDFA SDFASDF DFASDFASDFASDFASDFASDFA SDFASDF !! :)",
-            price: "4",
-            img_1_path: "../../public/assets/img/logo-transparent.png"
-        } //TODO: get product detail data from database.
+            product_title: data["title"],
+            tag: data["tag"],
+            short_description: data["shortDescription"],
+            description: data["description"],
+            price: data["price"] + "\\",
+            product_image_URL: data["productImageURL"]
+        }
 
         res.render("store/product_detail.ejs", context, (err, html) => {
-
             res.send(html)
         })
     })
