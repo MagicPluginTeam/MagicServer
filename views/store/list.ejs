@@ -17,29 +17,33 @@
 
     <main class="m-5">
         <div class="row GmarketSansMedium">
-            <% for(let i = 0; i < products.length; i++) { %>
-                <div class="card" style="width: 18rem;">
-                    <a href="detail/<%= products[i].title %>">
-                        <img src="<%= products[i].thumbnailImageURL %>" class="card-img" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title"><%= products[i].title %></h5>
-                        <p class="card-text">
-                            <span class="badge bg-dark"><%= products[i].tag %></span>
-                        </p>
-                        <div class="card-info">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    <a href="#">Add to cart</a>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    <a href="#">Buy now</a>
-                                </button>
+            <% if(products.length == 0) { %>
+                <p class="GmarketSansMedium">Oops! Nothing's in here.</p>
+            <% } else { %>
+                <% for(let i = 0; i < products.length; i++) { %>
+                    <div class="card" style="width: 18rem;">
+                        <a href="detail/<%= products[i].title %>">
+                            <img src="<%= products[i].thumbnailImageURL %>" class="card-img" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= products[i].title %></h5>
+                            <p class="card-text">
+                                <span class="badge bg-dark"><%= products[i].tag %></span>
+                            </p>
+                            <div class="card-info">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        <a href="#">Add to cart</a>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        <a href="#">Buy now</a>
+                                    </button>
+                                </div>
+                                <small class="text-dark"><%= products[i].price %>\</small>
                             </div>
-                            <small class="text-dark"><%= products[i].price %>\</small>
                         </div>
                     </div>
-                </div>
+                <% } %>
             <% } %>
         </div>
     </main>
