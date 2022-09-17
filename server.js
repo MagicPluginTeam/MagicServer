@@ -3,6 +3,7 @@ require("dotenv").config();
 const bodyparser = require("body-parser");
 const express = require("express");
 const logger = require("morgan");
+const ip = require("./modules/ip.js")
 
 //MODULES
 const db = require("./modules/db.js");

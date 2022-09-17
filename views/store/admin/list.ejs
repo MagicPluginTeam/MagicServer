@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="MagicStore Product Management"/>
+    <meta property="og:image" content="/public/assets/img/logo-transparent.png"/>
+
+    <title>Product Management · MagicStore</title>
+
+    <link href="../../public/assets/css/style.css" rel="stylesheet">
+    <link href="../../public/assets/css/product_list.css" rel="stylesheet">
+    <link href="../../public/assets/img/logo-transparent.png" rel="shortcut icon">
+</head>
+<body>
+    <%- include("../../include/header.html") %>
+
+    <main class="m-5">
+        <div class="row GmarketSansMedium">
+            <% for(let i = 0; i < products.length; i++) { %>
+                <div class="card" style="width: 18rem;">
+                    <a href="../detail/<%= products[i].title %>">
+                        <img src="<%= products[i].thumbnailImageURL %>" class="card-img" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= products[i].title %></h5>
+                        <p class="card-text">
+                            <span class="badge bg-dark"><%= products[i].tag %></span>
+                        </p>
+                        <div class="card-info">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-sm btn-outline-danger">
+                                    <a href="/api/product/delete/<%= products[i].productId %>">Delete</a>
+                                </button>
+                            </div>
+                            <small class="text-dark"><%= products[i].price %>\</small>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </main>
+
+    <%- include("../../include/footer.html") %>
+</body>
+</html>

@@ -13,23 +13,22 @@ router
     .get("/list", async (req, res) => {
         const context = {
             products: await db.getProducts()
-        }
+        };
 
-        res.render("store/product_list.ejs", context, (err, html) => {
+        res.render("store/list.ejs", context, (err, html) => {
             if (err) {
-                res.status(404).redirect("/err/" + res.statusCode)
+                res.status(500).redirect("/err/" + res.statusCode);
             }
 
-            res.send(html)
-        })
+            res.send(html);
+        });
     })
     .get("/detail/:title", async (req, res) => {
         var title = req.params.title;
         var data = await db.getProductByTitle(title);
 
         if (data == null) {
-            res.send("failed");
-            return;
+            res.status("404").redirect("/err/" + res.statusCode);
         }
 
         data = await JSON.parse(JSON.stringify(data));
@@ -41,11 +40,11 @@ router
             description: data["description"],
             price: data["price"] + "\\",
             product_image_URL: data["productImageURL"]
-        }
+        };
 
-        res.render("store/product_detail.ejs", context, (err, html) => {
+        res.render("store/detail.ejs", context, (err, html) => {
             res.send(html)
-        })
+        });
     })
 
 module.exports = router

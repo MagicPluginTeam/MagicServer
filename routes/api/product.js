@@ -1,6 +1,5 @@
 const crypto = require("crypto");
 const express = require("express");
-const request = require("request");
 const db = require("../../modules/db.js");
 
 let router = express.Router()
@@ -12,6 +11,11 @@ router
 
     .post("/", async (req, res) => {
         await db.generateProductModel(crypto.randomUUID(), req.body.title, req.body.short_description, req.body.description, req.body.tag, req.body.price, req.body.thumbnailImageURL, req.body.productImageURL).save();
+
+        res.send("success");
+    })
+    .get("/delete/:id", async (req, res) => {
+        await db.deleteProductByProductId(req.params.id);
 
         res.send("success");
     })

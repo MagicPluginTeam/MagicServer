@@ -7,14 +7,12 @@ const licenseSchema = require("../schema/LicenseSchema.js");
 const productSchema = require("../schema/ProductSchema.js");
 const publicBannedUserSchema = require("../schema/PublicBannedUserSchema.js");
 const redirectSchema = require("../schema/RedirectSchema.js");
-const shoppingCartSchema = require("../schema/ShoppingCartSchema.js");
 const userSchema = require("../schema/UserSchema.js");
 
 //DATA-MODELS
 const licenseData = mongoose.model("licenseData", licenseSchema);
 const productData = mongoose.model("productData", productSchema);
 const publicBannedUserData = mongoose.model("publicBannedUserData", publicBannedUserSchema);
-const shoppingCartData = mongoose.model("shoppingCarsData", shoppingCartSchema);
 const userData = mongoose.model("userData", userSchema);
 const redirectData = mongoose.model("redirectData", redirectSchema);
 
@@ -64,13 +62,6 @@ function generatePublicBannedUserModel(userId, addAt, macAddress, ipAddress) {
     });
 }
 
-function generateShoppingCartModel(ownerUserId) {
-    return new shoppingCartData({
-        ownerUserId: ownerUserId,
-        items: null
-    });
-}
-
 function generateUserModel(userId, username, email, passwordHash, lastLoginAt, registerAt, isAdmin) {
     return new userData({
         userId: userId,
@@ -111,10 +102,6 @@ async function getPublicBannedUsers() {
     return await publicBannedUserData.find({}).exec();
 }
 
-async function getShoppingCartByOwnerUserId(ownerUserId) {
-    return await shoppingCartData.find({ ownerUserId: ownerUserId }).exec(); 
-}
-
 async function getUserByUserId(userId) {
     return await userData.findOne({ userId: userId }).exec();
 }
@@ -148,10 +135,6 @@ async function deletePublicBannedUserByMacAddress(macAddress) {
     await publicBannedUserData.findOneAndDelete({ macAddress: macAddress }).exec();
 }
 
-async function deleteShoppingCartByOwnerUserId(ownerUserId) {
-    await shoppingCartData.findOneAndDelete({ ownerUserId: ownerUserId }).exec();
-}
-
 async function deleteUserByUserId(userId) {
     await userData.findOneAndDelete({ userId: userId }).exec();
 }
@@ -181,10 +164,6 @@ function updatePublicBannedUserByMacAddress() {
     //TODO
 }
 
-function updateShoppingCartByOwnerUserId() {
-    //TODO
-}
-
 function updateUserByUserId() {
     //TODO
 }
@@ -196,7 +175,6 @@ module.exports = {
     generateLicenseModel,
     generateProductModel,
     generatePublicBannedUserModel,
-    generateShoppingCartModel,
     generateUserModel,
     generateRedirectModel,
 
@@ -206,7 +184,6 @@ module.exports = {
     getProductByTitle,
     getProducts,
     getPublicBannedUsers,
-    getShoppingCartByOwnerUserId,
     getUserByUserId,
     getUserByUsername,
     getUserByEmail,
@@ -217,7 +194,6 @@ module.exports = {
     deleteProductByProductId,
     deletePublicBannedUserByIpAddress,
     deletePublicBannedUserByMacAddress,
-    deleteShoppingCartByOwnerUserId,
     deleteUserByUserId,
 
     //UPDATE
@@ -227,6 +203,5 @@ module.exports = {
     updatePublicBannedUserByUserId,
     updatePublicBannedUserByIpAddress,
     updatePublicBannedUserByMacAddress,
-    updateShoppingCartByOwnerUserId,
     updateUserByUserId
 }
