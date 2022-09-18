@@ -62,12 +62,13 @@ function generatePublicBannedUserModel(userId, addAt, macAddress, ipAddress) {
     });
 }
 
-function generateUserModel(userId, username, email, passwordHash, lastLoginAt, registerAt, isAdmin) {
+function generateUserModel(userId, username, email, passwordHash, salt, lastLoginAt, registerAt, isAdmin) {
     return new userData({
         userId: userId,
         username: username,
         email: email,
         passwordHash: passwordHash,
+        salt: salt,
         lastLoginAt: lastLoginAt,
         registerAt: registerAt,
         isAdmin: isAdmin
@@ -111,7 +112,7 @@ async function getUserByUsername(username) {
 }
 
 async function getUserByEmail(email) {
-    return await userData.find({ email: email }).exec();
+    return await userData.findOne({ email: email }).exec();
 }
 
 async function getRedirectByDirectCode(directCode) {

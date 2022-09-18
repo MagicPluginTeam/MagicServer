@@ -26,6 +26,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "nodemailer": "^6.7.7",
+    "pbkdf2-password": "^1.2.1",
     "request": "^2.88.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.3"

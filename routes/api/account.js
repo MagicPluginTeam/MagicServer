@@ -1,7 +1,5 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
-
-const saltRounds = 10;
+const loginController = require("../../modules/loginController.js")
 
 let router = express.Router()
 
@@ -10,11 +8,25 @@ router
         res.status(403).redirect("/err/403");
     })
 
-    .get("/signin", (req, res) => {
-        //TODO
+    .post("/signin", async (req, res) => {
+        let result = await loginController.SignIn(req, res);
+
+        if (result.data != null) {
+            res.send("success");
+        } else {
+            res.status(400).redirect("/err/" + res.statusCode);
+        }
     })
-    .post("/signup", (req, res) => {
-        //TODO
+    .get("/logout", async (req, res) => {
+        res.clearCookie("userId");
+        res.clearCookie("username");
+
+        res.redirect("/signin");
+    })
+    .post("/signup", async (req, res) => {
+        let result = await loginController.SignUp(req, res);
+
+        res.send(result);
     })
 
-module.exports = router
+module.exports = router;

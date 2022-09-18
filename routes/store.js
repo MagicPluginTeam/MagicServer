@@ -24,11 +24,12 @@ router
         });
     })
     .get("/detail/:title", async (req, res) => {
-        var title = req.params.title;
-        var data = await db.getProductByTitle(title);
+        const title = req.params.title;
+        let data = await db.getProductByTitle(title);
 
         if (data == null) {
-            res.status("404").redirect("/err/" + res.statusCode);
+            res.status(404).redirect("/err/" + res.statusCode);
+            return;
         }
 
         data = await JSON.parse(JSON.stringify(data));

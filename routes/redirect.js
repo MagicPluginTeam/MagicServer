@@ -2,9 +2,9 @@ const express = require("express");
 const path = require("path");
 const db = require("../modules/db.js");
 
-let routes = express.Router();
+let router = express.Router();
 
-routes
+router
     .get("/admin", (req, res) => {
         res.render(path.join(__dirname + "/../views/redirect.ejs"));
     })
@@ -23,4 +23,4 @@ routes
         else res.redirect(JSON.parse(JSON.stringify(data))["url"]);
     })
 
-module.exports = routes;
+module.exports = router;

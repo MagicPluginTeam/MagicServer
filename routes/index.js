@@ -20,7 +20,7 @@ router
         res.render("developers.ejs");
     })
     .get("/wiki", (req ,res) => {
-        res.render("wiki.ejs");
+        res.render("wiki/wiki.ejs");
     })
     .get("/dashboard", (req, res) => {
         res.render("dashboard/index.ejs");
