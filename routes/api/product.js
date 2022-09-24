@@ -7,16 +7,20 @@ let router = express.Router()
 router
     .post("/", async (req, res) => {
         let cookie = req.cookies;
-        let userId = cookie.["userId"];
+        let userId = cookie["userId"];
 
         if (userId == null) {
             res.status(403).redirect("/signin");
+            return;
         }
-        let user = await db.getUserByUserId("userId");
-        let isAdmin = JSON.parse(JSON.stringify(user))["isAdmin"];
+        let user = await db.getUserByUserId(userId);
+        user = JSON.parse(JSON.stringify(user));
+
+        let isAdmin = user["isAdmin"];
 
         if (!isAdmin) {
             res.status(403).redirect("/err/" + res.statusCode);
+            return;
         }
 
         await db.generateProductModel(crypto.randomUUID(), req.body.title, req.body.short_description, req.body.description, req.body.tag, req.body.price, req.body.thumbnailImageURL, req.body.productImageURL).save();
@@ -25,16 +29,20 @@ router
     })
     .get("/delete/:id", async (req, res) => {
         let cookie = req.cookies;
-        let userId = cookie.["userId"];
+        let userId = cookie["userId"];
 
         if (userId == null) {
             res.status(403).redirect("/signin");
+            return;
         }
-        let user = await db.getUserByUserId("userId");
-        let isAdmin = JSON.parse(JSON.stringify(user))["isAdmin"];
+        let user = await db.getUserByUserId(userId);
+        user = JSON.parse(JSON.stringify(user));
+
+        let isAdmin = user["isAdmin"];
 
         if (!isAdmin) {
             res.status(403).redirect("/err/" + res.statusCode);
+            return;
         }
 
         await db.deleteProductByProductId(req.params.id);

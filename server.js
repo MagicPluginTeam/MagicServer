@@ -1,9 +1,9 @@
  //REQUIRES
 require("dotenv").config();
-const body-parser = require("body-parser");
+const bodyParser = require("body-parser");
 const express = require("express");
 const logger = require("morgan");
-const cookie-parser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 
 //MODULES
 const db = require("./modules/db.js");
@@ -24,11 +24,11 @@ const app = express()
 db.connect().then()
 app
     //SET BODY-PARSER
-    .use(body-parser.json())
-    .use(body-parser.urlencoded({extended:true}))
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({extended:true}))
 
     //SET COOKIE-PARSER
-    .use(cookie-parser())
+    .use(cookieParser())
 
     //SET STATIC PATH
     .use("/images", express.static(__dirname + "/serverfile/images"))

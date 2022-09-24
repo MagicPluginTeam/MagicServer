@@ -1,5 +1,5 @@
 const express = require("express");
-const cookie-parser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const db = require("../modules/db.js");
 
 let router = express.Router()
@@ -7,32 +7,40 @@ let router = express.Router()
 router
     .get("/create", async (req, res) => {
         let cookie = req.cookies;
-        let userId = cookie.["userId"];
+        let userId = cookie["userId"];
 
         if (userId == null) {
             res.status(403).redirect("/signin");
+            return;
         }
-        let user = await db.getUserByUserId("userId");
-        let isAdmin = JSON.parse(JSON.stringify(user))["isAdmin"];
+        let user = await db.getUserByUserId(userId);
+        user = JSON.parse(JSON.stringify(user));
+
+        let isAdmin = user["isAdmin"];
 
         if (!isAdmin) {
             res.status(403).redirect("/err/" + res.statusCode);
+            return;
         }
 
         res.render("store/admin/create.ejs");
     })
     .get("/list", async (req, res) => {
         let cookie = req.cookies;
-        let userId = cookie.["userId"];
+        let userId = cookie["userId"];
 
         if (userId == null) {
             res.status(403).redirect("/signin");
+            return;
         }
-        let user = await db.getUserByUserId("userId");
-        let isAdmin = JSON.parse(JSON.stringify(user))["isAdmin"];
+        let user = await db.getUserByUserId(userId);
+        user = JSON.parse(JSON.stringify(user));
+
+        let isAdmin = user["isAdmin"];
 
         if (!isAdmin) {
             res.status(403).redirect("/err/" + res.statusCode);
+            return;
         }
 
         const context = {
