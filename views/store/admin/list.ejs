@@ -8,16 +8,16 @@
 
     <title>Product Management · MagicStore</title>
 
-    <link href="../../public/assets/css/style.css" rel="stylesheet">
-    <link href="../../public/assets/css/product_list.css" rel="stylesheet">
-    <link href="../../public/assets/img/logo-transparent.png" rel="shortcut icon">
+    <link href="../../../public/assets/css/style.css" rel="stylesheet">
+    <link href="../../../public/assets/css/product_list.css" rel="stylesheet">
+    <link href="../../../public/assets/img/logo-transparent.png" rel="shortcut icon">
 </head>
 <body>
     <%- include("../../include/header.html") %>
 
     <main class="m-5">
         <div class="row GmarketSansMedium">
-            <% if(products.length == 0) { %>
+            <% if(products.length === 0) { %>
                 <p class="GmarketSansMedium">Oops! Nothing's in here.</p>
             <% } else { %>
                 <% for(let i = 0; i < products.length; i++) { %>

@@ -1,5 +1,10 @@
-body {
+html, body, main {
+    background: #121212;
     display: compact;
+}
+
+* {
+    color: white;
 }
 
 .row {

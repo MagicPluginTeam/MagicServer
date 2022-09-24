@@ -14,9 +14,40 @@
         </ul>
 
         <ul class="navbar_account">
-            <li class="current-menu-item"><a href="/signup">SignUp</a></li> <!-- TODO -->
-            <li class="current-menu-item"><a href="/signin">SignIn</a></li> <!-- TODO -->
-            <li class="current-menu-item"><a href="/mypage">My Page</a></li>
+            <li class="current-menu-item" id="logout"><a href="/api/account/logout">Logout</a></li>
+            <li class="current-menu-item" id="signup"><a href="/signup">SignUp</a></li>
+            <li class="current-menu-item" id="signin"><a href="/signin">SignIn</a></li>
+            <li class="current-menu-item" id="mypage"><a href="/mypage">My Page</a></li>
         </ul>
     </nav>
+
+    <script>
+        function getCookie(name) {
+            const dc = document.cookie;
+            let data = dc.indexOf(name);
+
+            if (data === -1) {
+                return null;
+            }
+
+            return data;
+        }
+
+        let A = document.getElementById("logout");
+        let B = document.getElementById("signup");
+        let C = document.getElementById("signin");
+        let D = document.getElementById("mypage");
+
+        if (getCookie("userId") == null) {
+            A.hidden = true;
+            B.hidden = false;
+            C.hidden = false;
+            D.hidden = true;
+        } else {
+            A.hidden = false;
+            B.hidden = true;
+            C.hidden = true;
+            D.hidden = false;
+        }
+    </script>
 </header>

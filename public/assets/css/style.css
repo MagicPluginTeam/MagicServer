@@ -1035,9 +1035,6 @@
 .nav{
     --bs-nav-link-padding-x:1rem;
     --bs-nav-link-padding-y:0.5rem;
-    --bs-nav-link-font-weight: ;
-    --bs-nav-link-color:var(--bs-link-color);
-    --bs-nav-link-hover-color:var(--bs-link-hover-color);
     --bs-nav-link-disabled-color:#6c757d;
     display:flex;
     flex-wrap:wrap;
@@ -1048,7 +1045,6 @@
 .nav-link{
     display:block;
     padding:var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-    font-size:var(--bs-nav-link-font-size);
     font-weight:var(--bs-nav-link-font-weight);
     color:var(--bs-nav-link-color);
     text-decoration:none;

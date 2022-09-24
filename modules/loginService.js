@@ -33,7 +33,7 @@ exports.SignIn = async (req) => {
                 }
 
                 resolve(json);
-            })
+            });
         })
     }
 };
