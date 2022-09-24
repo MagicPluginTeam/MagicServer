@@ -6,7 +6,7 @@ async function isProxy(ip) {
     let data;
 
     await request(ipURL, (err, res, body) => {
-        if (err || body == "{}") {
+        if (body == "{}") {
             data = null;
         }
 

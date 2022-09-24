@@ -6,11 +6,8 @@ const mail = require("../modules/mail.js");
 
 let router = express.Router()
 
-// TEST FEATURES
+// TEST THINGS
 router
-    .post("/postTest", (req) => {
-        console.log(req.body)
-    })
     .get("/mailTest/:email", (req, res) => {
         mail.sendVerifyCode(req.params.email)
 
