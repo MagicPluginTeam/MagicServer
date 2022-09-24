@@ -12,7 +12,7 @@ router
         let result = await loginController.SignIn(req, res);
 
         if (result.data != null) {
-            res.send("success");
+            res.status(200).redirect("/");
         } else {
             res.status(400).redirect("/err/" + res.statusCode);
         }

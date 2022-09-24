@@ -11,8 +11,5 @@ router
             res.send("https://magicplugin.net/images/" + req.file.filename + ".png");
         })
     })
-    .delete("/:filename", (req, res) => {
-        fs.unlink(path.join(__dirname, "/../../serverfile/images/", req.params.filename));
-    })
 
 module.exports = router

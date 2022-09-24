@@ -6,7 +6,7 @@ const mail = require("../modules/mail.js");
 
 let router = express.Router()
 
-// TEST FEATURES.
+// TEST FEATURES
 router
     .post("/postTest", (req) => {
         console.log(req.body)

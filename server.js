@@ -1,12 +1,13 @@
  //REQUIRES
 require("dotenv").config();
-const bodyparser = require("body-parser");
+const body-parser = require("body-parser");
 const express = require("express");
 const logger = require("morgan");
-const ip = require("./modules/ip.js")
+const cookie-parser = require("cookie-parser");
 
 //MODULES
 const db = require("./modules/db.js");
+const ip = require("./modules/ip.js")
 
 //ROUTES
 const index_r = require("./routes/index.js");
@@ -23,8 +24,11 @@ const app = express()
 db.connect().then()
 app
     //SET BODY-PARSER
-    .use(bodyparser.json())
-    .use(bodyparser.urlencoded({extended:true}))
+    .use(body-parser.json())
+    .use(body-parser.urlencoded({extended:true}))
+
+    //SET COOKIE-PARSER
+    .use(cookie-parser())
 
     //SET STATIC PATH
     .use("/images", express.static(__dirname + "/serverfile/images"))
