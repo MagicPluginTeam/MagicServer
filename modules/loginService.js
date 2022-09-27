@@ -2,7 +2,7 @@ const crypto = require("crypto");
 const pbkdf2Password = require("pbkdf2-password");
 
 const hasher = pbkdf2Password();
-const db = require("./db.js");
+const db = require("./database.js");
 
 exports.SignIn = async (req) => {
     let json = {};

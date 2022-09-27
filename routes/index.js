@@ -28,5 +28,11 @@ router
     .get("/mypage", (req, res) => {
         res.render("mypage/index.ejs")
     })
+    .get("/company", (req, res) => {
+        res.render("company.ejs");
+    })
+    .get("/us", (req, res) => {
+        res.render("about-us.ejs");
+    })
 
 module.exports = router

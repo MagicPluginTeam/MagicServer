@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const express = require("express");
-const db = require("../../modules/db.js");
+const db = require("../../modules/database.js");
 
 let router = express.Router()
 

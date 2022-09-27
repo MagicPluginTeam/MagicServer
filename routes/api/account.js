@@ -21,12 +21,20 @@ router
         res.clearCookie("userId");
         res.clearCookie("username");
 
-        res.redirect("/signin");
+        res.redirect("/");
     })
     .post("/signup", async (req, res) => {
         let result = await loginController.SignUp(req, res);
 
-        res.send(result);
+        if (result.code === 100) {
+            if (result.msg === "This email is already taken.") {
+                res.send("This email is already taken.");
+            } else {
+                res.status(500).redirect("/err/" + res.statusCode);
+            }
+        } else {
+            res.status(200).redirect("/signin");
+        }
     })
 
 module.exports = router;

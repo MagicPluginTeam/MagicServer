@@ -2,32 +2,31 @@ html, body, main {
     background: #121212;
 }
 
-.github {
-    filter: invert(100);
-}
-
 * {
     color: white;
 }
 
 .box {
-    margin-top: 3rem;
-}
-
-.first,
-.second {
     display: flex;
-    text-align: center;
-    justify-content: space-around;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.first {
-    margin-bottom: 3rem;
+.person {
+    display: flex;
+    width: fit-content;
+    margin: 1rem;
 }
 
-.Avatar {
-    border-radius: 50%;
+.skin {
+    width: auto;
+    padding: 2rem;
 }
 
+.about {
+    width: auto;
+    padding: 2rem;
+    border-left: 1px solid lightgray;
+    height: auto;
+}

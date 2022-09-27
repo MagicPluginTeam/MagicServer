@@ -1,6 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const db = require("../modules/db.js");
+const db = require("../modules/database.js");
 
 let router = express.Router()
 
