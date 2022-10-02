@@ -11,7 +11,18 @@ router
         res.render("index.ejs");
     })
     .get("/signin", (req, res) => {
-        res.render("signin.ejs");
+        let context = { signup: undefined, verify: undefined };
+        let signup = JSON.parse(req.query.signup);
+        let verify = JSON.parse(req.query.verify);
+
+        if (signup === null) context["signup"] = false;
+        if (verify === null) context["verify"] = false;
+
+        if (signup && verify) res.status(400).redirect("/err/" + res.statusCode);
+        else if (signup) context["signup"] = true;
+        else if (verify) context["verify"] = true;
+
+        res.render("signin.ejs", context);
     })
     .get("/signup", (req, res) => {
         res.render("signup.ejs");

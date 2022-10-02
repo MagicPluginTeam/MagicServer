@@ -16,15 +16,24 @@
 <div class="container">
     <div class="title">Sign In</div>
     <div class="content">
+        <% if (signup) { %>
+            <p style="color: lime;">Successfully signed up! Please check your e-mail</p>
+        <% } else if (verify) { %>
+            <p style="color: lime;">Successfully e-mail verified!</p>
+        <% } %>
         <form action="/api/account/signin" method="POST">
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">E-mail</span>
-                    <input type="email" name="email" placeholder="Enter your e-mail" required>
+                    <label>
+                        <input type="email" name="email" placeholder="Enter your e-mail" required>
+                    </label>
                 </div>
                 <div class="input-box">
                     <span class="details">Password</span>
-                    <input type="password" name="password" placeholder="Enter your password" required>
+                    <label>
+                        <input type="password" name="password" placeholder="Enter your password" required>
+                    </label>
                 </div>
             </div>
             <div class="button mb-2 mt-3">

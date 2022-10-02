@@ -1,3 +1,4 @@
+const db = require("../modules/database.js");
 const loginService = require("./loginService.js");
 
 exports.SignIn = async (req, res) => {
@@ -9,6 +10,8 @@ exports.SignIn = async (req, res) => {
             maxAge: 60*60*100,
             path: "/"
         });
+
+        await db.updateUserByUserId(result.data["userId"], {lastLoginAt: Date.now()});
     }
 
     return result;
@@ -17,10 +20,11 @@ exports.SignIn = async (req, res) => {
 exports.SignUp = async (req, res) => {
     let result = await loginService.SignUp(req);
     let msg = "Successfully Signed Up!";
+    let data = await JSON.parse(JSON.stringify(db.getUserByEmail(result.email)));
 
-    if (result === 100) {
+    if (result.code === 100) {
         msg = "This email is already taken.";
     }
 
-    return { code: result, msg: msg };
+    return { code: result.code, msg: msg, data: data };
 }

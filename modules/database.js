@@ -71,7 +71,8 @@ function generateUserModel(userId, username, email, passwordHash, salt, lastLogi
         salt: salt,
         lastLoginAt: lastLoginAt,
         registerAt: registerAt,
-        isAdmin: isAdmin
+        isAdmin: isAdmin,
+        isMailVerified: false
     });
 }
 
@@ -165,8 +166,8 @@ function updatePublicBannedUserByMacAddress() {
     //TODO
 }
 
-function updateUserByUserId() {
-    //TODO
+async function updateUserByUserId(userId, data) {
+    await userData.updateOne({ userId: userId }, data).exec();
 }
 
 module.exports = {

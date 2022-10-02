@@ -53,5 +53,5 @@ exports.SignUp = async (req, res) => {
         resultCode = 100;
     }
 
-    return resultCode;
+    return { code: resultCode, email: email };
 };

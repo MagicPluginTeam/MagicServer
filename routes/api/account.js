@@ -1,7 +1,9 @@
 const express = require("express");
-const loginController = require("../../modules/loginController.js")
+const mail = require("../../modules/mail.js");
+const loginController = require("../../modules/loginController.js");
+const db = require("../../modules/database");
 
-let router = express.Router()
+let router = express.Router();
 
 router
     .get("/", (req, res) => {
@@ -14,7 +16,7 @@ router
         if (result.data != null) {
             res.status(200).redirect("/");
         } else {
-            res.status(400).redirect("/err/" + res.statusCode);
+            res.status(400).send(result.msg);
         }
     })
     .get("/logout", async (req, res) => {
@@ -33,8 +35,36 @@ router
                 res.status(500).redirect("/err/" + res.statusCode);
             }
         } else {
-            res.status(200).redirect("/signin");
+            let verifyCode = mail.sendVerifyCode(result.data["email"]);
+            await db.updateUserByUserId(result.data["userId"], { verifyCode: verifyCode });
+
+            res.status(200).redirect("/signin?signup=true");
         }
+    })
+
+    .get("/verify/:userID/:code", async (req, res) => {
+        let userId = req.params.userId;
+        let code = req.params.userId;
+        let user = await db.getUserByUserId(userId);
+
+        if (user === null) {
+            res.status(400).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        let data = JSON.parse(JSON.stringify(user));
+        if (data["isMailVerified"] === true) {
+            res.status(400).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        if (code === data["verifyCode"]) {
+            await db.updateUserByUserId(userId, { isMailVerified: true, verifyCode: undefined });
+            res.status(200).redirect("/signin?verify=true");
+            return;
+        }
+
+        res.status(400).send("Verify code is incorrect.");
     })
 
 module.exports = router;
