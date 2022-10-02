@@ -13,7 +13,7 @@ router
     .post("/signin", async (req, res) => {
         let result = await loginController.SignIn(req, res);
 
-        if (result.data != null) {
+        if (result.code !== 100) {
             res.status(200).redirect("/");
         } else {
             res.status(400).send(result.msg);
@@ -35,31 +35,33 @@ router
                 res.status(500).redirect("/err/" + res.statusCode);
             }
         } else {
-            let verifyCode = await mail.sendVerifyCode(result.data["email"], result.data["userId"]);
+            let data = result.data;
+            let verifyCode = await mail.sendVerifyCode(data["email"], data["userId"]);
+
             await db.updateUserByUserId(result.data["userId"], { verifyCode: verifyCode });
 
             res.status(200).redirect("/signin?signup=true");
         }
     })
-
-    .get("/verify/:userID/:code", async (req, res) => {
+    .get("/verify/:userId/:code", async (req, res) => {
         let userId = req.params.userId;
-        let code = req.params.userId;
+        let code = req.params.code;
         let user = await db.getUserByUserId(userId);
 
         if (user === null) {
-            res.status(400).redirect("/err/" + res.statusCode);
+            res.status(400).send("User not found.");
             return;
         }
 
         let data = JSON.parse(JSON.stringify(user));
         if (data["isMailVerified"] === true) {
-            res.status(400).redirect("/err/" + res.statusCode);
+            res.status(400).send("Already verified.");
             return;
         }
 
         if (code === data["verifyCode"]) {
-            await db.updateUserByUserId(userId, { isMailVerified: true, verifyCode: undefined });
+            await db.updateUserByUserId(userId, { isMailVerified: true });
+            await db.updateUserByUserId(userId, { verifyCode: null });
             res.status(200).redirect("/signin?verify=true");
             return;
         }

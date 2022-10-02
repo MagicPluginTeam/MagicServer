@@ -1,7 +1,8 @@
-require("dotenv").config()
-const nodemailer = require("nodemailer")
-const ejs = require("ejs")
-const crypt = require("./crypt.js")
+require("dotenv").config();
+const nodemailer = require("nodemailer");
+const path = require("path");
+const ejs = require("ejs");
+const crypt = require("./crypt.js");
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -13,16 +14,26 @@ const transporter = nodemailer.createTransport({
 
 async function sendVerifyCode(mailAddr, userId) {
     const code = crypt.randomVerifyCode();
+    let HTML;
+
+    await ejs.renderFile(path.join(__dirname + "/../views/verify_mail.ejs"), { code: code, userId: userId }, (err, html) => {
+        if(err) {
+            HTML = "<h1>Something went wrong</h1>";
+        } else {
+            HTML = html;
+        }
+    })
+
     let mailOptions = {
         from: "MagicPluginTeam",
         to: mailAddr,
-        subject: "MagicPluginTeam - Verify Code",
-        html: await ejs.render("verify_mail.ejs", { code: code, userId: userId }, (err, html) => {
-            if(err) { return `<h1>Something went wrong</h1>`} return html })
+        subject: "MagicPluginTeam - Verify",
+        html: HTML
     };
 
     transporter.sendMail(mailOptions).catch((err) => {
         console.log(err);
+        console.log(mailOptions);
     });
 
     return code;

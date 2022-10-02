@@ -24,8 +24,14 @@ exports.SignIn = async (req) => {
 
         return new Promise((resolve, reject) => {
             hasher({ password: password, salt: userSalt }, (err, pass, salt, hash) => {
-                if (userPasswordHash == hash) {
+                if (userPasswordHash === hash) {
                     json.data = data;
+
+                    if (data["isMailVerified"] !== true) {
+                        json.code = 100;
+                        json.msg = "email is not verified.";
+                        json.data = {};
+                    }
                 } else {
                     json.code = 100;
                     json.msg = "email or password is incorrect.";
@@ -47,7 +53,8 @@ exports.SignUp = async (req, res) => {
 
     if (JSON.parse(JSON.stringify(await db.getUserByEmail(email) == null))) {
         hasher({ password: password }, async (err, pass, salt, hash) => {
-            await db.generateUserModel(crypto.randomUUID(), username, email, hash, salt, Date.now(), Date.now(), false).save();
+            let model = await db.generateUserModel(crypto.randomUUID(), username, email, hash, salt, Date.now(), Date.now(), false);
+            await model.save();
         });
     } else {
         resultCode = 100;

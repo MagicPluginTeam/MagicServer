@@ -20,7 +20,11 @@ exports.SignIn = async (req, res) => {
 exports.SignUp = async (req, res) => {
     let result = await loginService.SignUp(req);
     let msg = "Successfully Signed Up!";
-    let data = await JSON.parse(JSON.stringify(db.getUserByEmail(result.email)));
+    let user = await db.getUserByEmail(result.email);
+    while(user === null) {
+        user = await db.getUserByEmail(result.email);
+    }
+    let data = JSON.parse(JSON.stringify(user));
 
     if (result.code === 100) {
         msg = "This email is already taken.";
