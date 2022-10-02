@@ -11,18 +11,19 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-function sendVerifyCode(mailAddr, userId) {
-    const code = crypt.randomVerifyCode()
-
-    const mailOptions = {
+async function sendVerifyCode(mailAddr, userId) {
+    const code = crypt.randomVerifyCode();
+    let mailOptions = {
         from: "MagicPluginTeam",
         to: mailAddr,
         subject: "MagicPluginTeam - Verify Code",
-        html: ejs.render("verify_mail.ejs", { code: code, userId: userId }, (err, html) => {
+        html: await ejs.render("verify_mail.ejs", { code: code, userId: userId }, (err, html) => {
             if(err) { return `<h1>Something went wrong</h1>`} return html })
-    }
+    };
 
-    transporter.sendMail(mailOptions);
+    transporter.sendMail(mailOptions).catch((err) => {
+        console.log(err);
+    });
 
     return code;
 }

@@ -12,15 +12,25 @@ router
     })
     .get("/signin", (req, res) => {
         let context = { signup: undefined, verify: undefined };
-        let signup = JSON.parse(req.query.signup);
-        let verify = JSON.parse(req.query.verify);
+        let signup = req.query.signup;
+        let verify = req.query.verify;
 
-        if (signup === null) context["signup"] = false;
-        if (verify === null) context["verify"] = false;
+        if (signup === undefined || signup === null) context["signup"] = false;
+        else {
+            signup = JSON.parse(signup);
+            if (signup) context["signup"] = true;
+        }
 
-        if (signup && verify) res.status(400).redirect("/err/" + res.statusCode);
-        else if (signup) context["signup"] = true;
-        else if (verify) context["verify"] = true;
+        if (verify === undefined || verify === null) context["verify"] = false;
+        else {
+            verify = JSON.parse(verify);
+            if (verify) context["verify"] = true;
+        }
+
+        if (context["signup"] && context["verify"]) {
+            res.status(400).redirect("/err/" + res.statusCode);
+            return;
+        }
 
         res.render("signin.ejs", context);
     })

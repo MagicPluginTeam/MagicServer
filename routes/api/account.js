@@ -35,7 +35,7 @@ router
                 res.status(500).redirect("/err/" + res.statusCode);
             }
         } else {
-            let verifyCode = mail.sendVerifyCode(result.data["email"]);
+            let verifyCode = await mail.sendVerifyCode(result.data["email"], result.data["userId"]);
             await db.updateUserByUserId(result.data["userId"], { verifyCode: verifyCode });
 
             res.status(200).redirect("/signin?signup=true");
