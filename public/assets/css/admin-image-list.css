@@ -1,0 +1,16 @@
+html, body, main {
+    background: #121212;
+}
+
+* {
+    color: white;
+}
+
+.card {
+    width: 18rem;
+    padding: 1rem;
+}
+
+.btn-delete {
+    width: 100%;
+}

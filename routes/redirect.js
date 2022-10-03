@@ -23,7 +23,7 @@ router
             return;
         }
 
-        res.render(path.join(__dirname + "/../views/redirect.ejs"));
+        res.render("redirect.ejs");
     })
     .post("/admin", async (req, res) => {
         let cookie = req.cookies;

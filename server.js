@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const db = require("./modules/database.js");
 
 //ROUTES
+const admin_r = require("./routes/admin.js");
 const api_r = require("./routes/api.js");
 const index_r = require("./routes/index.js");
 const redirect_r = require("./routes/redirect.js");
@@ -41,8 +42,9 @@ app
     .set("view engine", "ejs")
 
     //SET ROUTES
-    .use("/api", api_r)
     .use("/", index_r)
+    .use("/admin", admin_r)
+    .use("/api", api_r)
     .use("/r", redirect_r)
     .use("/store", store_r)
     .use("/test", test_r)

@@ -4,7 +4,7 @@ const account_r = require("./api/account.js");
 const file_r = require("./api/file.js");
 const product_r = require("./api/product.js");
 
-let router = express.Router()
+let router = express.Router();
 
 router
     .get("/", (req, res) => {

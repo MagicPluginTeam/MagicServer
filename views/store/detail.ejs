@@ -6,7 +6,7 @@
     <meta property="og:title" content="MagicStore Detail [<%= product_title %>]"/>
     <meta property="og:image" content="<%= product_image_URL %>"/>
 
-    <title>Product Detail [<%= product_title %>]  · MagicStore</title>
+    <title>Product Detail [<%= product_title %>] · MagicStore</title>
 
     <link href="../../public/assets/css/style.css" rel="stylesheet">
     <link href="../../public/assets/css/product-detail.css" rel="stylesheet">
@@ -55,13 +55,17 @@
 
                     <div class="horizontal-line"></div>
 
-                    <button type="button" class="btn btn-lg btn-outline-primary" href="#">Buy now</button>
+                    <a href="#">
+                        <button type="button" class="btn btn-lg btn-outline-primary">
+                            Buy now
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
 
         <div class="product-long-description-container">
-            <div class="product-long-description">
+            <div class="product-long-description card">
                 <h3>[ DESCRIPTION ]</h3>
                 <%- description %>
             </div>

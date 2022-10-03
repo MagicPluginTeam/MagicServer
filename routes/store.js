@@ -1,12 +1,9 @@
 const express = require("express");
 const db = require("../modules/database.js");
-const admin_r = require("./store_admin.js");
 
 let router = express.Router()
 
 router
-    .use("/admin", admin_r)
-
     .get("/", (req, res) => {
         res.redirect("/store/list")
     })

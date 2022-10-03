@@ -11,5 +11,10 @@ router
             res.send("https://magicplugin.net/images/" + req.file.filename + ".png");
         })
     })
+    .get("/delete/:filename", (req, res) => {
+        fs.unlinkSync(path.join(__dirname, "/../../serverfile/images/" + req.params.filename));
+
+        res.status(200).redirect("/admin/image/list");
+    })
 
 module.exports = router
