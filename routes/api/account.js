@@ -89,13 +89,13 @@ router
         user = JSON.parse(JSON.stringify(user));
 
         let password = req.body.password;
-        let salt = await user["salt"];
+        let salt = user["salt"];
         let passwordStatus;
 
         if (user["isAdmin"]) {
             passwordStatus = 0;
         } else {
-            hasher({ password: password, salt: salt }, async (err, pass, salt, hash) => {
+            await hasher({ password: password, salt: salt }, async (err, pass, salt, hash) => {
                 if (hash === user["passwordHash"]) {
                     passwordStatus = 0;
                 } else {

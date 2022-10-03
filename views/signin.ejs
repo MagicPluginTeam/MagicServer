@@ -17,9 +17,9 @@
     <div class="title">Sign In</div>
     <div class="content">
         <% if (signup) { %>
-            <p style="color: lime;">Successfully signed up! Please check your e-mail</p>
+            <p style="color: lime;">Successfully signed up! Please check your e-mail.</p>
         <% } else if (verify) { %>
-            <p style="color: lime;">Successfully e-mail verified!</p>
+            <p style="color: lime;">Successfully verified your e-mail!</p>
         <% } %>
         <form action="/api/account/signin" method="POST">
             <div class="user-details">
