@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 const express = require("express");
 const db = require("../../modules/database.js");
-const adminChecker = require("../../modules/adminChecker");
+const adminChecker = require("../../modules/accountChecker");
 
 let router = express.Router()
 

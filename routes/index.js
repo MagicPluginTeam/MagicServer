@@ -1,4 +1,6 @@
 const express = require("express");
+const db = require("../modules/database.js");
+const accountChecker = require("../modules/accountChecker.js");
 
 let router = express.Router()
 
@@ -46,8 +48,15 @@ router
     .get("/dashboard", (req, res) => {
         res.render("dashboard/index.ejs");
     })
-    .get("/mypage", (req, res) => {
-        res.render("mypage/index.ejs")
+    .get("/mypage", async (req, res) => {
+        if (!await accountChecker.isLoggedIn(req, res)) {
+            return;
+        }
+
+        let user = await db.getUserByUserId(req.cookies["userId"]);
+        user = JSON.parse(JSON.stringify(user));
+
+        res.render("mypage/index.ejs", { user: user });
     })
     .get("/company", (req, res) => {
         res.render("company.ejs");

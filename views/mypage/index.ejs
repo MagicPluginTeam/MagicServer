@@ -17,7 +17,34 @@
     <%- include("../include/header.html"); %>
 
     <div class="container GmarketSansMedium">
-        <p>🏭 Not Ready Yet. 🏭</p>
+        <div class="menu-wrapper">
+            <div class="card account-info">
+                <div>
+                    <h2>Basic Info</h2>
+                    <p><strong>Username | </strong><%= user["username"] %></p>
+                    <p><strong>E-Mail | </strong><%= user["email"] %></p>
+                    <p><strong>RegisterAt | </strong><%= user["registerAt"] %></p>
+                    <p><strong>LastLoginAt | </strong><%= user["lastLoginAt"] %></p>
+                    <br>
+                    <h2>Data for Developer</h2>
+                    <p><strong>PasswordHash | </strong><%= user["passwordHash"] %></p>
+                    <p><strong>PasswordSalt | </strong><%= user["salt"] %></p>
+                    <p><strong>IsAdmin | </strong><%= user["isAdmin"] %></p>
+                    <p><strong>IsMailVerified | </strong><%= user["isMailVerified"] %></p>
+                </div>
+            </div>
+            <div class="danger-zone">
+                <div class="account-remove">
+                    <form action="/api/account/delete" method="POST">
+                        <h2>Account Delete</h2>
+                        <label for="password-input">Password Check</label>
+                        <input id="password-input" type="password" placeholder="Enter your password." required>
+
+                        <input class="btn btn-lg btn-outline-danger" id="submit-btn" type="submit" value="Delete">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <%- include("../include/footer.html"); %>

@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const db = require("../modules/database.js");
-const adminChecker = require("../modules/adminChecker.js");
+const adminChecker = require("../modules/accountChecker.js");
 
 let router = express.Router();
 

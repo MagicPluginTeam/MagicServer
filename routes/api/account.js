@@ -1,4 +1,7 @@
 const express = require("express");
+const crypto = require("crypto");
+const pbkdf2Password = require("pbkdf2-password");
+const hasher = pbkdf2Password();
 const mail = require("../../modules/mail.js");
 const loginController = require("../../modules/loginController.js");
 const db = require("../../modules/database");
@@ -67,6 +70,52 @@ router
         }
 
         res.status(400).send("Verify code is incorrect.");
+    })
+
+    .post("/delete", async (req, res) => {
+        let cookie = req.cookies;
+        let userId = cookie["userId"];
+
+        if (userId === null) {
+            res.status(403).redirect("/signin");
+            return;
+        }
+        let user = await db.getUserByUserId(userId);
+
+        if (user === null) {
+            res.status(403).send("account not found.");
+            return;
+        }
+        user = JSON.parse(JSON.stringify(user));
+
+        let password = req.body.password;
+        let salt = await user["salt"];
+        let passwordStatus;
+
+        if (user["isAdmin"]) {
+            passwordStatus = 0;
+        } else {
+            hasher({ password: password, salt: salt }, async (err, pass, salt, hash) => {
+                if (hash === user["passwordHash"]) {
+                    passwordStatus = 0;
+                } else {
+                    passwordStatus = 100;
+                }
+            });
+        }
+
+        if (passwordStatus === 100) {
+            res.status(403).send("password is incorrect.");
+            return;
+        }
+
+        await db.deleteUserByUserId(userId);
+
+        if (user["isAdmin"]) {
+            res.status(200).redirect("/admin/account/list");
+        } else {
+            res.status(200).redirect("/mypage");
+        }
     })
 
 module.exports = router;
