@@ -53,10 +53,7 @@ router
             return;
         }
 
-        let user = await db.getUserByUserId(req.cookies["userId"]);
-        user = JSON.parse(JSON.stringify(user));
-
-        res.render("mypage/index.ejs", { user: user });
+        res.render("mypage/index.ejs", { user: await db.getUserByUserId(req.cookies["userId"]) });
     })
     .get("/company", (req, res) => {
         res.render("company.ejs");

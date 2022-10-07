@@ -1,5 +1,5 @@
 # Project exclude paths
 .env
 node_modules
-serverfile/images
 serverfile/tmp
+serverfile/images

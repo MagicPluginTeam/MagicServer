@@ -90,8 +90,8 @@
 }
 
 .card-img {
-    max-width: 18rem;
-    max-height: 18rem;
+    width: 100%;
+    height: auto;
 }
 
 .card-info {

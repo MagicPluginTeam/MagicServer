@@ -39,9 +39,9 @@ function generateLicenseModel(ownerUserId) {
     });
 }
 
-function generatePaymentModel(paymentId, userId, productId) {
+function generatePaymentModel(orderId, userId, productId) {
     return new paymentData({
-        paymentId: paymentId,
+        orderId: orderId,
         userId: userId,
         productId: productId,
         buyAt: Date.now()
@@ -99,16 +99,16 @@ async function getLicenseByOwnerUserId(ownerUserId) {
     return await licenseData.findOne({ ownerUserId: ownerUserId }).exec();
 }
 
-async function getPaymentByPaymentId(paymentId) {
-    return await paymentData.findOne({ paymentId: paymentId }).exec();
+async function getPaymentByOrderId(orderId) {
+    return await paymentData.findOne({ orderId: orderId }).exec();
 }
 
 async function getPaymentsByUserId(userId) {
     return await paymentData.find({ userId: userId }).exec();
 }
 
-async function getPaymentsByProductId(productId) {
-    return await paymentData.find({ productId: productId }).exec();
+async function getPaymentsByOrderId(orderId) {
+    return await paymentData.find({ orderId: orderId }).exec();
 }
 
 async function getProductByproductId(productId) {
@@ -137,6 +137,10 @@ async function getUserByUsername(username) {
 
 async function getUserByEmail(email) {
     return await userData.findOne({ email: email }).exec();
+}
+
+async function getUsers() {
+    return await userData.find({}).exec();
 }
 
 async function getRedirectByDirectCode(directCode) {
@@ -202,9 +206,9 @@ module.exports = {
 
     //GET
     getLicenseByOwnerUserId,
-    getPaymentByPaymentId,
+    getPaymentByOrderId,
     getPaymentsByUserId,
-    getPaymentsByProductId,
+    getPaymentsByOrderId,
     getProductByproductId,
     getProductByTitle,
     getProducts,
@@ -212,6 +216,7 @@ module.exports = {
     getUserByUserId,
     getUserByUsername,
     getUserByEmail,
+    getUsers,
     getRedirectByDirectCode,
 
     //DELETE

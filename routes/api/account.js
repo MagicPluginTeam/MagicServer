@@ -5,6 +5,7 @@ const hasher = pbkdf2Password();
 const mail = require("../../modules/mail.js");
 const loginController = require("../../controllers/loginController.js");
 const db = require("../../modules/database");
+const accountChecker = require("../../modules/accountChecker");
 
 let router = express.Router();
 
@@ -99,6 +100,32 @@ router
                 return;
             }
         });
+    })
+    .get("/delete/:userId", async (req, res) => {
+        if (!(await accountChecker.isAdmin(req, res))) {
+            return;
+        }
+
+        res.render("admin/account/delete-confirm.ejs", { userId: req.params.userId });
+    })
+    .get("/delete/:userId/confirm", async (req, res) => {
+        let userId = req.params.userId;
+
+        let user = await db.getUserByUserId(userId);
+        if (user === null) {
+            res.status(403).send("account not found.");
+            return;
+        }
+
+        user = JSON.parse(JSON.stringify(user));
+        if (!user["isAdmin"]) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        await db.deleteUserByUserId(userId);
+
+        res.status(200).redirect("/admin/account/list");
     })
 
 module.exports = router;

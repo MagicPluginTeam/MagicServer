@@ -1,26 +1,14 @@
 const express = require("express");
 const request = require("request");
+const uuid = require("uuid");
 const accountChecker = require("../../modules/accountChecker");
 const db = require("../../modules/database");
 
 let router = express.Router();
 
 router
-    .get("/success", async (req, res) => {
-        res.send("success, temp");
-    })
-    .get("/fail", async (req, res) => {
-        res.send("fail, temp");
-    })
-
     .post("/", async (req, res) => {
-        /*
-        if (!(await accountChecker.isLoggedIn(req, res))) {
-            return;
-        }
-        */
-
-        let userId = /* req.cookies["userId"] */ req.body.userId;
+        let userId = req.body.userId;
         let productId = req.body.productId;
         if (productId === undefined) {
             res.status(403).redirect("/err/" + res.statusCode);
@@ -48,25 +36,27 @@ router
             },
             body: {
                 amount: product["price"],
-                orderId: "TEMP_ORDER_ID_2", //TODO
+                orderId: uuid.v4(),
                 orderName: product["title"],
-                customerName: req.body.customer,
-                cardNumber: req.body.card1 + req.body.card2 + req.body.card3 + req.body.card4,
-                cardExpirationYear: req.body.exp_year,
-                cardExpirationMonth: req.body.exp_month,
-                customerIdentityNumber: req.body.identity_num
+                customerName: req.body.customerName,
+                cardNumber: req.body.cardNumber1 + req.body.cardNumber2 + req.body.cardNumber3 + req.body.cardNumber4,
+                cardExpirationYear: req.body.cardExpirationYear,
+                cardExpirationMonth: req.body.cardExpirationMonth,
+                customerIdentityNumber: req.body.customerIdentityNumber
             },
             json: true
         }
 
         let data;
-        request.post("https://api.tosspayments.com/v1/payments/key-in", options, (err, response, body) => {
+        request.post("https://api.tosspayments.com/v1/payments/key-in", options, async (err, response, body) => {
             if (err) {
                 console.log("Error while calling TossPayments API");
                 return;
             }
 
             data = JSON.parse(JSON.stringify(response));
+
+            await db.generatePaymentModel(options.body.orderId, userId, productId).save();
 
             res.json({
                 returnData: data

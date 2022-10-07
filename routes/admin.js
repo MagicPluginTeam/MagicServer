@@ -33,6 +33,13 @@ router
         res.render("admin/image/list.ejs", { images: fs.readdirSync(path.join(__dirname + "/../serverfile/images")) });
     })
 
+    .get("/account/list", async (req, res) => {
+        res.render("admin/account/list.ejs", { accounts: await db.getUsers() });
+    })
+    .get("/account/detail/:userId", async (req, res) => {
+        res.render("admin/account/detail.ejs", { user: await db.getUserByUserId(req.params.userId) });
+    })
+
     .get("/r/make", async (req, res) => {
         res.render("admin/redirect/make.ejs");
     })
