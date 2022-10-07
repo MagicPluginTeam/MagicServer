@@ -3,7 +3,8 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 const upload = multer({ dest: "serverfile/images/" });
-let router = express.Router()
+
+let router = express.Router();
 
 router
     .post("/", upload.single("file"), (req, res) => {

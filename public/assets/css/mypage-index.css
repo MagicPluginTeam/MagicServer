@@ -16,7 +16,8 @@ html, body, main {
     margin: 1rem;
     border-radius: 15px;
     border: white solid 2px;
-    width: fit-content;
+    width: auto;
+    word-break: break-all;
 }
 
 .danger-zone {

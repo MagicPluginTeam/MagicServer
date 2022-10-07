@@ -1,5 +1,5 @@
 const db = require("../modules/database.js");
-const loginService = require("./loginService.js");
+const loginService = require("../modules/loginService.js");
 
 exports.SignIn = async (req, res) => {
     let result = await loginService.SignIn(req);

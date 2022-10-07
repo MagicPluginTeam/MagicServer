@@ -4,6 +4,7 @@ const {mongoose, connect: connect1} = require("mongoose");
 
 //SCHEMAS
 const licenseSchema = require("../schema/LicenseSchema.js");
+const paymentSchema = require("../schema/PaymentSchema.js");
 const productSchema = require("../schema/ProductSchema.js");
 const publicBannedUserSchema = require("../schema/PublicBannedUserSchema.js");
 const redirectSchema = require("../schema/RedirectSchema.js");
@@ -11,6 +12,7 @@ const userSchema = require("../schema/UserSchema.js");
 
 //DATA-MODELS
 const licenseData = mongoose.model("licenseData", licenseSchema);
+const paymentData = mongoose.model("paymentData", paymentSchema);
 const productData = mongoose.model("productData", productSchema);
 const publicBannedUserData = mongoose.model("publicBannedUserData", publicBannedUserSchema);
 const userData = mongoose.model("userData", userSchema);
@@ -33,8 +35,17 @@ async function connect() {
 function generateLicenseModel(ownerUserId) {
     return new licenseData({
         ownerUserId: ownerUserId,
-        items: null
+        items: null //TODO
     });
+}
+
+function generatePaymentModel(paymentId, userId, productId) {
+    return new paymentData({
+        paymentId: paymentId,
+        userId: userId,
+        productId: productId,
+        buyAt: Date.now()
+    })
 }
 
 function generateProductModel(productId, title, shortDescription, description, tag, price, thumbnailImageURL, productImageURL) {
@@ -86,6 +97,18 @@ function generateRedirectModel(directCode, url) {
 //FUNCTIONS - GET
 async function getLicenseByOwnerUserId(ownerUserId) {
     return await licenseData.findOne({ ownerUserId: ownerUserId }).exec();
+}
+
+async function getPaymentByPaymentId(paymentId) {
+    return await paymentData.findOne({ paymentId: paymentId }).exec();
+}
+
+async function getPaymentsByUserId(userId) {
+    return await paymentData.find({ userId: userId }).exec();
+}
+
+async function getPaymentsByProductId(productId) {
+    return await paymentData.find({ productId: productId }).exec();
 }
 
 async function getProductByproductId(productId) {
@@ -142,28 +165,24 @@ async function deleteUserByUserId(userId) {
 }
 
 //FUNCTIONS - UPDATE
-function updateLicenseByOwnerUserId() {
-    //TODO
+async function updateLicenseByOwnerUserId(ownerUserId, data) {
+    await licenseData.updateOne({ ownerUserId: ownerUserId }, data).exec();
 }
 
-function updateLicenseByLicenseUuid() {
-    //TODO
+async function updateProductByProductId(productId, data) {
+    await productData.updateOne({ productId: productId }, data).exec();
 }
 
-function updateProductByProductId() {
-    //TODO
+async function updatePublicBannedUserByUserId(userId, data) {
+    await publicBannedUserData.updateOne({ userId: userId }, data).exec();
 }
 
-function updatePublicBannedUserByUserId() {
-    //TODO
+async function updatePublicBannedUserByIpAddress(ipAddress, data) {
+    await publicBannedUserData.updateOne({ ipAddress: ipAddress }, data).exec
 }
 
-function updatePublicBannedUserByIpAddress() {
-    //TODO
-}
-
-function updatePublicBannedUserByMacAddress() {
-    //TODO
+async function updatePublicBannedUserByMacAddress(macAddress, data) {
+    await publicBannedUserData.updateOne({ macAddress: macAddress }, data).exec();
 }
 
 async function updateUserByUserId(userId, data) {
@@ -175,6 +194,7 @@ module.exports = {
 
     //GENERATE
     generateLicenseModel,
+    generatePaymentModel,
     generateProductModel,
     generatePublicBannedUserModel,
     generateUserModel,
@@ -182,6 +202,9 @@ module.exports = {
 
     //GET
     getLicenseByOwnerUserId,
+    getPaymentByPaymentId,
+    getPaymentsByUserId,
+    getPaymentsByProductId,
     getProductByproductId,
     getProductByTitle,
     getProducts,
@@ -200,7 +223,6 @@ module.exports = {
 
     //UPDATE
     updateLicenseByOwnerUserId,
-    updateLicenseByLicenseUuid,
     updateProductByProductId,
     updatePublicBannedUserByUserId,
     updatePublicBannedUserByIpAddress,

@@ -3,7 +3,7 @@ const crypto = require("crypto");
 const pbkdf2Password = require("pbkdf2-password");
 const hasher = pbkdf2Password();
 const mail = require("../../modules/mail.js");
-const loginController = require("../../modules/loginController.js");
+const loginController = require("../../controllers/loginController.js");
 const db = require("../../modules/database");
 
 let router = express.Router();
@@ -73,49 +73,32 @@ router
     })
 
     .post("/delete", async (req, res) => {
-        let cookie = req.cookies;
-        let userId = cookie["userId"];
-
+        let userId = req.cookies["userId"];
         if (userId === null) {
             res.status(403).redirect("/signin");
             return;
         }
-        let user = await db.getUserByUserId(userId);
 
+        let user = await db.getUserByUserId(userId);
         if (user === null) {
             res.status(403).send("account not found.");
             return;
         }
+
         user = JSON.parse(JSON.stringify(user));
 
-        let password = req.body.password;
-        let salt = user["salt"];
-        let passwordStatus;
+        hasher({ password: req.body.password, salt: user["salt"] }, async (err, pass, salt, hash) => {
+            console.log(hash);
+            console.log(user["passwordHash"]);
+            console.log({ password: req.body.password, salt: user["salt"] });
 
-        if (user["isAdmin"]) {
-            passwordStatus = 0;
-        } else {
-            await hasher({ password: password, salt: salt }, async (err, pass, salt, hash) => {
-                if (hash === user["passwordHash"]) {
-                    passwordStatus = 0;
-                } else {
-                    passwordStatus = 100;
-                }
-            });
-        }
-
-        if (passwordStatus === 100) {
-            res.status(403).send("password is incorrect.");
-            return;
-        }
-
-        await db.deleteUserByUserId(userId);
-
-        if (user["isAdmin"]) {
-            res.status(200).redirect("/admin/account/list");
-        } else {
-            res.status(200).redirect("/mypage");
-        }
+            if (hash === user["passwordHash"]) {
+                await db.deleteUserByUserId(userId);
+            } else {
+                res.status(403).send("password is incorrect.");
+                return;
+            }
+        });
     })
 
 module.exports = router;

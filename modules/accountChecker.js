@@ -1,25 +1,26 @@
 const db = require("../modules/database.js");
 
 async function isAdmin(req, res) {
-    let cookie = req.cookies;
-    let userId = cookie["userId"];
+    let userId = req.cookies["userId"];
 
-    if (userId === null) {
+    if (userId === undefined) {
         res.status(403).redirect("/signin");
         return;
     }
 
     let user = await db.getUserByUserId(userId);
-    user = JSON.parse(JSON.stringify(user));
+
     if (user === null) {
         return false;
     }
+    user = JSON.parse(JSON.stringify(user));
 
     if (!user["isAdmin"]) {
         res.status(403).redirect("/err/" + res.statusCode);
+        return false;
     }
 
-    return user["isAdmin"];
+    return true;
 }
 
 async function isLoggedIn(req, res) {

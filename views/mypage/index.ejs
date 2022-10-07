@@ -21,6 +21,7 @@
             <div class="card account-info">
                 <div>
                     <h2>Basic Info</h2>
+                    <p><strong>UserId | </strong><%= user["userId"] %></p>
                     <p><strong>Username | </strong><%= user["username"] %></p>
                     <p><strong>E-Mail | </strong><%= user["email"] %></p>
                     <p><strong>RegisterAt | </strong><%= user["registerAt"] %></p>
@@ -38,7 +39,7 @@
                     <form action="/api/account/delete" method="POST">
                         <h2>Account Delete</h2>
                         <label for="password-input">Password Check</label>
-                        <input id="password-input" type="password" placeholder="Enter your password." required>
+                        <input name="password" id="password-input" type="password" placeholder="Enter your password." required>
 
                         <input class="btn btn-lg btn-outline-danger" id="submit-btn" type="submit" value="Delete">
                     </form>
