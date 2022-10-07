@@ -36,7 +36,7 @@ router
             tag: data["tag"],
             short_description: data["shortDescription"],
             description: data["description"],
-            price: data["price"] + "\\",
+            price: data["price"] + "$",
             product_image_URL: data["productImageURL"]
         };
 

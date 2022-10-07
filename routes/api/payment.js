@@ -46,21 +46,20 @@ router
                 Authorization: "Basic " + Buffer.from(process.env.TOSS_SECRET_KEY + ":").toString("base64"),
                 "Content-Type": "application/json"
             },
-            data: {
-                "amount": product["price"],
-                "orderId": "TEMP_ORDER_ID", //TODO
-                "orderName": product["title"],
-                "cardNumber": req.body.card1 + req.body.card2 + req.body.card3 + req.body.card4,
-                "cardExpirationYear": req.body.exp_year,
-                "cardExpirationMonth": req.body.exp_month,
-                "customerIdentityNumber": req.body.identity_num,
-                "successUrl": "https://magicplugin.net/api/payment/success",
-                "failUrl": "https://magicplugin.net/api/payment/fail"
-            }
+            body: {
+                amount: product["price"],
+                orderId: "TEMP_ORDER_ID_2", //TODO
+                orderName: product["title"],
+                customerName: req.body.customer,
+                cardNumber: req.body.card1 + req.body.card2 + req.body.card3 + req.body.card4,
+                cardExpirationYear: req.body.exp_year,
+                cardExpirationMonth: req.body.exp_month,
+                customerIdentityNumber: req.body.identity_num
+            },
+            json: true
         }
 
-        let data, code;
-
+        let data;
         request.post("https://api.tosspayments.com/v1/payments/key-in", options, (err, response, body) => {
             if (err) {
                 console.log("Error while calling TossPayments API");
@@ -70,8 +69,7 @@ router
             data = JSON.parse(JSON.stringify(response));
 
             res.json({
-                "statusCode": code,
-                "returnData": data
+                returnData: data
             });
         });
     })

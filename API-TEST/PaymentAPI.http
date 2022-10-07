@@ -10,6 +10,7 @@ Content-Type: application/json
   "card4": "5529",
   "exp_year": "27",
   "exp_month": "03",
+  "customer": "호예준",
   "identity_num": "100108"
 }
 

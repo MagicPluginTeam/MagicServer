@@ -33,4 +33,13 @@ router
         res.render("admin/image/list.ejs", { images: fs.readdirSync(path.join(__dirname + "/../serverfile/images")) });
     })
 
+    .get("/r/make", async (req, res) => {
+        res.render("admin/redirect/make.ejs");
+    })
+    .post("/r/make", async (req, res) => {
+        db.generateRedirectModel(req.body.directCode, req.body.url).save();
+
+        res.send(200).redirect("/admin/r/make");
+    })
+
 module.exports = router;

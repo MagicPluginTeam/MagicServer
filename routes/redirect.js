@@ -5,52 +5,6 @@ const db = require("../modules/database.js");
 let router = express.Router();
 
 router
-    .get("/admin", async (req, res) => {
-        let cookie = req.cookies;
-        let userId = cookie["userId"];
-
-        if (userId == null) {
-            res.status(403).redirect("/signin");
-            return;
-        }
-        let user = await db.getUserByUserId(userId);
-        user = JSON.parse(JSON.stringify(user));
-
-        let isAdmin = user["isAdmin"];
-
-        if (!isAdmin) {
-            res.status(403).redirect("/err/" + res.statusCode);
-            return;
-        }
-
-        res.render("redirect.ejs");
-    })
-    .post("/admin", async (req, res) => {
-        let cookie = req.cookies;
-        let userId = cookie["userId"];
-
-        if (userId == null) {
-            res.status(403).redirect("/signin");
-            return;
-        }
-        let user = await db.getUserByUserId(userId);
-        user = JSON.parse(JSON.stringify(user));
-
-        let isAdmin = user["isAdmin"];
-
-        if (!isAdmin) {
-            res.status(403).redirect("/err/" + res.statusCode);
-            return;
-        }
-
-        db.generateRedirectModel(req.body.directCode, req.body.url).save().catch((err) => {
-            res.status(404).redirect("/err/" + res.statusCode);
-            return;
-        });
-
-        res.send(200).redirect("/r/admin");
-    })
-
     .get("/:directCode", async (req, res) => {
         const data = await db.getRedirectByDirectCode(req.params.directCode);
 
