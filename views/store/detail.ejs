@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="MagicStore Detail [<%= product_title %>]"/>
-    <meta property="og:image" content="<%= product_image_URL %>"/>
+    <meta property="og:title" content="MagicStore Detail [<%= product["title"] %>]"/>
+    <meta property="og:image" content="<%= product["productImageURL"] %>"/>
 
-    <title>Product Detail [<%= product_title %>] · MagicStore</title>
+    <title>Product Detail [<%= product["title"] %>] · MagicStore</title>
 
     <link href="../../public/assets/css/style.css" rel="stylesheet">
     <link href="../../public/assets/css/product-detail.css" rel="stylesheet">
@@ -21,16 +21,16 @@
             <div class="product card">
                 <div class="product-image-box">
                     <div class="dummy-for-image"></div>
-                    <img id="image1" src="<%= product_image_URL %>" class="product-image" alt="img1"/>
+                    <img id="image1" src="<%= product["productImageURL"] %>" class="product-image" alt="product image"/>
                     <div class="dummy-for-image"></div>
                 </div>
 
                 <div class="mid-bar"></div>
 
                 <div class="product-data card p-3">
-                    <h3 class="product-title"><%= product_title %></h3>
+                    <h3 class="product-title"><%= product["title"] %></h3>
 
-                    <span class="badge bg-dark"><%= tag %></span>
+                    <span class="badge bg-info"><%= product["tag"] %></span>
 
                     <div class="horizontal-line"></div>
 
@@ -39,7 +39,7 @@
 
                     <div class="horizontal-line"></div>
 
-                    <p class="product-short-description"><%= short_description %></p>
+                    <p class="product-short-description"><%= product["shortDescription"] %></p>
 
                     <div class="horizontal-line"></div>
 
@@ -49,14 +49,14 @@
                         </div>
 
                         <div class="price-container2">
-                            <h3><%= price %></h3>
+                            <h3><%= product["price"] %>$</h3>
                         </div>
                     </div>
 
                     <div class="horizontal-line"></div>
 
-                    <a href="#">
-                        <button type="button" class="btn btn-lg btn-outline-primary">
+                    <a href="/store/buy/<%= product["productId"] %>">
+                        <button type="button" class="btn btn-lg btn-outline-primary" style="width: 100%;">
                             Buy now
                         </button>
                     </a>
@@ -67,7 +67,7 @@
         <div class="product-long-description-container">
             <div class="product-long-description card">
                 <h3>[ DESCRIPTION ]</h3>
-                <%- description %>
+                <%- product["description"] %>
             </div>
         </div>
     </div>

@@ -54,15 +54,6 @@ app
         res.status(404).redirect("/err/404")
     })
 
-    //SET HTTPS PROTOCOL IS REQUIRED
-    .use((req, res, next) => {
-        if (req.secure) {
-            next()
-        } else {
-            res.redirect(`https://${req.hostname}/${req.url}`)
-        }
-    })
-
 //STARTING SERVER
 app.listen(httpPort, () => {
     console.log("HTTP Server Started! HTTP Listening On Port: " + httpPort)

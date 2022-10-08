@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("../modules/database.js");
+const accountChecker = require("../modules/accountChecker.js");
 
 let router = express.Router()
 
@@ -8,41 +9,26 @@ router
         res.redirect("/store/list")
     })
     .get("/list", async (req, res) => {
-        const context = {
-            products: await db.getProducts()
-        };
-
-        res.render("store/list.ejs", context, (err, html) => {
-            if (err) {
-                res.status(500).redirect("/err/" + res.statusCode);
-            }
-
-            res.send(html);
-        });
+        res.render("store/list.ejs", { products: await db.getProducts() });
     })
     .get("/detail/:title", async (req, res) => {
         const title = req.params.title;
-        let data = await db.getProductByTitle(title);
 
-        if (data == null) {
+        const product = await db.getProductByTitle(title);
+        if (product == null) {
             res.status(404).redirect("/err/" + res.statusCode);
             return;
         }
 
-        data = await JSON.parse(JSON.stringify(data));
+        res.render("store/detail.ejs", { product: product });
+    })
+    .get("/buy/:productId", async(req, res) => {
+        if (!await accountChecker.isLoggedIn(req, res)) {
+            return;
+        }
 
-        const context = {
-            product_title: data["title"],
-            tag: data["tag"],
-            short_description: data["shortDescription"],
-            description: data["description"],
-            price: data["price"] + "$",
-            product_image_URL: data["productImageURL"]
-        };
-
-        res.render("store/detail.ejs", context, (err, html) => {
-            res.send(html)
-        });
+        res.render("store/buy.ejs", { product:
+                await db.getProductByProductId(req.params.productId) });
     })
 
 module.exports = router

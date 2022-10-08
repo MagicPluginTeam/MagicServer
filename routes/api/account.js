@@ -57,13 +57,12 @@ router
             return;
         }
 
-        let data = JSON.parse(JSON.stringify(user));
-        if (data["isMailVerified"] === true) {
+        if (user["isMailVerified"] === true) {
             res.status(400).send("Already verified.");
             return;
         }
 
-        if (code === data["verifyCode"]) {
+        if (code === user["verifyCode"]) {
             await db.updateUserByUserId(userId, { isMailVerified: true });
             await db.updateUserByUserId(userId, { verifyCode: null });
             res.status(200).redirect("/signin?verify=true");
@@ -86,8 +85,6 @@ router
             return;
         }
 
-        user = JSON.parse(JSON.stringify(user));
-
         hasher({ password: req.body.password, salt: user["salt"] }, async (err, pass, salt, hash) => {
             console.log(hash);
             console.log(user["passwordHash"]);
@@ -95,10 +92,10 @@ router
 
             if (hash === user["passwordHash"]) {
                 await db.deleteUserByUserId(userId);
-            } else {
-                res.status(403).send("password is incorrect.");
                 return;
             }
+
+            res.status(403).send("password is incorrect.");
         });
     })
     .get("/delete/:userId", async (req, res) => {
@@ -117,7 +114,6 @@ router
             return;
         }
 
-        user = JSON.parse(JSON.stringify(user));
         if (!user["isAdmin"]) {
             res.status(403).redirect("/err/" + res.statusCode);
             return;

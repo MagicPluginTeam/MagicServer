@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= products[i].title %></h5>
                         <p class="card-text">
-                            <span class="badge bg-dark"><%= products[i].tag %></span>
+                            <span class="badge bg-info"><%= products[i].tag %></span>
                         </p>
                         <div class="card-info">
                             <a href="/api/product/delete/<%= products[i].productId %>" style="width: 100%;">
@@ -36,7 +36,7 @@
                                     Delete
                                 </button>
                             </a>
-                            <small class="text-dark"><%= products[i].price %>$</small>
+                            <small class="text-dark" style="margin: 0.5rem;"><%= products[i].price %>$</small>
                         </div>
                     </div>
                 </div>

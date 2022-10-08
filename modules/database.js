@@ -209,7 +209,7 @@ module.exports = {
     getPaymentByOrderId,
     getPaymentsByUserId,
     getPaymentsByOrderId,
-    getProductByproductId,
+    getProductByProductId: getProductByproductId,
     getProductByTitle,
     getProducts,
     getPublicBannedUsers,

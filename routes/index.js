@@ -53,7 +53,13 @@ router
             return;
         }
 
-        res.render("mypage/index.ejs", { user: await db.getUserByUserId(req.cookies["userId"]) });
+        let userId = req.cookies["userId"];
+        let context = {
+            user: await db.getUserByUserId(userId),
+            payments: await db.getPaymentsByUserId(userId)
+        };
+
+        res.render("mypage/index.ejs", context);
     })
     .get("/company", (req, res) => {
         res.render("company.ejs");

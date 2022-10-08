@@ -2,14 +2,13 @@ const crypto = require("crypto");
 const express = require("express");
 const request = require("request");
 const db = require("../../modules/database.js");
-const adminChecker = require("../../modules/accountChecker");
-const accountChecker = require("../../modules/accountChecker");
+const accountChecker = require("../../modules/accountChecker.js");
 
 let router = express.Router()
 
 router
     .post("/", async (req, res) => {
-        if (!await adminChecker.isAdmin(req)) {
+        if (!await accountChecker.isAdmin(req)) {
             res.status(403).redirect("/err/" + res.statusCode);
             return;
         }
@@ -18,13 +17,13 @@ router
 
         res.status(200).redirect("/admin/store/create");
     })
-    .get("/delete/:id", async (req, res) => {
-        if (!await adminChecker.isAdmin(req)) {
+    .get("/delete/:productId", async (req, res) => {
+        if (!await accountChecker.isAdmin(req)) {
             res.status(403).redirect("/err/" + res.statusCode);
             return;
         }
 
-        await db.deleteProductByProductId(req.params.id);
+        await db.deleteProductByProductId(req.params.productId);
 
         res.status(200).redirect("/admin/store/list");
     })
@@ -46,20 +45,72 @@ router
                 userId: userId,
                 productId: productId,
                 customerName: body.customerName,
-                cardNumber1: body.cardNumber1,
-                cardNumber2: body.cardNumber2,
-                cardNumber3: body.cardNumber3,
-                cardNumber4: body.cardNumber4,
+                cardNumber: body.cardNumber,
                 cardExpirationYear: body.cardExpirationYear,
                 cardExpirationMonth: body.cardExpirationMonth,
                 customerIdentityNumber: body.customerIdentityNumber
             },
             json: true
+        };
+
+        request.post("https://magicplugin.net/api/payment", options, (err, response, body) => {
+            res.json({
+                receiptUrl: body.returnData.body.card.receiptUrl,
+                price: body.returnData.body.totalAmount + " " + body.returnData.body.currency,
+                status: body.returnData.body.status,
+            });
+        })
+    })
+
+    //API
+    .get("/:queryType/:query/:dataType", async (req, res) => {
+        let product;
+
+        if (req.params.queryType === "id") {
+            product = await db.getProductByProductId(req.params.query);
+        } else if (req.params.queryType === "title") {
+            product = await db.getProductByTitle(req.params.query);
+        } else {
+            res.json({
+                status: "ERROR",
+                msg: "INVALID_QUERY_TYPE",
+                data: null
+            });
+            return;
         }
 
-        request.post("https://magicplugin.net/api/payment", options, (req, res) => {
+        if (product === null) {
+            res.json({
+                status: "ERROR",
+                msg: "INVALID_QUERY",
+                data: null
+            });
+            return;
+        }
 
-        })
+        if (req.params.dataType === "all") {
+            res.json({
+                status: "DONE",
+                msg: "SUCCESS",
+                data: product
+            });
+        } else {
+            let data = product[req.params.dataType];
+            if (data === undefined) {
+                res.json({
+                    status: "ERROR",
+                    msg: "INVALID_DATA_TYPE",
+                    data: null
+                });
+                return;
+            }
+
+            res.json({
+                status: "DONE",
+                msg: "SUCCESS",
+                data: data
+            });
+        }
     })
 
 module.exports = router

@@ -1,7 +1,6 @@
 const express = require("express");
 const request = require("request");
 const uuid = require("uuid");
-const accountChecker = require("../../modules/accountChecker");
 const db = require("../../modules/database");
 
 let router = express.Router();
@@ -16,7 +15,7 @@ router
         }
 
         let user = await db.getUserByUserId(userId);
-        let product = await db.getProductByproductId(productId);
+        let product = await db.getProductByProductId(productId);
         if (user === null) {
             res.status(403).redirect("/err/" + res.statusCode);
             return;
@@ -29,37 +28,52 @@ router
         user = JSON.parse(JSON.stringify(user));
         product = JSON.parse(JSON.stringify(product));
 
-        let options = {
-            headers: {
-                Authorization: "Basic " + Buffer.from(process.env.TOSS_SECRET_KEY + ":").toString("base64"),
-                "Content-Type": "application/json"
-            },
-            body: {
-                amount: product["price"],
-                orderId: uuid.v4(),
-                orderName: product["title"],
-                customerName: req.body.customerName,
-                cardNumber: req.body.cardNumber1 + req.body.cardNumber2 + req.body.cardNumber3 + req.body.cardNumber4,
-                cardExpirationYear: req.body.cardExpirationYear,
-                cardExpirationMonth: req.body.cardExpirationMonth,
-                customerIdentityNumber: req.body.customerIdentityNumber
-            },
-            json: true
-        }
+        await request.get("https://api.frankfurter.app/latest?from=USD&to=KRW", { json: true }, async (err_, response_, body_) => {
+            let options = {
+                headers: {
+                    Authorization: "Basic " + Buffer.from(process.env.TOSS_SECRET_KEY + ":").toString("base64"),
+                    "Content-Type": "application/json"
+                },
+                body: {
+                    amount: product["price"] * body_.rates.KRW,
+                    orderId: uuid.v4(),
+                    orderName: product["title"],
+                    customerName: req.body.customerName,
+                    cardNumber: req.body.cardNumber,
+                    cardExpirationYear: req.body.cardExpirationYear,
+                    cardExpirationMonth: req.body.cardExpirationMonth,
+                    customerIdentityNumber: req.body.customerIdentityNumber
+                },
+                json: true
+            };
 
-        let data;
-        request.post("https://api.tosspayments.com/v1/payments/key-in", options, async (err, response, body) => {
-            if (err) {
-                console.log("Error while calling TossPayments API");
-                return;
-            }
+            await request.post("https://api.tosspayments.com/v1/payments/key-in", options, async (err, response, body) => {
+                if (err) {
+                    res.json({
+                        status: "ERROR",
+                        msg: "API_REQUEST_ERROR",
+                        returnData: null
+                    });
+                    return;
+                }
 
-            data = JSON.parse(JSON.stringify(response));
+                if (JSON.parse(JSON.stringify(body))["message"] !== undefined) {
+                    res.json({
+                        status: "ERROR",
+                        msg: JSON.parse(JSON.stringify(body))["message"],
+                        returnData: null
+                    });
+                    return;
+                }
 
-            await db.generatePaymentModel(options.body.orderId, userId, productId).save();
+                await db.generatePaymentModel(options.body.orderId, userId, productId).save();
+                await db.updateProductByProductId(productId, { buys: product["buys"] + 1 });
 
-            res.json({
-                returnData: data
+                res.json({
+                    status: "DONE",
+                    msg: "SUCCESS",
+                    returnData: response
+                });
             });
         });
     })

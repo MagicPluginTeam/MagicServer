@@ -2,13 +2,13 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const db = require("../modules/database.js");
-const adminChecker = require("../modules/accountChecker.js");
+const accountChecker = require("../modules/accountChecker.js");
 
 let router = express.Router();
 
 router
     .use(async (req, res, next) => {
-        if (await adminChecker.isAdmin(req, res)) {
+        if (await accountChecker.isAdmin(req, res)) {
             next();
         }
     })
@@ -33,6 +33,7 @@ router
         res.render("admin/image/list.ejs", { images: fs.readdirSync(path.join(__dirname + "/../serverfile/images")) });
     })
 
+    //ACCOUNT
     .get("/account/list", async (req, res) => {
         res.render("admin/account/list.ejs", { accounts: await db.getUsers() });
     })
@@ -40,6 +41,7 @@ router
         res.render("admin/account/detail.ejs", { user: await db.getUserByUserId(req.params.userId) });
     })
 
+    //SHORT LINK
     .get("/r/make", async (req, res) => {
         res.render("admin/redirect/make.ejs");
     })

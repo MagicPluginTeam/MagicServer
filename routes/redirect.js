@@ -13,7 +13,7 @@ router
             return;
         }
 
-        res.redirect(JSON.parse(JSON.stringify(data))["url"]);
+        res.redirect(data["url"]);
     })
 
 module.exports = router;
