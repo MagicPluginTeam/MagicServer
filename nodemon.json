@@ -1,4 +1,0 @@
-{
-  "ignore": ["views/*"],
-  "exac": "babel-node server.js"
-}

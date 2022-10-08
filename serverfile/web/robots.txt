@@ -1,5 +1,0 @@
-User-agent: BadBot
-Disallow: /
-
-User-agent: WebCrawler
-Allow: /
