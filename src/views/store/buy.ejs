@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="MagicPlugin Buy"/>
+    <meta property="og:image" content="../public/assets/img/logo_transparent.png"/>
+
+    <title>Buy · Magic Plugin</title>
+
+    <link href="../../public/assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/assets/css/buy.css">
+</head>
+<body>
+<main>
+    <%- include("../include/header.html"); %>
+
+    <div class="container">
+        <div class="content">
+            <form action="/api/product/buy/<%= product.productId %>" method="POST">
+                <div class="payment-title">
+                    <h1>Payment Information</h1>
+                </div>
+                <div class="form-container">
+                    <div class="field-container">
+                        <label for="cardNumber">Card Number</label>
+                        <input name="cardNumber" id="cardNumber" type="text" pattern="[0-9]*"
+                               inputmode="numeric" maxlength="16" required >
+                    </div>
+
+                    <div class="field-container">
+                        <label for="cardExpirationMonth">Expiration Month</label>
+                        <input name="cardExpirationMonth" id="cardExpirationMonth" type="text" pattern="[0-9]*"
+                               inputmode="numeric" maxlength="2" required >
+                    </div>
+                    <div class="field-container">
+                        <label for="cardExpirationYear">Expiration Year</label>
+                        <input name="cardExpirationYear" id="cardExpirationYear" type="text" pattern="[0-9]*"
+                               inputmode="numeric" maxlength="2" required >
+                    </div>
+
+                    <div class="field-container">
+                        <label for="customerName">Name</label>
+                        <input name="customerName" id="customerName" maxlength="20" type="text" required >
+                    </div>
+
+                    <div class="field-container">
+                        <label for="customerIdentityNumber">birthday (as 6 character)</label>
+                        <input name="customerIdentityNumber" id="customerIdentityNumber" type="text" pattern="[0-9]*"
+                               inputmode="numeric" maxlength="6" required >
+                    </div>
+                </div>
+
+                <div class="button mb-2 mt-3">
+                    <input class="mb-3" type="submit" value="Check Out">
+                </div>
+            </form>
+
+            <div class="product">
+                <h1>Product Information</h1>
+                <img src="<%= product.thumbnailImageURL %>" alt="product image">
+                <h3><%= product.title %></h3>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../include/footer.html"); %>
+</main>
+</body>
+</html>

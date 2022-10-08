@@ -1,0 +1,3 @@
+{
+  "presets": ["@babal/preset-env"]
+}

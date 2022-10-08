@@ -1,0 +1,114 @@
+html, body, main {
+    background: #121212;
+}
+
+* {
+    color: white;
+}
+
+.product {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.product-card-container {
+    width: auto;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.product-image-box {
+    width: 35rem;
+    height: 35rem;
+    padding: 3rem 0.8rem 0.8rem;
+}
+
+.dummy-for-image {
+    margin-top: 2.5%;
+}
+
+.product-image {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+}
+
+.mid-bar {
+    border-right: 1px solid #dee2e6;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    width: 0;
+    height: auto;
+}
+
+.product-data {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.product-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.15rem;
+}
+
+.product-info {
+    padding-top: 0.5rem;
+}
+
+.product-short-description {
+    padding-top: 0.5rem;
+}
+
+.product-long-description {
+    display: inline-block;
+    width: auto;
+    word-wrap: break-word;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.product-long-description-container {
+    width: auto;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.price-container-box {
+    display: flex;
+    width: 100%;
+}
+
+.price-container1 {
+    width: auto;
+    padding: 1rem;
+}
+
+.price-container2 {
+    width: 70%;
+    padding: 1rem;
+    text-align: right;
+}
+
+.product-btn-group {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.horizontal-line {
+    width: 100%;
+    height: 0.1rem;
+    background-color: #dee2e6;
+}

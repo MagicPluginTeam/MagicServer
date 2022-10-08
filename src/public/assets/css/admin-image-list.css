@@ -1,0 +1,22 @@
+html, body, main {
+    background: #121212;
+}
+
+* {
+    color: white;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    padding: 1.125rem;
+    margin: 0.75rem;
+}
+
+.btn-delete {
+    width: 100%;
+}

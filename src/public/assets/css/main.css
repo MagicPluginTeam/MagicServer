@@ -1,0 +1,25 @@
+* {
+    font-family: 'GmarketSansMedium', sans-serif;
+}
+
+html, body, main {
+    background: #121212;
+}
+
+.landing_container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+}
+
+.landing {
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+.links {
+    text-align: center;
+}

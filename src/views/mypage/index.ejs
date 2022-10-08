@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="MagicPlugin MyPage"/>
+    <meta property="og:image" content="/public/assets/img/logo.png"/>
+
+    <title>MyPage · Magic Account</title>
+
+    <link href="../../public/assets/css/style.css" rel="stylesheet">
+    <link href="../../public/assets/css/mypage-index.css" rel="stylesheet">
+    <link href="../../public/assets/img/logo.png" rel="shortcut icon">
+</head>
+<body>
+<main>
+    <%- include("../include/header.html"); %>
+
+    <div class="container GmarketSansMedium">
+        <div class="menu-wrapper">
+            <div class="card">
+                <div>
+                    <h2>Account Information</h2>
+                    <p><strong>Username | </strong><%= user["username"] %></p>
+                    <p><strong>E-Mail | </strong><%= user["email"] %></p>
+                    <p><strong>UserId | </strong><%= user["userId"] %></p>
+                    <p><strong>RegisterAt | </strong><%= user["registerAt"] %></p>
+                </div>
+            </div>
+            <div class="danger-zone">
+                <form action="/api/account/delete" method="POST">
+                    <h2>Account Delete</h2>
+                    <label for="password-input">Password Check</label>
+                    <input name="password" id="password-input" type="password" placeholder="Enter your password."
+                           required>
+                    <input class="btn btn-lg btn-outline-danger" id="submit-btn" type="submit" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../include/footer.html"); %>
+</main>
+</body>
+</html>

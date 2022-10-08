@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="MagicPlugin Account List"/>
+    <meta property="og:image" content="/public/assets/img/logo.png"/>
+
+    <title>Account List · Magic Plugin</title>
+
+    <link href="../../../public/assets/css/style.css" rel="stylesheet">
+    <link href="../../../public/assets/css/admin-account-list.css" rel="stylesheet">
+    <link href="../../../public/assets/img/logo.png" rel="shortcut icon">
+</head>
+<body>
+<main>
+    <%- include("../../include/header.html"); %>
+
+    <main class="m-5">
+        <div class="row GmarketSansMedium">
+            <% if(accounts.length === 0) { %>
+                <p class="GmarketSansMedium">Oops! Nothing's in here.</p>
+            <% } else { %>
+                <% for(let i = 0; i < accounts.length; i++) { %>
+                    <div class="card">
+                        <img src="../../../public/assets/img/default-avatar.png" class="card-img" alt="profile">
+
+                        <h3><%= (accounts[i])["username"] %></h3>
+
+                        <a href="/api/account/delete/<%= (accounts[i])["userId"] %>" class="btn-delete">
+                            <button type="button" class="btn btn-sm btn-outline-danger">
+                                Delete
+                            </button>
+                        </a>
+                        <a href="/admin/account/detail/<%= (accounts[i])["userId"] %>" class="btn-detail">
+                            <button type="button" class="btn btn-sm btn-outline-info mt-2">
+                                Detail
+                            </button>
+                        </a>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </main>
+
+    <%- include("../../include/footer.html"); %>
+</main>
+</body>
+</html>

@@ -1,0 +1,12 @@
+* {
+    font-family: 'GmarketSansMedium', sans-serif;
+    color: #FFFFFF;
+}
+
+html, body {
+    background-color: #343a40;
+}
+
+.round-img {
+    border-radius: 50%;
+}
