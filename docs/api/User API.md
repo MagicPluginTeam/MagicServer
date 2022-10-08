@@ -2,45 +2,44 @@
 
 ___
 
-> 경로: `/api/account/public/:queryType/:query/:dataType`
-> 타입: `GET`
-> 기능: `유저의 정보를 조회합니다.`
+> 경로: `/api/account/public/:queryType/:query/:dataType`  
+> 타입: `GET`  
+> 기능: `유저의 정보를 조회합니다.`  
 
 ## 파라미터 설명
 ##### queryType
-> 필수: true
-> 값: ["id", "email"]
-> 설명: 유저를 찾는 쿼리의 형식을 지정합니다.
+> 필수: true  
+> 값: ["id", "email"]  
+> 설명: 유저를 찾는 쿼리의 형식을 지정합니다.  
 ##### query
-> 필수: true
-> 값: ["사용자 지정"]
-> 설명: queryType이 `id`이면 유저ID를 넣고, queryType이 `email`이면 유저 이메일을 넣습니다.
-> 		이 때, **유저ID는 username이 아닙니다.**
+> 필수: true  
+> 값: ["사용자 지정"]  
+> 설명: queryType이 `id`이면 유저ID를 넣고, queryType이 `email`이면 유저 이메일을 넣습니다.  
 ##### dataType
-> 필수: true
-> 값: ["all", "userId", "email", "lastLoginAt", "registerAt", "isAdmin", "isMailVerified"]
-> 설명: 필요한 값을 지정합니다.
+> 필수: true  
+> 값: ["all", "userId", "email", "lastLoginAt", "registerAt", "isAdmin", "isMailVerified"]    
+> 설명: 필요한 값을 지정합니다.  
 
 ## 응답 데이터 설명
 ```json
 {
-	status: "DONE",
-	msg: "SUCCESS",
-	data: "1f6a6f0a-d2a2-499b-bba5-8492c9d3210d"
+  "status": "DONE",
+  "msg": "SUCCESS",
+  "data": "1f6a6f0a-d2a2-499b-bba5-8492c9d3210d"
 }
 ```
 ##### status
-> `DONE`: 요청을 성공적으로 처리했습니다.
-> `ERROR`: 요청을 처리하는 과정에서 오류가 발생했습니다.
+> `DONE`: 요청을 성공적으로 처리했습니다.  
+> `ERROR`: 요청을 처리하는 과정에서 오류가 발생했습니다.  
 ##### msg
-> `SUCCESS`: 요청을 성공적으로 처리했습니다.
-> `INVALID_QUERY_TYPE`: 요청한 쿼리 타입이 잘못되었습니다.
-> `INVAILD_QUERY`: 요청한 쿼리로 검색된 상품이 없습니다.
-> `INVALID_DATA_TYPE`: 요청한 데이터 타입이 잘못되었습니다.
-> `NO_PERMISSION`: 요청한 데이터에 접근할 권한이 없습니다.
+> `SUCCESS`: 요청을 성공적으로 처리했습니다.  
+> `INVALID_QUERY_TYPE`: 요청한 쿼리 타입이 잘못되었습니다.  
+> `INVAILD_QUERY`: 요청한 쿼리로 검색된 상품이 없습니다.  
+> `INVALID_DATA_TYPE`: 요청한 데이터 타입이 잘못되었습니다.  
+> `NO_PERMISSION`: 요청한 데이터에 접근할 권한이 없습니다.  
 ##### data
-> `성공`: 요청한 데이터가 반환됩니다.
-> `오류`: null이 반환됩니다.
+> `성공`: 요청한 데이터가 반환됩니다.  
+> `오류`: `null`이 반환됩니다.  
 
 ___
 

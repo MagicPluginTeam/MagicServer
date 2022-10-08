@@ -1,0 +1,8 @@
+#- File -#
+src/.env
+
+#- Folder -#
+docs/api/.obsidian
+src/node_modules
+src/serverfile/tmp/*
+src/serverfile/images/*
