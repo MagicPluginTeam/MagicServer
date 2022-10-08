@@ -13,7 +13,7 @@ router
             return;
         }
 
-        await db.generateProductModel(crypto.randomUUID(), req.body.title, req.body.short_description, req.body.description, req.body.tag, req.body.price, req.body.thumbnailImageURL, req.body.productImageURL).save();
+        await db.generateProductModel(crypto.randomUUID(), req.body.title, req.body.shortDescription, req.body.description, req.body.tag, req.body.price, req.body.thumbnailImageURL, req.body.productImageURL).save();
 
         res.status(200).redirect("/admin/store/create");
     })
@@ -63,13 +63,16 @@ router
     })
 
     //API
-    .get("/:queryType/:query/:dataType", async (req, res) => {
+    .get("/public/:queryType/:query/:dataType", async (req, res) => {
         let product;
+        let queryType = req.params.queryType;
+        let query = req.params.query;
+        let dataType = req.params.dataType;
 
-        if (req.params.queryType === "id") {
-            product = await db.getProductByProductId(req.params.query);
-        } else if (req.params.queryType === "title") {
-            product = await db.getProductByTitle(req.params.query);
+        if (queryType === "id") {
+            product = await db.getProductByProductId(query);
+        } else if (queryType === "title") {
+            product = await db.getProductByTitle(query);
         } else {
             res.json({
                 status: "ERROR",
@@ -88,14 +91,14 @@ router
             return;
         }
 
-        if (req.params.dataType === "all") {
+        if (dataType === "all") {
             res.json({
                 status: "DONE",
                 msg: "SUCCESS",
                 data: product
             });
         } else {
-            let data = product[req.params.dataType];
+            let data = product[dataType];
             if (data === undefined) {
                 res.json({
                     status: "ERROR",

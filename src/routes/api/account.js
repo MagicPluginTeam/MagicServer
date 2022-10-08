@@ -10,10 +10,6 @@ const accountChecker = require("../../modules/accountChecker");
 let router = express.Router();
 
 router
-    .get("/", (req, res) => {
-        res.status(403).redirect("/err/403");
-    })
-
     .post("/signin", async (req, res) => {
         let result = await loginController.SignIn(req, res);
 
@@ -73,7 +69,14 @@ router
     })
 
     .post("/delete", async (req, res) => {
-        let userId = req.cookies["userId"];
+        let userId;
+
+        if (req.body.userId === undefined) {
+            userId = req.cookies["userId"];
+        } else {
+            userId = req.body.userId;
+        }
+
         if (userId === null) {
             res.status(403).redirect("/signin");
             return;
@@ -90,12 +93,13 @@ router
             console.log(user["passwordHash"]);
             console.log({ password: req.body.password, salt: user["salt"] });
 
-            if (hash === user["passwordHash"]) {
-                await db.deleteUserByUserId(userId);
+            if (hash !== user["passwordHash"]) {
+                res.status(403).send("password is incorrect.");
                 return;
             }
 
-            res.status(403).send("password is incorrect.");
+            await db.deleteUserByUserId(userId);
+            res.status(200).redirect("/");
         });
     })
     .get("/delete/:userId", async (req, res) => {
@@ -120,6 +124,75 @@ router
         await db.deleteUserByUserId(userId);
 
         res.status(200).redirect("/admin/account/list");
+    })
+
+    //API
+    .get("/public/:queryType/:query/:dataType", async (req, res) => {
+        let user;
+        let queryType = req.params.queryType;
+        let query = req.params.query;
+        let dataType = req.params.dataType;
+
+        if (queryType === "id") {
+            user = await db.getUserByUserId(query);
+        } else if (queryType === "email") {
+            user = await db.getUserByEmail(query);
+        } else {
+            res.json({
+                status: "ERROR",
+                msg: "INVALID_QUERY_TYPE",
+                data: null
+            });
+            return;
+        }
+
+        if (user === null) {
+            res.json({
+                status: "ERROR",
+                msg: "INVALID_QUERY",
+                data: null
+            });
+            return;
+        }
+
+        if (dataType === "all") {
+            user["passwordHash"] = null;
+            user["salt"] = null;
+            user["verifyCode"] = null;
+
+            res.json({
+                status: "DONE",
+                msg: "SUCCESS",
+                data: user
+            });
+        } else {
+            if (dataType === "passwordHash"
+                || dataType === "salt"
+                || dataType === "verifyCode") {
+                res.json({
+                    status: "ERROR",
+                    msg: "NO_PERMISSION",
+                    data: null
+                });
+                return;
+            }
+
+            let data = user[dataType];
+            if (data === undefined) {
+                res.json({
+                    status: "ERROR",
+                    msg: "INVALID_DATA_TYPE",
+                    data: null
+                });
+                return;
+            }
+
+            res.json({
+                status: "DONE",
+                msg: "SUCCESS",
+                data: data
+            });
+        }
     })
 
 module.exports = router;
