@@ -138,7 +138,7 @@ router
         } else if (queryType === "email") {
             user = await db.getUserByEmail(query);
         } else {
-            res.json({
+            res.status(403).json({
                 status: "ERROR",
                 msg: "INVALID_QUERY_TYPE",
                 data: null
@@ -147,7 +147,7 @@ router
         }
 
         if (user === null) {
-            res.json({
+            res.status(403).json({
                 status: "ERROR",
                 msg: "INVALID_QUERY",
                 data: null
@@ -160,7 +160,7 @@ router
             user["salt"] = null;
             user["verifyCode"] = null;
 
-            res.json({
+            res.status(200).json({
                 status: "DONE",
                 msg: "SUCCESS",
                 data: user
@@ -169,7 +169,7 @@ router
             if (dataType === "passwordHash"
                 || dataType === "salt"
                 || dataType === "verifyCode") {
-                res.json({
+                res.status(403).json({
                     status: "ERROR",
                     msg: "NO_PERMISSION",
                     data: null
@@ -179,7 +179,7 @@ router
 
             let data = user[dataType];
             if (data === undefined) {
-                res.json({
+                res.status(403).json({
                     status: "ERROR",
                     msg: "INVALID_DATA_TYPE",
                     data: null
@@ -187,7 +187,7 @@ router
                 return;
             }
 
-            res.json({
+            res.status(200).json({
                 status: "DONE",
                 msg: "SUCCESS",
                 data: data

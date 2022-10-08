@@ -74,7 +74,7 @@ router
         } else if (queryType === "title") {
             product = await db.getProductByTitle(query);
         } else {
-            res.json({
+            res.status(403).json({
                 status: "ERROR",
                 msg: "INVALID_QUERY_TYPE",
                 data: null
@@ -83,7 +83,7 @@ router
         }
 
         if (product === null) {
-            res.json({
+            res.status(403).json({
                 status: "ERROR",
                 msg: "INVALID_QUERY",
                 data: null
@@ -92,7 +92,7 @@ router
         }
 
         if (dataType === "all") {
-            res.json({
+            res.status(200).json({
                 status: "DONE",
                 msg: "SUCCESS",
                 data: product
@@ -100,7 +100,7 @@ router
         } else {
             let data = product[dataType];
             if (data === undefined) {
-                res.json({
+                res.status(403).json({
                     status: "ERROR",
                     msg: "INVALID_DATA_TYPE",
                     data: null
@@ -108,7 +108,7 @@ router
                 return;
             }
 
-            res.json({
+            res.status(200).json({
                 status: "DONE",
                 msg: "SUCCESS",
                 data: data
