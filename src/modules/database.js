@@ -107,10 +107,6 @@ async function getPaymentsByUserId(userId) {
     return await paymentData.find({ userId: userId }).exec();
 }
 
-async function getPaymentsByOrderId(orderId) {
-    return await paymentData.find({ orderId: orderId }).exec();
-}
-
 async function getProductByproductId(productId) {
     return await productData.findOne({ productId: productId }).exec();
 }
@@ -208,7 +204,6 @@ module.exports = {
     getLicenseByOwnerUserId,
     getPaymentByOrderId,
     getPaymentsByUserId,
-    getPaymentsByOrderId,
     getProductByProductId: getProductByproductId,
     getProductByTitle,
     getProducts,
