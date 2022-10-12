@@ -20,10 +20,8 @@ const redirectData = mongoose.model("redirectData", redirectSchema);
 
 //SETUP FUNCTION
 async function connect() {
-    const url = process.env.DB;
-
     try {
-        await connect1(url);
+        await connect1(process.env.DB_URL);
 
         console.log("Connected to DB");
     } catch (err) {
@@ -39,12 +37,13 @@ function generateLicenseModel(ownerUserId) {
     });
 }
 
-function generatePaymentModel(orderId, userId, productId) {
+function generatePaymentModel(orderId, userId, productId, data) {
     return new paymentData({
         orderId: orderId,
         userId: userId,
         productId: productId,
-        buyAt: Date.now()
+        buyAt: Date.now(),
+        response: data
     })
 }
 
