@@ -1,5 +1,6 @@
 const express = require("express");
 const request = require("request");
+const crypto = require("crypto");
 const db = require("../../modules/database");
 
 let router = express.Router();
@@ -45,13 +46,14 @@ router
                 },
                 json: true
             };
+            let orderId = options.body.orderId;
 
             await request.post("https://api.tosspayments.com/v1/payments/key-in", options, async (err, response, body) => {
                 if (err) {
                     res.status(403).json({
                         status: "ERROR",
                         msg: "API_REQUEST_ERROR",
-                        returnData: null
+                        orderId: null
                     });
                     return;
                 }
@@ -59,19 +61,19 @@ router
                 if (JSON.parse(JSON.stringify(body))["message"] !== undefined) {
                     res.status(403).json({
                         status: "ERROR",
-                        msg: JSON.parse(JSON.stringify(body))["message"],
-                        returnData: null
+                        msg: body.message,
+                        orderId: null
                     });
                     return;
                 }
 
-                await db.generatePaymentModel(options.body.orderId, userId, productId).save();
-                await db.updateProductByProductId(productId, { buys: product["buys"] + 1 });
+                await db.generatePaymentModel(orderId, userId, productId, JSON.stringify(body)).save();
+                await db.updateProductByProductId(productId, { buys: product.buys + 1 });
 
                 res.status(200).json({
                     status: "DONE",
                     msg: "SUCCESS",
-                    returnData: response
+                    orderId: orderId
                 });
             });
         });

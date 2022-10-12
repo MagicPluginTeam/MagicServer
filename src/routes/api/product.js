@@ -54,15 +54,14 @@ router
         };
 
         request.post("https://magicplugin.net/api/payment", options, async (err, response, body) => {
-            let paymentData = await db.getPaymentByOrderId(body.orderId);
-            let responseData = JSON.parse(paymentData.response);
-
-            res.json({
-                receiptUrl: responseData.card.receiptUrl,
-                price: responseData.card.amount + " " + responseData.currency,
-                status: responseData.status,
-            });
-        })
+            if (body.status === "DONE") {
+                res.status(200).redirect("/store/pay/success/" + body.orderId);
+            } else if (body.status === "ERROR") {
+                res.status(403).redirect(`/store/pay/fail?err=${body.msg}&productId=${productId}`);
+            } else {
+                res.status(500).redirect("/err/" + res.statusCode);
+            }
+        });
     })
 
     //API

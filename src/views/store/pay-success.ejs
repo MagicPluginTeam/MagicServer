@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="MagicPlugin Pay Success"/>
+    <meta property="og:image" content="/public/assets/img/logo.png"/>
+
+    <title>Pay Success · Magic Plugin</title>
+
+    <link href="/public/assets/css/style.css" rel="stylesheet">
+    <link href="/public/assets/css/pay-success.css" rel="stylesheet">
+    <link href="/public/assets/img/logo.png" rel="shortcut icon">
+</head>
+<body>
+<main>
+    <%- include("../include/header.html"); %>
+
+    <div class="container text-center pt-5 GmarketSansMedium">
+        <h1><%= user["username"] %>, Your payment is done!</h1>
+        <h3>Thanks for using our product.</h3>
+
+        <div class="p-5 wrapper">
+            <div class="p-3 product-wrapper">
+                <h3>Product</h3>
+                <img class="product-image" src="<%= product.thumbnailImageURL %>" alt="product image">
+                <div class="mid-bar"></div>
+                <div class="product-info">
+                    <h3><strong><%= product["title"] %></strong></h3>
+                    <p><%= product.shortDescription %> / <%= product.price %>$</p>
+                </div>
+            </div>
+            <div class="p-3 card-wrapper">
+                <div class="card-info">
+                    <h3>Card</h3>
+                    <p>Card: <%= response.card.company %> <%= response.card.number %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../include/footer.html"); %>
+</main>
+</body>
+</html>

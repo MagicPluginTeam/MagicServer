@@ -3,13 +3,14 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const mail = require("../modules/mail.js");
+const db = require("../modules/database.js");
 
 let router = express.Router()
 
 // TEST THINGS
 router
     .get("/mailTest/:email", (req, res) => {
-        mail.sendVerifyCode(req.params.email)
+        mail.sendVerifyCode(req.params.email);
 
         const info = "Mail Sent to " + req.params.email + "!"
 
@@ -32,6 +33,32 @@ router
                 fs.unlinkSync(filepath)
             })
         });
+    })
+
+    .get("/pay/success/:orderId", async (req, res) => {
+        let payment = await db.getPaymentByOrderId(req.params.orderId);
+
+        if (payment === null) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        let user = await db.getUserByUserId(payment["userId"]);
+        let product = await db.getProductByProductId(payment["productId"]);
+
+        if (user === null
+            || product === null) {
+            res.status(500).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        let context = {
+            payment: payment,
+            user: user,
+            product: product
+        };
+
+        res.render("store/pay-success.ejs", context);
     })
 
 module.exports = router

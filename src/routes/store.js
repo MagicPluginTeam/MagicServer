@@ -27,8 +27,74 @@ router
             return;
         }
 
-        res.render("store/buy.ejs", { product:
-                await db.getProductByProductId(req.params.productId) });
+        let product = await db.getProductByProductId(req.params.productId);
+
+        if (product === null) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        res.render("store/buy.ejs", { product: product });
+    })
+
+    .get("/pay/success/:orderId", async (req, res) => {
+        if (!await accountChecker.isLoggedIn(req, res)) {
+            return;
+        }
+
+        let userId = req.signedCookies["userId"];
+        if (userId === null) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        let user = await db.getUserByUserId(userId);
+        if (user === null) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        let payment = await db.getPaymentByOrderId(req.params.orderId);
+
+        if (payment === null) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        if (payment.userId !== userId) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        let product = await db.getProductByProductId(payment.productId);
+        let response = JSON.parse(payment.response);
+
+        res.render("store/pay-success.ejs", { payment: payment, user: user, product: product, response: response });
+    })
+    .get("/pay/fail", async (req, res) => {
+        if (!await accountChecker.isLoggedIn(req, res)) {
+            return;
+        }
+
+        let userId = req.signedCookies["userId"];
+        if (userId === null) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        let user = await db.getUserByUserId(userId);
+        if (user === null) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        let payment = await db.getProductByProductId(req.query.productId);
+        if (payment === null) {
+            res.status(403).redirect("/err/" + res.statusCode);
+            return;
+        }
+
+        res.render("store/pay-fail.ejs", { user: user, product: product, msg: req.query.err });
     })
 
 module.exports = router
