@@ -53,7 +53,7 @@ router
             return;
         }
 
-        let userId = req.cookies["userId"];
+        let userId = req.signedCookies["userId"];
         let context = {
             user: await db.getUserByUserId(userId),
             payments: await db.getPaymentsByUserId(userId)

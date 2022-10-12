@@ -72,7 +72,7 @@ router
         let userId;
 
         if (req.body.userId === undefined) {
-            userId = req.cookies["userId"];
+            userId = req.signedCookies["userId"];
         } else {
             userId = req.body.userId;
         }

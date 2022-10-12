@@ -1,7 +1,7 @@
 const db = require("../modules/database.js");
 
 async function isAdmin(req, res) {
-    let userId = req.cookies["userId"];
+    let userId = req.signedCookies["userId"];
 
     if (userId === undefined) {
         res.status(403).redirect("/signin");
@@ -24,7 +24,7 @@ async function isAdmin(req, res) {
 }
 
 async function isLoggedIn(req, res) {
-    let userId = req.cookies["userId"];
+    let userId = req.signedCookies["userId"];
 
     if (userId === undefined) {
         res.redirect("/signin")

@@ -5,10 +5,11 @@ exports.SignIn = async (req, res) => {
     let result = await loginService.SignIn(req);
 
     if (result.code === 0) {
-        res.cookie("userId", result.data["userId"]);
+        res.cookie("userId", result.data["userId"], { signed: true });
         res.cookie("username", result.data["username"], {
             maxAge: 60*60*100,
-            path: "/"
+            path: "/",
+            signed: true
         });
 
         await db.updateUserByUserId(result.data["userId"], {lastLoginAt: Date.now()});

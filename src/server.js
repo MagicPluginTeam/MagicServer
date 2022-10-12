@@ -21,14 +21,14 @@ const httpPort = 80
 
 //SETUP
 const app = express()
-db.connect().then()
+db.connect().then();
 app
     //SET BODY-PARSER
     .use(bodyParser.json())
-    .use(bodyParser.urlencoded({extended:true}))
+    .use(bodyParser.urlencoded({ extended: true }))
 
     //SET COOKIE-PARSER
-    .use(cookieParser())
+    .use(cookieParser(process.env.COOKIE_SECRET))
 
     //SET STATIC PATH
     .use("/images", express.static(__dirname + "/serverfile/images"))
