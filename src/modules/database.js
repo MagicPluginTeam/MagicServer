@@ -1,6 +1,6 @@
 //REQUIRES
 require("dotenv").config();
-const {mongoose, connect: connect1} = require("mongoose");
+const { mongoose, connect: connect1 } = require("mongoose");
 
 //SCHEMAS
 const licenseSchema = require("../schema/LicenseSchema.js");

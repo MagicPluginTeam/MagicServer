@@ -35,7 +35,7 @@ router
 
         let body = req.body;
 
-        let userId = req.cookies["userId"];
+        let userId = req.signedCookies["userId"];
         let productId = req.params.productId;
         let options = {
             headers: {
@@ -53,16 +53,53 @@ router
             json: true
         };
 
-        request.post("https://magicplugin.net/api/payment", options, (err, response, body) => {
+        request.post("https://magicplugin.net/api/payment", options, async (err, response, body) => {
+            let paymentData = await db.getPaymentByOrderId(body.orderId);
+            let responseData = JSON.parse(paymentData.response);
+
             res.json({
-                receiptUrl: body.returnData.body.card.receiptUrl,
-                price: body.returnData.body.totalAmount + " " + body.returnData.body.currency,
-                status: body.returnData.body.status,
+                receiptUrl: responseData.card.receiptUrl,
+                price: responseData.card.amount + " " + responseData.currency,
+                status: responseData.status,
             });
         })
     })
 
     //API
+
+    /**
+     * @api {get} /public/:queryType/:query/:dataType Request product information.
+     *
+     * @apiVersion 1.0.0
+     * @apiName getProductInformation
+     * @apiGroup product
+     *
+     * @apiParam {String} queryType QueryType. ["id", "title"]
+     * @apiParam {String} query Query string.
+     * @apiParam {String} dataType DataType. ["all", "productId", "title", "shortDescription", "description", "tag", "price", "createAt", "lastUpdateAt", "thumbnailImageURL", "productImageURL", "buys"]
+     *
+     * @apiSuccessExample {json} SuccessExample
+     *     HTTP/1.1 200 OK
+     *     {
+     *         "status": "DONE",
+     *         "msg": "SUCCESS",
+     *         "data": "29604aef-c6fc-4669-b069-903a555f05b9"
+     *     }
+     * @apiSuccess {String} status Response status. ["DONE", "ERROR"]
+     * @apiSuccess {String} msg Response status msg. ["SUCCESS", "INVALID_QUERY_TYPE", "INVALID_QUERY", "INVALID_DATA_TYPE"]
+     * @apiSuccess {Any} data Requested data.
+     *
+     * @apiErrorExample {json} ErrorExample
+     *     HTTP/1.1 403 ERROR
+     *     {
+     *         "status": "ERROR",
+     *         "msg": "NO_PERMISSION",
+     *         "data": null
+     *     }
+     * @apiError {String} status Response status. ["DONE", "ERROR"]
+     * @apiError {String} msg Response status msg. ["SUCCESS", "INVALID_QUERY_TYPE", "INVALID_QUERY", "INVALID_DATA_TYPE"]
+     * @apiError {Any} data Always null.
+     */
     .get("/public/:queryType/:query/:dataType", async (req, res) => {
         let product;
         let queryType = req.params.queryType;
