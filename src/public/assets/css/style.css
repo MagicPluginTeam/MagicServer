@@ -1063,3 +1063,7 @@
     color:#6c757d
     !important
 }
+
+*::selection {
+    background: rgba(35, 131, 226, 0.28);
+}
