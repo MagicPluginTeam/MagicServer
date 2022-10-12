@@ -64,8 +64,5 @@ router
     .get("/company", (req, res) => {
         res.render("company.ejs");
     })
-    .get("/us", (req, res) => {
-        res.render("about-us.ejs");
-    })
 
 module.exports = router
