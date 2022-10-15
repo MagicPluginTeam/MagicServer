@@ -39,7 +39,7 @@ router
         let payment = await db.getPaymentByOrderId(req.params.orderId);
 
         if (payment === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
@@ -48,7 +48,7 @@ router
 
         if (user === null
             || product === null) {
-            res.status(500).redirect("/err/" + res.statusCode);
+            res.redirect("/err/500");
             return;
         }
 
