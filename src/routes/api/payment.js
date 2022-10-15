@@ -10,18 +10,18 @@ router
         let userId = req.body.userId;
         let productId = req.body.productId;
         if (productId === undefined) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
         let user = await db.getUserByUserId(userId);
         let product = await db.getProductByProductId(productId);
         if (user === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
         if (product === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 

@@ -32,7 +32,7 @@ router
             if (result.msg === "This email is already taken.") {
                 res.send("This email is already taken.");
             } else {
-                res.status(500).redirect("/err/" + res.statusCode);
+                res.redirect("/err/500");
             }
         } else {
             let data = result.data;

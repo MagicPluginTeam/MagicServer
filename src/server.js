@@ -51,7 +51,7 @@ app
 
     //SET ERROR PAGES
     .use((req, res) => {
-        res.status(404).redirect("/err/404")
+        res.redirect("/err/404");
     })
 
 //STARTING SERVER

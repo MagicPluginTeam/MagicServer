@@ -31,11 +31,12 @@
                             <span class="badge bg-info"><%= products[i].tag %></span>
                         </p>
                         <div class="card-info">
-                            <a href="/store/buy/<%= products[i].productId %>" style="width: 100%;">
+                            <a href="/store/buy/<%= products[i].productId %>" style="width: fit-content;">
                                 <button type="button" class="btn btn-sm btn-outline-secondary btn-buy">
-                                    Buy now
+                                        Buy now
                                 </button>
                             </a>
+
                             <small class="text-dark" style="margin: 0.5rem;"><%= products[i].price %>$</small>
                         </div>
                     </div>

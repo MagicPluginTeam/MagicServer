@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="MagicPlugin Buy"/>
-    <meta property="og:image" content="../public/assets/img/logo_transparent.png"/>
+    <meta property="og:title" content="MagicStore Buy"/>
+    <meta property="og:image" content="/public/assets/img/logo.png"/>
 
-    <title>Buy · Magic Plugin</title>
+    <title>Buy · MagicStore</title>
 
     <link href="/public/assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/assets/css/buy.css">
@@ -16,7 +16,7 @@
 <main>
     <%- include("../include/header.html"); %>
 
-    <div class="container">
+    <div class="container GmarketSansMedium">
         <div class="content">
             <form action="/api/product/buy/<%= product.productId %>" method="POST">
                 <div class="payment-title">
@@ -60,7 +60,8 @@
             <div class="product">
                 <h1>Product Information</h1>
                 <img src="<%= product.thumbnailImageURL %>" alt="product image">
-                <h3><%= product.title %> / <%= product.price %>$</h3>
+                <h3><%= product.title %></h3>
+                <p>Price: <%= product.price %>$</p>
             </div>
         </div>
     </div>

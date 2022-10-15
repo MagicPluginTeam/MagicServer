@@ -16,7 +16,7 @@ async function isAdmin(req, res) {
     user = JSON.parse(JSON.stringify(user));
 
     if (!user["isAdmin"]) {
-        res.status(403).redirect("/err/" + res.statusCode);
+        res.redirect("/err/403");
         return false;
     }
 

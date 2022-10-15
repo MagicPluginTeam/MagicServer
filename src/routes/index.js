@@ -5,10 +5,6 @@ const accountChecker = require("../modules/accountChecker.js");
 let router = express.Router()
 
 router
-    .get("/err/:code", (req, res) => {
-        res.render("err.ejs", { code: req.params.code });
-    })
-
     .get("/", (req, res) => {
         res.render("index.ejs");
     })
@@ -30,7 +26,7 @@ router
         }
 
         if (context["signup"] && context["verify"]) {
-            res.status(400).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
@@ -63,6 +59,19 @@ router
     })
     .get("/company", (req, res) => {
         res.render("company.ejs");
+    })
+
+    .get("/err/:code", async (req, res) => {
+        let code = req.params.code;
+
+        code *= 1;
+
+        if (isNaN(code)) {
+            res.redirect("/err/403");
+            return;
+        }
+
+        res.render("err.ejs", { code: code });
     })
 
 module.exports = router

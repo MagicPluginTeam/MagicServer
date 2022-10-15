@@ -9,7 +9,7 @@ let router = express.Router()
 router
     .post("/", async (req, res) => {
         if (!await accountChecker.isAdmin(req)) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
@@ -19,7 +19,7 @@ router
     })
     .get("/delete/:productId", async (req, res) => {
         if (!await accountChecker.isAdmin(req)) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
@@ -59,7 +59,7 @@ router
             } else if (body.status === "ERROR") {
                 res.status(403).redirect(`/store/pay/fail?err=${body.msg}&productId=${productId}`);
             } else {
-                res.status(500).redirect("/err/" + res.statusCode);
+                res.redirect("/err/500");
             }
         });
     })

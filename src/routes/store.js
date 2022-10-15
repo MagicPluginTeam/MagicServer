@@ -16,7 +16,7 @@ router
 
         const product = await db.getProductByTitle(title);
         if (product == null) {
-            res.status(404).redirect("/err/" + res.statusCode);
+            res.redirect("/err/404");
             return;
         }
 
@@ -30,7 +30,7 @@ router
         let product = await db.getProductByProductId(req.params.productId);
 
         if (product === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
@@ -44,25 +44,25 @@ router
 
         let userId = req.signedCookies["userId"];
         if (userId === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
         let user = await db.getUserByUserId(userId);
         if (user === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
         let payment = await db.getPaymentByOrderId(req.params.orderId);
 
         if (payment === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
         if (payment.userId !== userId) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
@@ -78,19 +78,19 @@ router
 
         let userId = req.signedCookies["userId"];
         if (userId === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
         let user = await db.getUserByUserId(userId);
         if (user === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+            res.redirect("/err/403");
             return;
         }
 
-        let payment = await db.getProductByProductId(req.query.productId);
-        if (payment === null) {
-            res.status(403).redirect("/err/" + res.statusCode);
+        let product = await db.getProductByProductId(req.query.productId);
+        if (product === null) {
+            res.redirect("/err/403");
             return;
         }
 
