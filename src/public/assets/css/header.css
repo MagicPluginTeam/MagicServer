@@ -37,10 +37,6 @@ a {
     padding-right: 10rem;
 }
 
-.fold-item {
-    width: fit-content;
-}
-
 @media (min-width: 1200px) {
     .menu-mid-bar {
         border-left: 1px solid gray;
