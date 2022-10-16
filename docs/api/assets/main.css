@@ -284,12 +284,12 @@ td.code {
 ins {
   background: #60d060;
   text-decoration: none;
-  color: #000000;
+  color: white000;
 }
 
 del {
   background: #f05050;
-  color: #000000;
+  color: white000;
 }
 
 .label-ins {
@@ -504,12 +504,12 @@ p.deprecated span{
   }
 
   p {
-    color: #000000
+    color: white000
   }
 
   pre {
     background-color: #ffffff;
-    color: #000000;
+    color: white000;
     padding: 10px;
     border: #808080 1px solid;
     border-radius: 6px;

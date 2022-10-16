@@ -25,9 +25,9 @@ async function sendVerifyCode(mailAddr, userId) {
     })
 
     let mailOptions = {
-        from: "MagicPluginTeam",
+        from: "Pexel",
         to: mailAddr,
-        subject: "MagicPluginTeam - Verify",
+        subject: "Pexel - Verify",
         html: HTML
     };
 
