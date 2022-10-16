@@ -1,7 +1,11 @@
 html, body {
     height: 90%;
-    background-color: #121212;
+    background-color: black;
     text-align: center;
+}
+
+h1, p {
+    color: white;
 }
 
 .err-code{
@@ -28,12 +32,10 @@ err-code:nth-child(3) { animation-delay: .2s; }
 
 .err {
     text-align: center;
-    color: #FFFFFF;
 }
 
 .hyper {
     text-align: center;
-    color: #FFFFFF;
 }
 
 @keyframes bounce {

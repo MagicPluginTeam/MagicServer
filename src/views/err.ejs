@@ -8,16 +8,27 @@
         <link href="/public/assets/css/err.css" rel="stylesheet">
 
         <title><%= code %> ERROR</title>
+
+        <script>
+            function bruce() {
+                document.getElementById("error-guy").style.visibility = "visible";
+            }
+        </script>
     </head>
     <body>
-        <article>
-            <h1 class="err-code GmarketSansMedium">
-                <span><%= code %></span>
-                <span>!</span>
-            </h1>
+        <div id="error-guy" style="visibility: hidden; height: 0; width: 0;">
+            <img src="/public/assets/img/error-guy.png" alt="error guy">
+        </div>
 
-            <h1 class="Cafe24SsurroundAir err"><%= "Something Went Wrong" %> :(</h1>
-            <a href="/"><p class="hyper btn btn-outline-primary Cafe24SsurroundAir">Go back to main page</p></a>
-        </article>
+        <h1 class="err-code GmarketSansMedium">
+            <span><%= code %></span>
+            <span>!</span>
+        </h1>
+
+        <h1 class="Cafe24SsurroundAir err">Something went wrong :(</h1>
+        <p class="Cafe24SsurroundAir">Oops! You tried to walk on cliff.</p>
+        <a href="/"><p class="hyper btn btn-outline-primary Cafe24SsurroundAir">Go back to main page</p></a>
+
+        <button class="btn btn-lg btn-outline-dark" onclick="bruce()"></button>
     </body>
 </html>
