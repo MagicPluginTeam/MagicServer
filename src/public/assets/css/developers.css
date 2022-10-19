@@ -14,7 +14,6 @@ html, body, main {
 }
 
 .person {
-    display: flex;
     width: fit-content;
     margin: 1rem;
 }
@@ -23,4 +22,20 @@ html, body, main {
     width: auto;
     padding: 2rem;
     height: auto;
+}
+
+.links {
+    display: flex;
+    width: auto;
+    margin: 2rem;
+    justify-content: space-between;
+}
+
+.logo {
+    filter: invert(100%);
+    width: 40px;
+    height: 40px;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 0.4rem;
 }
