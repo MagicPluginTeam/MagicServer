@@ -25,6 +25,7 @@ router
 
                 if (body_.email === null) {
                     res.send("You need to set email address as public.");
+                    return;
                 }
 
                 res.json(body_);
