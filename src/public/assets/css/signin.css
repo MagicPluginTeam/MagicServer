@@ -105,7 +105,7 @@ form input[type="radio"] {
 
 form .button {
     height: 45px;
-    margin: 35px 0
+    margin: 35px 0;
 }
 
 form .button input {
@@ -146,7 +146,28 @@ form .button input:hover {
     background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }
 
-.header
+.third-party-item-wrapper {
+    display: flex;
+    margin: auto;
+    width: fit-content;
+    padding: 0.3rem;
+}
+
+.third-party-text {
+    margin: auto 0;
+}
+
+.third-party-logo-wrapper {
+    height: auto;
+    width: fit-content;
+    margin-right: 1rem;
+}
+
+.third-party-logo {
+    width: 30px;
+    height: 30px;
+    margin: auto 0;
+}
 
 @media (max-width: 584px) {
     .container {

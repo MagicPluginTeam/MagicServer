@@ -105,10 +105,10 @@ form input[type="radio"] {
 
 form .button {
     height: 45px;
-    margin: 35px 0
+    margin: 35px 0;
 }
 
-.button {
+form .button input {
     height: 100%;
     width: 100%;
     border-radius: 5px;
@@ -122,7 +122,7 @@ form .button {
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 
-.button:hover {
+form .button input:hover {
     transform: scale(0.98);
     background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }

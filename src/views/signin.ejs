@@ -40,7 +40,19 @@
                 <input class="mb-3" type="submit" value="Sign In">
             </div>
         </form>
-        <p class="mt-5 mb-0 text-center">Don't have account? <a href="/signup">Sign Up</a> or <a href="/">Back</a></p>
+        <a href="<%= githubOAuthUrl %>">
+            <button class="third-party">
+                <span class="third-party-item-wrapper">
+                    <span class="third-party-logo-wrapper">
+                        <img src="/public/assets/img/bootstrap/github.svg" class="third-party-logo" alt="Github logo">
+                    </span>
+                    <span class="third-party-text">SignIn via Github</span>
+                </span>
+            </button>
+        </a>
+
+        <p class="mt-5 mb-0 text-center">Don't have an account? <a href="/signup">Sign Up</a> or <a href="/">Back</a>
+        </p>
     </div>
 </div>
 </body>

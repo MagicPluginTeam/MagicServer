@@ -1,31 +1,36 @@
 const express = require("express");
 const db = require("../modules/database.js");
 const accountChecker = require("../modules/accountChecker.js");
+const signinCallback_r = require("./signinCallback.js");
 
-let router = express.Router()
+let router = express.Router();
 
 router
+    .use("/signin/callback", signinCallback_r)
+
     .get("/", (req, res) => {
         res.render("index.ejs");
     })
     .get("/signin", (req, res) => {
-        let context = { signup: undefined, verify: undefined };
+        let context = { signup: undefined, verify: undefined, githubOAuthUrl: undefined };
         let signup = req.query.signup;
         let verify = req.query.verify;
 
-        if (signup === undefined || signup === null) context["signup"] = false;
+        context.githubOAuthUrl = process.env.GITHUB_OAUTH_URL.replace("<%clientId%>", process.env.GITHUB_OAUTH_CLIENT_ID);
+
+        if (signup === undefined || signup === null) context.signup = false;
         else {
             signup = JSON.parse(signup);
             if (signup) context["signup"] = true;
         }
 
-        if (verify === undefined || verify === null) context["verify"] = false;
+        if (verify === undefined || verify === null) context.verify = false;
         else {
             verify = JSON.parse(verify);
             if (verify) context["verify"] = true;
         }
 
-        if (context["signup"] && context["verify"]) {
+        if (context.signup && context.verify) {
             res.redirect("/err/403");
             return;
         }
