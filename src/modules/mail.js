@@ -25,7 +25,7 @@ async function sendVerifyCode(mailAddr, userId) {
     })
 
     let mailOptions = {
-        from: "Pexel",
+        from: "Pexel Team",
         to: mailAddr,
         subject: "Pexel - Verify",
         html: HTML

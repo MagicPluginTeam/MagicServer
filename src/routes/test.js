@@ -5,17 +5,14 @@ const path = require("path");
 const mail = require("../modules/mail.js");
 const db = require("../modules/database.js");
 
-let router = express.Router()
+let router = express.Router();
 
 // TEST THINGS
 router
     .get("/mailTest/:email", (req, res) => {
-        mail.sendVerifyCode(req.params.email);
-
-        const info = "Mail Sent to " + req.params.email + "!"
-
-        console.log(info)
-        res.send(info)
+        mail.sendVerifyCode(req.params.email, undefined).then(r => {
+            res.send(`Mail Sent to ${req.params.email}! | The code is ${r}`);
+        });
     })
     .get("/uuidTest", (req, res) => {
         const uuid = crypto.randomUUID();
