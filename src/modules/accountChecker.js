@@ -1,11 +1,14 @@
 const db = require("../modules/database.js");
+const queryString = require('node:querystring');
 
 async function isAdmin(req, res) {
     let userId = req.signedCookies["userId"];
 
     if (userId === undefined) {
-        res.status(403).redirect("/signin");
-        return;
+        res.redirect(`/signin?${queryString.stringify({
+            redirect: "https://" + req.get("host") + req.originalUrl
+        })}`);
+        return false;
     }
 
     let user = await db.getUserByUserId(userId);
@@ -27,7 +30,9 @@ async function isLoggedIn(req, res) {
     let userId = req.signedCookies["userId"];
 
     if (userId === undefined) {
-        res.redirect("/signin")
+        res.redirect(`/signin?${queryString.stringify({
+            redirect: "https://" + req.get("host") + req.originalUrl
+        })}`);
         return false;
     }
 

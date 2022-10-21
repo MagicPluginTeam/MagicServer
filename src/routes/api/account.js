@@ -12,9 +12,14 @@ let router = express.Router();
 router
     .post("/signin", async (req, res) => {
         let result = await loginController.SignIn(req, res);
+        let redirect = req.query.redirect;
 
         if (result.code !== 100) {
-            res.status(200).redirect("/");
+            if (redirect !== undefined) {
+                res.redirect(redirect);
+            } else {
+                res.redirect("/");
+            }
         } else {
             res.status(400).send(result.msg);
         }

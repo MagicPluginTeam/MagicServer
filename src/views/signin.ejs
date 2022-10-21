@@ -21,7 +21,7 @@
         <% } else if (verify) { %>
             <p style="color: lime;">Successfully verified your e-mail!</p>
         <% } %>
-        <form action="/api/account/signin" method="POST">
+        <form action="<% if (redirect === null) { %>/api/account/signin<% } else { %>/api/account/signin?redirect=<%= redirect %><% } %>" method="POST">
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">E-mail</span>
