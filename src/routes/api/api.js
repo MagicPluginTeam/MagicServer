@@ -1,9 +1,10 @@
 const express = require("express");
 
-const account_r = require("./api/account.js");
-const file_r = require("./api/file.js");
-const payment_r = require("./api/payment.js");
-const product_r = require("./api/product.js");
+const account_r = require("./account.js");
+const file_r = require("./file.js");
+const payment_r = require("./payment.js");
+const product_r = require("./product.js");
+const v1_r = require("./v1/v1.js");
 
 let router = express.Router();
 
@@ -18,5 +19,7 @@ router
     .use("/file", file_r)
     .use("/payment", payment_r)
     .use("/product", product_r)
+
+    .use("/v1", v1_r)
 
 module.exports = router

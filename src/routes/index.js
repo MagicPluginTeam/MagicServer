@@ -1,12 +1,23 @@
 const express = require("express");
 const db = require("../modules/database.js");
 const accountChecker = require("../modules/accountChecker.js");
+
+const admin_r = require("./admin.js");
+const api_r = require("./api/api.js");
+const redirect_r = require("./redirect.js");
 const signinCallback_r = require("./signinCallback.js");
+const store_r = require("./store.js");
+const test_r = require("./test.js");
 
 let router = express.Router();
 
 router
+    .use("/admin", admin_r)
+    .use("/api", api_r)
+    .use("/r", redirect_r)
     .use("/signin/callback", signinCallback_r)
+    .use("/store", store_r)
+    .use("/test", test_r)
 
     .get("/", (req, res) => {
         res.render("index.ejs");
