@@ -11,6 +11,6 @@ const userSchema = new mongoose.Schema({
     isAdmin: { type: Boolean, required: true, default: false },
     isMailVerified: { type: Boolean, required: true, default: false },
     verifyCode: { type: String, required: false }
-})
+});
 
-module.exports = userSchema
+module.exports = userSchema;

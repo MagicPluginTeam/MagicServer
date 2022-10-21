@@ -6,6 +6,6 @@ const paymentSchema = new mongoose.Schema({
     productId: { type: String, required: true },
     buyAt: { type: Date, required: true, default: Date.now },
     response: { type: String, required: true }
-})
+});
 
-module.exports = paymentSchema
+module.exports = paymentSchema;

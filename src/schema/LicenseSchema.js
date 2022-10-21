@@ -23,6 +23,6 @@ const licenseSchema = new mongoose.Schema({
             buyedAt: { type: Date, required: true, default: Date.now }
         }
     ]
-})
+});
 
-module.exports = licenseSchema
+module.exports = licenseSchema;

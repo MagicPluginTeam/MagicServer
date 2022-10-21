@@ -12,6 +12,6 @@ const productSchema = new mongoose.Schema({
     thumbnailImageURL: { type: String, required: true },
     productImageURL: { type: String, required: true },
     buys: { type: Number, required: true, default: 0 }
-})
+});
 
-module.exports = productSchema
+module.exports = productSchema;
