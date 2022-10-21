@@ -42,13 +42,29 @@ router
     })
 
     //SHORT LINK
-    .get("/r/make", async (req, res) => {
-        res.render("admin/redirect/make.ejs");
+    .get("/r/create", async (req, res) => {
+        res.render("admin/redirect/create.ejs");
     })
-    .post("/r/make", async (req, res) => {
-        db.generateRedirectModel(req.body.directCode, req.body.url).save();
+    .post("/r/create", async (req, res) => {
+        if (await db.getRedirectByDirectCode(req.body.directCode) !== null) {
+            res.json({
+                status: "ERROR",
+                msg: "DIRECT_CODE_ALREADY_TAKEN"
+            });
+            return;
+        }
 
-        res.send(200).redirect("/admin/r/make");
+        await db.generateRedirectModel(req.body.directCode, req.body.url).save();
+
+        res.send(200).redirect("/admin/r/create");
+    })
+
+    //PLUGIN
+    .get("/plugin/list", async (req, res) => {
+
+    })
+    .get("/plugin/create",  (req, res) => {
+
     })
 
 module.exports = router;
