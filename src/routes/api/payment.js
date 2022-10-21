@@ -28,7 +28,7 @@ router
         user = JSON.parse(JSON.stringify(user));
         product = JSON.parse(JSON.stringify(product));
 
-        await request.get("https://api.frankfurter.app/latest?from=USD&to=KRW", { json: true }, async (err_, response_, body_) => {
+        await request.get(`https://api.frankfurter.app/latest?from=${process.env.EXCHANGE_FROM}&to=${process.env.EXCHANGE_TO}`, { json: true }, async (err_, response_, body_) => {
             let options = {
                 headers: {
                     Authorization: "Basic " + Buffer.from(process.env.TOSS_SECRET_KEY + ":").toString("base64"),
