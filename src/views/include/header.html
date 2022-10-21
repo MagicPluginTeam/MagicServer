@@ -15,7 +15,7 @@
             <li><a href="/dashboard">Dashboard</a></li>
         </ul>
 
-        <ul class="navbar_account">
+        <ul class="navbar_account" id="navbar_account">
             <li id="logout"><a href="/api/account/logout">Logout</a></li>
             <li id="signup"><a href="/signup">SignUp</a></li>
             <li id="signin"><a href="/signin">SignIn</a></li>
@@ -45,6 +45,8 @@
             B.hidden = false;
             C.hidden = false;
             D.hidden = true;
+
+            document.getElementById("navbar_account").float = "left";
         } else {
             A.hidden = false;
             B.hidden = true;

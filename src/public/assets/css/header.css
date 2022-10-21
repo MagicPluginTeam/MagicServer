@@ -19,8 +19,11 @@ a {
 }
 
 .navbar_account {
-    border-radius: 5%;
-    width: fit-content;
+    width: 200px;
+    height: 39px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
 }
 
 .navbar_menu a:hover {
@@ -35,6 +38,31 @@ a {
 .fold-container {
     width: auto;
     padding-right: 10rem;
+}
+
+#signin {
+    font-size: 0.8rem;
+    transition: background-color 0.3s linear;
+    border-radius: 7px;
+    margin: auto;
+}
+
+#signin > a {
+    color: lightgray;
+}
+
+#signin:hover {
+    background-color: #0d6efd;
+}
+
+#signin:hover > a {
+    font-size: 1.15rem;
+    color: white;
+}
+
+#signup {
+    background-color: #0d6efd;
+    border-radius: 7px;
 }
 
 @media (min-width: 1200px) {
@@ -138,13 +166,6 @@ a {
         list-style-type: vertical;
         padding-left: 0;
         color: white;
-    }
-
-    .navbar_account {
-        margin-right: 5rem;
-        float: top;
-        text-align: right;
-        margin-bottom: 0;
     }
 
     nav ul ul {
