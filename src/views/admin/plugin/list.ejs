@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Pexel - Plugin List"/>
+    <meta property="og:image" content="/public/assets/img/logo.png"/>
+
+    <title>Plugin List · Pexel</title>
+
+    <link href="/public/assets/css/style.css" rel="stylesheet">
+    <link href="/public/assets/css/admin-plugin-list.css" rel="stylesheet">
+</head>
+<body>
+<main>
+    <%- include("../../include/header.html"); %>
+
+    <main class="m-5">
+        <div class="row GmarketSansMedium">
+            <% if(plugins.length === 0) { %>
+                <p class="GmarketSansMedium">Oops! Nothing's in here.</p>
+            <% } else { %>
+                <% for(let i = 0; i < plugins.length; i++) { %>
+                    <div class="card">
+                        <a href="/admin/plugin/detail/<%= plugins[i].pluginId %>">
+                            <h3><%= plugins[i].pluginName %> - [ <%= plugins[i].pluginId %> ]</h3>
+                        </a>
+                        <div class="card-info">
+                            <a href="/api/plugin/delete/<%= plugins[i].pluginId %>" class="btn-delete">
+                                <button type="button" class="btn btn-sm btn-danger">
+                                    Delete
+                                </button>
+                            </a>
+                            <a href="/admin/plugin/edit/<%= plugins[i].pluginId %>" class="btn-edit">
+                                <button type="button" class="btn btn-sm btn-primary mt-2">
+                                    Edit
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </main>
+
+    <%- include("../../include/footer.html"); %>
+</main>
+</body>
+</html>

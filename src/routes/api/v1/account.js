@@ -48,7 +48,7 @@ router
         } else if (queryType === "email") {
             user = await db.getUserByEmail(query);
         } else {
-            res.status(403).json({
+            res.status(400).json({
                 status: "ERROR",
                 msg: "INVALID_QUERY_TYPE",
                 data: null
@@ -57,7 +57,7 @@ router
         }
 
         if (user === null) {
-            res.status(403).json({
+            res.status(400).json({
                 status: "ERROR",
                 msg: "INVALID_QUERY",
                 data: null

@@ -6,7 +6,7 @@ let router = express.Router();
 
 router
     .get("/", (req, res) => {
-        res.redirect("/store/list")
+        res.redirect("/store/list");
     })
     .get("/list", async (req, res) => {
         res.render("store/list.ejs", {products: await db.getProducts()});

@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("../modules/database.js");
 const accountChecker = require("../modules/accountChecker.js");
+const queryString = require('node:querystring');
 
 const admin_r = require("./admin.js");
 const api_r = require("./api/api.js");
@@ -23,10 +24,10 @@ router
         res.render("index.ejs");
     })
     .get("/signin", (req, res) => {
-        let context = { signup: undefined, verify: undefined, githubOAuthUrl: undefined };
+        let context = { signup: undefined, verify: undefined, githubOAuthUrl: undefined, redirect: undefined};
         let signup = req.query.signup;
         let verify = req.query.verify;
-
+        let redirect = req.query.redirect;
         context.githubOAuthUrl = process.env.GITHUB_OAUTH_URL.replace("<%clientId%>", process.env.GITHUB_OAUTH_CLIENT_ID);
 
         if (signup === undefined || signup === null) context.signup = false;
@@ -39,6 +40,12 @@ router
         else {
             verify = JSON.parse(verify);
             if (verify) context["verify"] = true;
+        }
+
+        if (redirect === undefined || redirect === null) context.redirect = null;
+        else {
+            context.redirect = (JSON.stringify(queryString.decode(redirect)));
+            context.redirect = context.redirect.substring(2, context.redirect.length - 5);
         }
 
         if (context.signup && context.verify) {
@@ -54,7 +61,7 @@ router
     .get("/developers", (req, res) => {
         res.render("developers.ejs");
     })
-    .get("/wiki", (req ,res) => {
+    .get("/wiki", (req, res) => {
         res.render("wiki/index.ejs");
     })
     .get("/dashboard", (req, res) => {
@@ -87,7 +94,7 @@ router
             return;
         }
 
-        res.render("err.ejs", { code: code });
+        res.render("err.ejs", {code: code});
     })
 
 module.exports = router

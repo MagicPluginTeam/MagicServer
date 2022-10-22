@@ -1,10 +1,11 @@
 //REQUIRES
 require("dotenv").config();
-const { mongoose, connect: connect1 } = require("mongoose");
+const { mongoose, connect: connect1, plugin} = require("mongoose");
 
 //SCHEMAS
 const licenseSchema = require("../schema/LicenseSchema.js");
 const paymentSchema = require("../schema/PaymentSchema.js");
+const pluginSchema = require("../schema/PluginSchema.js");
 const productSchema = require("../schema/ProductSchema.js");
 const publicBannedUserSchema = require("../schema/PublicBannedUserSchema.js");
 const redirectSchema = require("../schema/RedirectSchema.js");
@@ -13,6 +14,7 @@ const userSchema = require("../schema/UserSchema.js");
 //DATA-MODELS
 const licenseData = mongoose.model("licenseData", licenseSchema);
 const paymentData = mongoose.model("paymentData", paymentSchema);
+const pluginData = mongoose.model("pluginData", pluginSchema);
 const productData = mongoose.model("productData", productSchema);
 const publicBannedUserData = mongoose.model("publicBannedUserData", publicBannedUserSchema);
 const userData = mongoose.model("userData", userSchema);
@@ -93,6 +95,17 @@ function generateRedirectModel(directCode, url) {
     });
 }
 
+function generatePluginModel(pluginName, pluginId) {
+    return new pluginData({
+        pluginName: pluginName,
+        pluginId: pluginId,
+        firstReleaseAt: null,
+        lastReleaseAt: null,
+        latestVersion: "1.0.0.0",
+        latestConfigVersion: "1.0.0"
+    });
+}
+
 //FUNCTIONS - GET
 async function getLicenseByOwnerUserId(ownerUserId) {
     return await licenseData.findOne({ ownerUserId: ownerUserId }).exec();
@@ -142,6 +155,18 @@ async function getRedirectByDirectCode(directCode) {
     return await redirectData.findOne({ directCode: directCode }).exec();
 }
 
+async function getPluginByPluginName(pluginName) {
+    return await pluginData.findOne({ pluginName: pluginName }).exec();
+}
+
+async function getPluginByPluginId(pluginId) {
+    return await pluginData.findOne({ pluginId: pluginId }).exec();
+}
+
+async function getPlugins() {
+    return await pluginData.find({}).exec();
+}
+
 //FUNCTIONS - DELETE
 async function deleteLicenseByOwnerUserId(ownerUserId) {
     await licenseData.findOneAndDelete({ ownerUserId: ownerUserId }).exec();
@@ -161,6 +186,18 @@ async function deletePublicBannedUserByMacAddress(macAddress) {
 
 async function deleteUserByUserId(userId) {
     await userData.findOneAndDelete({ userId: userId }).exec();
+}
+
+async function deleteRedirectByDirectCode(directCode) {
+    await redirectData.findOneAndDelete({ directCode: directCode }).exec();
+}
+
+async function deletePluginByPluginName(pluginName) {
+    await pluginData.findOneAndDelete({ pluginName: pluginName }).exec();
+}
+
+async function deletePluginByPluginId(pluginId) {
+    await pluginData.findOneAndDelete({ pluginId: pluginId }).exec();
 }
 
 //FUNCTIONS - UPDATE
@@ -188,6 +225,14 @@ async function updateUserByUserId(userId, data) {
     await userData.updateOne({ userId: userId }, data).exec();
 }
 
+async function updatePluginByPluginName(pluginName, data) {
+    await pluginData.updateOne({ pluginName: pluginName }, data).exec();
+}
+
+async function updatePluginByPluginId(pluginId, data) {
+    await pluginData.updateOne({ pluginId: pluginId }, data).exec();
+}
+
 module.exports = {
     connect,
 
@@ -198,12 +243,13 @@ module.exports = {
     generatePublicBannedUserModel,
     generateUserModel,
     generateRedirectModel,
+    generatePluginModel,
 
     //GET
     getLicenseByOwnerUserId,
     getPaymentByOrderId,
     getPaymentsByUserId,
-    getProductByProductId: getProductByproductId,
+    getProductByproductId,
     getProductByTitle,
     getProducts,
     getPublicBannedUsers,
@@ -212,6 +258,9 @@ module.exports = {
     getUserByEmail,
     getUsers,
     getRedirectByDirectCode,
+    getPluginByPluginName,
+    getPluginByPluginId,
+    getPlugins,
 
     //DELETE
     deleteLicenseByOwnerUserId,
@@ -219,6 +268,9 @@ module.exports = {
     deletePublicBannedUserByIpAddress,
     deletePublicBannedUserByMacAddress,
     deleteUserByUserId,
+    deleteRedirectByDirectCode,
+    deletePluginByPluginName,
+    deletePluginByPluginId,
 
     //UPDATE
     updateLicenseByOwnerUserId,
@@ -226,5 +278,7 @@ module.exports = {
     updatePublicBannedUserByUserId,
     updatePublicBannedUserByIpAddress,
     updatePublicBannedUserByMacAddress,
-    updateUserByUserId
+    updateUserByUserId,
+    updatePluginByPluginName,
+    updatePluginByPluginId
 }
