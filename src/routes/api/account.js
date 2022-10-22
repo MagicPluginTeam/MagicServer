@@ -94,10 +94,6 @@ router
         }
 
         hasher({ password: req.body.password, salt: user["salt"] }, async (err, pass, salt, hash) => {
-            console.log(hash);
-            console.log(user["passwordHash"]);
-            console.log({ password: req.body.password, salt: user["salt"] });
-
             if (hash !== user["passwordHash"]) {
                 res.status(403).send("password is incorrect.");
                 return;
