@@ -119,7 +119,7 @@ async function getPaymentsByUserId(userId) {
     return await paymentData.find({ userId: userId }).exec();
 }
 
-async function getProductByproductId(productId) {
+async function getProductByProductId(productId) {
     return await productData.findOne({ productId: productId }).exec();
 }
 
@@ -249,7 +249,7 @@ module.exports = {
     getLicenseByOwnerUserId,
     getPaymentByOrderId,
     getPaymentsByUserId,
-    getProductByproductId,
+    getProductByProductId,
     getProductByTitle,
     getProducts,
     getPublicBannedUsers,
