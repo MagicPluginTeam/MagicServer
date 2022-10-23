@@ -18,8 +18,8 @@ html, body, main {
 }
 
 .product-image {
-    width: 200px;
-    height: 200px;
+    max-width: 500px;
+    height: auto;
 }
 
 .mid-bar {
