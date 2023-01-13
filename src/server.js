@@ -44,5 +44,5 @@ app
 
 //STARTING SERVER
 app.listen(httpPort, () => {
-    console.log("HTTP Server Started! HTTP Listening On Port: " + httpPort)
+    console.log("HTTP Server Started! HTTP Listening On Port: " + httpPort);
 })
